@@ -1,0 +1,711 @@
+/* ==========================================================================
+   MODERN OVERRIDE - ATR DESIGN SYSTEM (POOLIX APP)
+   ========================================================================== */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap');
+
+/* Color Variables */
+:root {
+  --atr-blue: #1B5299;
+  --atr-blue-hover: #15417A;
+  --atr-blue-light: rgba(27, 82, 153, 0.1);
+  --atr-gold: #C07B1B;
+  --atr-gold-hover: #A66A17;
+  --atr-gold-light: rgba(192, 123, 27, 0.1);
+  --atr-dark: #0F172A;
+  --atr-gray: #475569;
+  --atr-bg: #F8FAFC;
+}
+
+/* Typography Overrides */
+body,
+p,
+a,
+span,
+li,
+input,
+textarea {
+  font-family: 'Inter', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.sec-title h2 {
+  font-family: 'DM Sans', sans-serif !important;
+  letter-spacing: -0.02em;
+}
+
+/* Standard Section Headings across the project */
+.section_heading_title_small {
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-size: 12.5px !important;
+  color: #C07B1B !important;
+  background: rgba(192, 123, 27, 0.08) !important;
+  padding: 6px 18px !important;
+  border-radius: 100px !important;
+  display: inline-block !important;
+  margin-bottom: 15px !important;
+  border: 1px solid rgba(192, 123, 27, 0.2) !important;
+}
+
+.section_heading_title_big {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: clamp(32px, 5vw, 44px) !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  line-height: 1.2 !important;
+  margin-bottom: 18px !important;
+  letter-spacing: -0.02em !important;
+}
+
+.section_heading_title_big span {
+  color: #1B5299 !important;
+}
+
+.section_heading_desc {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 16.5px !important;
+  line-height: 1.7 !important;
+  color: #334155 !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
+  font-weight: 400 !important;
+}
+
+/* Global Buttons */
+.theme-btn {
+  background-color: var(--atr-blue) !important;
+  border-radius: 12px !important;
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 600 !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(27, 82, 153, 0.15) !important;
+  transition: all 0.3s ease !important;
+}
+
+.theme-btn:hover {
+  background-color: var(--atr-gold) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(27, 82, 153, 0.3) !important;
+}
+
+/* Cards & Hover Animations */
+.news-block .inner-box,
+.service-block .inner-box,
+.team-block .inner-box {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(27, 82, 153, 0.04);
+  border: 1px solid rgba(27, 82, 153, 0.06);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.news-block:hover .inner-box,
+.service-block:hover .inner-box,
+.team-block:hover .inner-box {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(27, 82, 153, 0.12);
+  border-color: rgba(27, 82, 153, 0.15);
+}
+
+.news-block .image img,
+.service-block .image img,
+.team-block .image img {
+  border-radius: 20px 20px 0 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-block:hover .image img,
+.service-block:hover .image img,
+.team-block:hover .image img {
+  transform: scale(1.05);
+}
+
+/* ==========================================================================
+   ATR ACTION PILLARS (LES PILIERS DE NOTRE ACTION) - MODERN & ANIMATED
+   ========================================================================== */
+
+.atr-pillars-section {
+  position: relative;
+  background: #F8FAFC;
+  padding: 100px 0 110px;
+}
+
+.atr-section-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--atr-gold);
+  background: rgba(192, 123, 27, 0.1);
+  padding: 6px 18px;
+  border-radius: 50px;
+  margin-bottom: 14px;
+  border: 1px solid rgba(192, 123, 27, 0.2);
+}
+
+.atr-section-subtitle {
+  max-width: 680px;
+  margin: 16px auto 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #64748B;
+  font-weight: 400;
+}
+
+.atr-pillar-card {
+  position: relative;
+  background: #FFFFFF;
+  border-radius: 22px;
+  border: 1px solid rgba(27, 82, 153, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  overflow: hidden;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.atr-pillar-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 24px 50px rgba(27, 82, 153, 0.13);
+  border-color: rgba(192, 123, 27, 0.35);
+}
+
+.atr-pillar-thumb {
+  position: relative;
+  height: 205px;
+  overflow: hidden;
+  border-radius: 22px 22px 0 0;
+  background: #0F172A;
+}
+
+.atr-pillar-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.atr-pillar-card:hover .atr-pillar-thumb img {
+  transform: scale(1.08);
+}
+
+.atr-pillar-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.7) 100%);
+  pointer-events: none;
+}
+
+.atr-pillar-badge-top {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  color: var(--atr-blue);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 5px 12px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 2;
+}
+
+.atr-pillar-number {
+  position: absolute;
+  bottom: 12px;
+  right: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+}
+
+.atr-pillar-body {
+  padding: 24px 22px 28px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.atr-pillar-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--atr-dark);
+  margin-bottom: 12px;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+.atr-pillar-card:hover .atr-pillar-title {
+  color: var(--atr-blue);
+}
+
+.atr-pillar-desc {
+  font-size: 14px;
+  line-height: 1.68;
+  color: #475569;
+  font-weight: 400;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.atr-pillar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(27, 82, 153, 0.06);
+}
+
+.atr-pillar-tag-item {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #1B5299;
+  background: rgba(27, 82, 153, 0.06);
+  padding: 4px 10px;
+  border-radius: 6px;
+  letter-spacing: 0.01em;
+  transition: all 0.25s ease;
+}
+
+.atr-pillar-card:hover .atr-pillar-tag-item {
+  background: rgba(192, 123, 27, 0.1);
+  color: var(--atr-gold);
+}
+
+/* Swiper custom pagination for pillars */
+.atr-pillars-section .swiper-pagination-bullet {
+  width: 9px;
+  height: 9px;
+  background: rgba(27, 82, 153, 0.2);
+  opacity: 1;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+}
+
+.atr-pillars-section .swiper-pagination-bullet-active {
+  width: 28px;
+  border-radius: 6px;
+  background: var(--atr-blue);
+}
+
+/* ==========================================================================
+   INTERACTIVE EXPANDING PILLARS DECK (ACCORDION SHOWCASE) - LIGHT THEME
+   ========================================================================== */
+
+.atr-pillars-light-section {
+  background-color: #ffffff;
+  padding: 110px 0 120px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(27, 82, 153, 0.06);
+  border-bottom: 1px solid rgba(27, 82, 153, 0.06);
+}
+
+.atr-pillars-sub-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  color: #C07B1B;
+  background: rgba(192, 123, 27, 0.08);
+  padding: 6px 18px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 15px;
+  border: 1px solid rgba(192, 123, 27, 0.2);
+}
+
+.atr-pillars-heading h2 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(32px, 4vw, 44px);
+  font-weight: 700;
+  color: #0F172A;
+  line-height: 1.2;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.atr-pillars-heading h2 span {
+  color: #1B5299;
+}
+
+.atr-pillars-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #64748B;
+  max-width: 680px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+/* Nav Tabs */
+.atr-light-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+  margin-bottom: 45px;
+}
+
+.atr-light-tab-btn {
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  color: #475569;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 22px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.atr-light-tab-btn:hover {
+  background: #ffffff;
+  color: #1B5299;
+  border-color: #1B5299;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(27, 82, 153, 0.08);
+}
+
+.atr-light-tab-btn.is-active {
+  background: #1B5299;
+  color: #ffffff;
+  border-color: #1B5299;
+  box-shadow: 0 6px 20px rgba(27, 82, 153, 0.25);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   GLOBAL 10% LEFT & RIGHT MARGINS FOR ALL SECTIONS
+   ========================================================================== */
+
+section .auto-container,
+section .container,
+.auto-container,
+.container,
+.atr-container,
+.atr-about-section .container,
+.atr-blog-section .container,
+.atr-pillars-light-section .auto-container,
+.cta-1-section .auto-container,
+.testimonial-1-section .auto-container,
+.partner-1-section .auto-container,
+.team-1-section .auto-container,
+section.section-padding .auto-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 10% !important;
+  padding-right: 10% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 767px) {
+
+  section .auto-container,
+  section .container,
+  .auto-container,
+  .container,
+  .atr-about-section .container,
+  .atr-blog-section .container,
+  .atr-pillars-light-section .auto-container {
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+  }
+}
+
+
+
+.atr-nav-tab-btn.is-active .atr-nav-num {
+  color: var(--atr-gold);
+}
+
+.atr-nav-num {
+  font-weight: 800;
+  font-size: 12px;
+  color: #64748B;
+  transition: color 0.3s ease;
+}
+
+/* DECK CONTAINER */
+.atr-panels-deck {
+  display: flex;
+  gap: 16px;
+  height: 560px;
+  width: 100%;
+}
+
+.atr-panel-item {
+  position: relative;
+  flex: 1;
+  border-radius: 26px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #0F172A;
+}
+
+.atr-panel-item.is-active {
+  flex: 3.4;
+  border-color: rgba(192, 123, 27, 0.55);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 35px rgba(27, 82, 153, 0.3);
+}
+
+.atr-panel-item:hover:not(.is-active) {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px);
+}
+
+.atr-panel-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.atr-panel-item.is-active .atr-panel-bg-img {
+  transform: scale(1.04);
+}
+
+.atr-panel-item:not(.is-active) .atr-panel-bg-img {
+  filter: brightness(0.6) saturate(0.8);
+}
+
+.atr-panel-overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 19, 43, 0.4) 0%, rgba(11, 19, 43, 0.75) 45%, rgba(6, 11, 25, 0.96) 100%);
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.atr-panel-item.is-active .atr-panel-overlay-dark {
+  background: linear-gradient(180deg, rgba(11, 19, 43, 0.25) 0%, rgba(11, 19, 43, 0.78) 45%, rgba(5, 10, 22, 0.98) 100%);
+}
+
+/* COLLAPSED STATE CONTENT */
+.atr-panel-collapsed-view {
+  position: absolute;
+  inset: 0;
+  padding: 32px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.atr-panel-item.is-active .atr-panel-collapsed-view {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+}
+
+.atr-panel-collapsed-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--atr-gold);
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.atr-panel-collapsed-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  transition: all 0.3s ease;
+}
+
+.atr-panel-item:hover .atr-panel-collapsed-icon {
+  background: var(--atr-gold);
+  color: #FFFFFF;
+  transform: scale(1.1);
+}
+
+.atr-panel-collapsed-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 1.35;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* EXPANDED STATE CONTENT */
+.atr-panel-expanded-view {
+  position: absolute;
+  inset: 0;
+  padding: 38px 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 3;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.12s, transform 0.45s ease 0.12s;
+  text-align: left;
+}
+
+.atr-panel-item:not(.is-active) .atr-panel-expanded-view {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+}
+
+.atr-panel-exp-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.atr-panel-exp-tag {
+  background: rgba(192, 123, 27, 0.25);
+  border: 1px solid rgba(192, 123, 27, 0.5);
+  color: #F8B342;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 16px;
+  border-radius: 50px;
+  backdrop-filter: blur(8px);
+}
+
+.atr-panel-exp-number {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 38px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.25);
+  line-height: 1;
+}
+
+.atr-panel-exp-bottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.atr-panel-exp-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 30px;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.atr-panel-exp-desc {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #E2E8F0;
+  font-weight: 400;
+  margin-bottom: 24px;
+  max-width: 620px;
+}
+
+.atr-panel-exp-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.atr-panel-exp-feat-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #F1F5F9;
+}
+
+.atr-panel-exp-feat-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--atr-gold);
+  box-shadow: 0 0 10px rgba(192, 123, 27, 0.8);
+  flex-shrink: 0;
+}
+
+/* RESPONSIVE FOR TABLETS AND MOBILE */
+@media (max-width: 991px) {
+  .atr-panels-deck {
+    flex-direction: column;
+    height: auto;
+    gap: 18px;
+  }
+
+  .atr-panel-item {
+    height: auto;
+    min-height: 400px;
+    flex: none !important;
+  }
+
+  .atr-panel-collapsed-view {
+    display: none !important;
+  }
+
+  .atr-panel-expanded-view {
+    position: relative !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+    padding: 32px 24px;
+  }
+
+  .atr-panel-exp-title {
+    font-size: 24px;
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "menu": {
+    "discover_atr": "Découvrir l'ATR",
+    "who_we_are": "Qui sommes-nous ?",
+    "history": "Histoire & Création",
+    "organization": "Notre Organisation",
+    "board": "Comité Directeur",
+    "secretariat": "Secrétariat Général",
+    "national_committees": "Comités Techniques Nationaux",
+    "our_members": "Nos Membres",
+    "directory": "Répertoire des membres",
+    "become_member": "Devenir membre",
+    "strategic_plan": "Plan Stratégique",
+    "strategic_axes": "Axes Stratégiques",
+    
+    "technical_domains": "Domaines Techniques",
+    "roads": "Chaussées Routières (CT 4.6)",
+    "assets": "Gestion des Actifs (CT 3.1)",
+    "safety": "Sécurité Routière",
+    "environment": "Environnement & Changement Climatique",
+    "mobility": "Mobilité Intelligente",
+    "infrastructure": "Infrastructures & Ponts",
+    
+    "our_activities": "Nos Activités",
+    "events": "Événements & Séminaires",
+    "piarc_2026": "Séminaire PIARC 2026",
+    "congress": "Congrès National",
+    "workshops": "Ateliers techniques",
+    "publications": "Publications & Rapports",
+    "guides": "Guides techniques",
+    "magazine": "Revue ATR",
+    "proceedings": "Actes des séminaires",
+    "training": "Formation & Académie",
+    "tools": "Outils & Ressources",
+    
+    "news_agenda": "Actualités & Agenda",
+    "news": "Actualités",
+    "agenda": "Agenda",
+    "press": "Communiqués",
+    "newsletter": "Newsletter",
+    
+    "why_atr": "Pourquoi l'ATR ?",
+    "for_decision_makers": "Pour les Décideurs publics",
+    "for_engineers": "Pour les Ingénieurs & Experts",
+    "for_companies": "Pour les Entreprises de BTP",
+    "for_researchers": "Pour les Chercheurs & Universitaires",
+    "for_youth": "Pour les Jeunes Professionnels",
+    "join_atr": "Adhérer à l'ATR",
+    "btn_join": "Nous Rejoindre"
+  },
+  "home": {
+    "welcome": "L'association rassemble l'ensemble des acteurs routiers publics et privés",
+    "title": "Au cœur du réseau<br/>routier Tunisien"
+  }
+}

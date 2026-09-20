@@ -1,0 +1,55 @@
+{
+  "menu": {
+    "discover_atr": "Discover ATR",
+    "who_we_are": "Who are we?",
+    "history": "History & Creation",
+    "organization": "Our Organization",
+    "board": "Steering Committee",
+    "secretariat": "General Secretariat",
+    "national_committees": "National Technical Committees",
+    "our_members": "Our Members",
+    "directory": "Member Directory",
+    "become_member": "Become a member",
+    "strategic_plan": "Strategic Plan",
+    "strategic_axes": "Strategic Axes",
+    
+    "technical_domains": "Technical Domains",
+    "roads": "Road Pavements (CT 4.6)",
+    "assets": "Asset Management (CT 3.1)",
+    "safety": "Road Safety",
+    "environment": "Environment & Climate Change",
+    "mobility": "Smart Mobility",
+    "infrastructure": "Infrastructure & Bridges",
+    
+    "our_activities": "Our Activities",
+    "events": "Events & Seminars",
+    "piarc_2026": "PIARC Seminar 2026",
+    "congress": "National Congress",
+    "workshops": "Technical Workshops",
+    "publications": "Publications & Reports",
+    "guides": "Technical Guides",
+    "magazine": "ATR Magazine",
+    "proceedings": "Seminar Proceedings",
+    "training": "Training & Academy",
+    "tools": "Tools & Resources",
+    
+    "news_agenda": "News & Agenda",
+    "news": "News",
+    "agenda": "Agenda",
+    "press": "Press Releases",
+    "newsletter": "Newsletter",
+    
+    "why_atr": "Why ATR?",
+    "for_decision_makers": "For Public Decision Makers",
+    "for_engineers": "For Engineers & Experts",
+    "for_companies": "For Construction Companies",
+    "for_researchers": "For Researchers & Academics",
+    "for_youth": "For Young Professionals",
+    "join_atr": "Join ATR",
+    "btn_join": "Join Us"
+  },
+  "home": {
+    "welcome": "The association brings together all public and private road stakeholders",
+    "title": "At the heart of the<br/>Tunisian road network"
+  }
+}

@@ -1,0 +1,7 @@
+# SQLite database file
+prisma/data/
+*.db
+*.db-journal
+
+# Prisma generated
+node_modules/.prisma/

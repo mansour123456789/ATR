@@ -1,0 +1,24 @@
+services:
+  poolix-app:
+    build: .
+    image: poolix-app-image:latest
+    container_name: poolix-nextjs-app
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+      - sqlite_data:/app/prisma/data
+    ports:
+      - "3333:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - DATABASE_URL=file:/app/prisma/data/atr.db
+      - JWT_SECRET=atr-super-secret-jwt-key-change-in-production-2026
+      - SMTP_HOST=smtp.gmail.com
+      - SMTP_PORT=587
+      - SMTP_USER=votre-email@gmail.com
+      - SMTP_PASS=votre-mot-de-passe-app
+
+volumes:
+  sqlite_data:
