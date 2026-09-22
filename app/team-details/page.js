@@ -45,7 +45,6 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="biography-box mb_140">
-                <div className="biography-box mb_140">
                     <h2>Biographie</h2>
                     <p>Diplômé de l'École Nationale d'Ingénieurs de Tunis (ENIT), il a consacré sa carrière à l'amélioration des infrastructures routières en Tunisie. Son implication au sein de l'Association Tunisienne des Routes s'illustre par de nombreuses publications dans la Revue ATR et l'animation de séminaires internationaux, notamment sur l'adaptation climatique.</p>
                     <p>Il coordonne actuellement les essais de validation des nouveaux liants écologiques au sein des laboratoires centraux et représente la Tunisie dans les groupes de travail internationaux de PIARC (Association mondiale de la Route).</p>
@@ -54,7 +53,6 @@ export default function Home() {
                     <div className="row clearfix">
                         <div className="col-lg-6 col-md-6 col-sm-12 skills-column">
                             <div className="skills-inner mr_20">
-                                <div className="text">
                                 <div className="text">
                                     <h2>Domaines d'Expertise</h2>
                                     <p>Une maîtrise approfondie des cycles de vie des chaussées et de la gestion du patrimoine routier face aux contraintes économiques et climatiques.</p>
