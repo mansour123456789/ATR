@@ -15,8 +15,6 @@ export default function Home() {
     return (
         <>
             <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Profil du Membre">
-                <div>
-
                 <section className="team-details pt_150 pb_150">
             <div className="auto-container">
                 <div className="team-details-content mb_140">
@@ -82,10 +80,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-        </section>
-
-
-                </div>
+            </section>
 
             </Layout>
         </>
