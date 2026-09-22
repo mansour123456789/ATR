@@ -51,5 +51,30 @@
   "home": {
     "welcome": "The association brings together all public and private road stakeholders",
     "title": "At the heart of the<br/>Tunisian road network"
+  },
+  "common": {
+    "discover": "Discover",
+    "join": "Join Us",
+    "about": "About",
+    "aboutTitle": "The Tunisian Road Association",
+    "aboutText": "ATR brings together road sector professionals around technical expertise, safety, and sustainable infrastructure development.",
+    "readAbout": "Learn more",
+    "featured": "Featured",
+    "agenda": "Agenda",
+    "resources": "Resources",
+    "publications": "Recent Publications",
+    "allPublications": "All publications",
+    "technicalWork": "Technical Work",
+    "committeesTitle": "Our Technical Committees",
+    "committeesText": "Four working axes structure ATR's action to contribute to the improvement of the Tunisian road network.",
+    "governance": "Governance",
+    "board": "Steering Committee",
+    "team": "Meet the team",
+    "cooperation": "Cooperation",
+    "cooperationTitle": "Our Institutional Partners",
+    "cooperationText": "ATR works closely with its national and international partners to promote best practices in the road sector.",
+    "membership": "Membership",
+    "membershipTitle": "Join ATR",
+    "membershipButton": "Become a member"
   }
 }

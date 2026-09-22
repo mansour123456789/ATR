@@ -15,7 +15,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
 
     return (
         <>
-            <header className={`main-header  header-style-one ${scroll ? "fixed-header" : ""}`}>
+            <header dir="ltr" className={`main-header  header-style-one ${scroll ? "fixed-header" : ""}`}>
                 <style dangerouslySetInnerHTML={{
                     __html: `
                     .main-header {
@@ -34,7 +34,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                         backdrop-filter: none;
                         border-bottom: none;
                     }
-                    @media (min-width: 992px) {
+                    @media (min-width: 1201px) {
                         .main-header.fixed-header .header-upper {
                             display: none !important;
                         }
@@ -89,7 +89,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                     .fixed-header .atr-logo-img, .sticky-header .atr-logo-img {
                         height: 80px;
                     }
-                    @media (max-width: 991px) {
+                    @media (max-width: 1200px) {
                         .atr-logo-img {
                             height: 85px !important;
                         }
@@ -213,7 +213,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                                     </div>
                                 </div>
                                 <div className="header-link-btn"><Link href="/contact" className="btn-1">{t('menu.btn_join') || "Nous Rejoindre"} <span></span></Link></div>
-                                <div className="mobile-nav-toggler d-block d-lg-none" onClick={handleMobileMenu} style={{ marginLeft: '30px', cursor: 'pointer' }}>
+                                <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu} style={{ marginLeft: '30px', cursor: 'pointer' }}>
                                     <img src="assets/images/icons/icon-bar-2.png" alt="" />
                                 </div>
                             </div>

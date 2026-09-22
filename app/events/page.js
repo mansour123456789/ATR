@@ -1,229 +1,55 @@
 'use client'
 import { useEffect, useState } from 'react';
-import Layout from "@/components/layout/Layout"
-import Testmonial from "@/components/sections/home1/Testimonial"
-import Link from "next/link"
+import Link from 'next/link';
+import Layout from '@/components/layout/Layout';
+import Testimonial from '@/components/sections/home1/Testimonial';
 
-const inputStyle = {
-  width: '100%', padding: '12px 16px', border: '2px solid #e8edf5', borderRadius: '10px',
-  fontSize: '15px', outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit',
-};
+const inputStyle = { width: '100%', padding: '12px 14px', border: '1px solid #d5dee8', borderRadius: '8px', fontSize: '15px', outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit', background: '#fbfcfd' };
+
+function eventType(title = '') {
+  const value = title.toLowerCase();
+  if (value.includes('séminaire') || value.includes('congrès')) return { label: 'Séminaire / congrès', color: '#C07B1B' };
+  if (value.includes('atelier') || value.includes('journée') || value.includes('formation')) return { label: 'Atelier technique', color: '#2E8B57' };
+  return { label: 'Événement ATR', color: '#1B5299' };
+}
 
 export default function EventsPage() {
-    const [events, setEvents] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [formLoading, setFormLoading] = useState(false);
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
 
-    // Reservation Modal State
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedEvent, setSelectedEvent] = useState(null);
-    const [formLoading, setFormLoading] = useState(false);
-    const [message, setMessage] = useState('');
-    const [error, setError] = useState('');
-    const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
+  useEffect(() => {
+    fetch('/api/events?active=true').then((response) => response.json()).then((data) => setEvents(Array.isArray(data) ? data : [])).catch(() => setEvents([])).finally(() => setLoading(false));
+  }, []);
 
-    useEffect(() => {
-        fetch('/api/events?active=true')
-            .then(res => res.json())
-            .then(data => {
-                setEvents(data);
-                setLoading(false);
-            })
-            .catch(err => {
-                console.error(err);
-                setLoading(false);
-            });
-    }, []);
+  const openModal = (event) => { setSelectedEvent(event); setIsModalOpen(true); setMessage(''); setError(''); setFormData({ name: '', email: '', phone: '', message: '' }); };
+  const closeModal = () => { setIsModalOpen(false); setSelectedEvent(null); };
 
-    const openModal = (event) => {
-        setSelectedEvent(event);
-        setIsModalOpen(true);
-        setMessage('');
-        setError('');
-        setFormData({ name: '', email: '', phone: '', message: '' });
-    };
+  async function handleSubmit(event) {
+    event.preventDefault(); setFormLoading(true); setMessage(''); setError('');
+    try {
+      const response = await fetch('/api/reservations', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ...formData, eventId: selectedEvent.id }) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Une erreur est survenue.');
+      setMessage(data.message || 'Votre demande a bien été enregistrée.'); setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (submitError) { setError(submitError.message); } finally { setFormLoading(false); }
+  }
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setSelectedEvent(null);
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setFormLoading(true);
-        setMessage('');
-        setError('');
-
-        try {
-            const res = await fetch('/api/reservations', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ ...formData, eventId: selectedEvent.id })
-            });
-            const data = await res.json();
-            
-            if (!res.ok) {
-                setError(data.error || 'Une erreur est survenue.');
-            } else {
-                setMessage(data.message || 'Réservation réussie !');
-                setFormData({ name: '', email: '', phone: '', message: '' });
-                setTimeout(() => closeModal(), 3000);
-            }
-        } catch (err) {
-            setError('Une erreur est survenue lors de la réservation.');
-        } finally {
-            setFormLoading(false);
-        }
-    };
-
-    return (
-        <>
-            <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Nos Événements">
-                <div>
-                    <section className="blog-page-section pt_150 pb_140 gray-bg">
-                        <div className="auto-container">
-                            <div className="section_heading text-center mb_60">
-                                <span className="section_heading_title_small">Agenda ATR</span>
-                                <h2 className="section_heading_title_big">Conférences, Congrès <br/> & Journées Techniques</h2>
-                            </div>
-                            
-                            {loading ? (
-                                <div style={{ textAlign: 'center', padding: '50px', color: '#1E4C81', fontSize: '20px', fontWeight: 'bold' }}>
-                                    <i className="fas fa-spinner fa-spin"></i> Chargement des événements...
-                                </div>
-                            ) : events.length === 0 ? (
-                                <div style={{ textAlign: 'center', padding: '50px', color: '#666' }}>
-                                    Aucun événement prévu pour le moment.
-                                </div>
-                            ) : (
-                                <div className="row clearfix justify-content-center">
-                                    {events.map((event, index) => (
-                                        <div key={event.id} className="col-lg-4 col-md-6 col-sm-12">
-                                            <div className="blog-1-block wow fadeInLeft" data-wow-delay={`${0.2 * (index % 3 + 1)}s`} data-wow-duration=".8s">
-                                                <div className="blog-1-image" style={{ height: '240px', overflow: 'hidden' }}>
-                                                    <Link href={`/blog-details?id=${event.id}`}>
-                                                        <img src={event.imageUrl || "/images/atr-bg-3.png"} alt={event.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                                    </Link>
-                                                </div>
-                                                <div className="blog-1-bottom-content mb_40" style={{ backgroundColor: '#fff', padding: '30px', borderRadius: '0 0 10px 10px', boxShadow: '0 5px 15px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-                                                    <h4 className="blog-1-title" style={{ minHeight: '60px' }}>
-                                                        <Link href={`/blog-details?id=${event.id}`}>{event.title}</Link>
-                                                    </h4>
-                                                    <div className="blog-1-postmeta" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '15px' }}>
-                                                        <span style={{ fontSize: '14px' }}><i className="far fa-calendar-alt c_primary"></i> {new Date(event.date).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}</span>
-                                                        <span style={{ fontSize: '14px' }}><i className="fas fa-map-marker-alt c_primary"></i> {event.location}</span>
-                                                    </div>
-                                                    <p className="blog-1-excerpt mt_15" style={{ flexGrow: 1, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                                                        {event.description}
-                                                    </p>
-                                                    
-                                                    <div className="mt_20" style={{ display: 'flex', gap: '10px' }}>
-                                                        <Link href={`/blog-details?id=${event.id}`} className="btn-1 alt" style={{ flex: 1, textAlign: 'center', padding: '10px' }}>Détails</Link>
-                                                        <button onClick={() => openModal(event)} style={{ flex: 1, backgroundColor: '#F69F1A', color: '#fff', border: 'none', borderRadius: '5px', fontWeight: 'bold', cursor: 'pointer', transition: 'all 0.3s' }} onMouseEnter={e => e.target.style.backgroundColor = '#d98b15'} onMouseLeave={e => e.target.style.backgroundColor = '#F69F1A'}>
-                                                            Réserver
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </section>
-
-                    {/* Newsletter */}
-                    <section className="newsletter-1" style={{ position: 'relative', marginTop: '-50px', zIndex: 2 }}>
-                        <div className="auto-container">
-                            <div className="newsletter-1-bg" style={{ backgroundColor: '#F69F1A', borderRadius: '15px', padding: '50px' }}>
-                                <div className="row align-items-center">
-                                    <div className="col-lg-6">
-                                        <h4 className="newsletter-1-title" style={{ color: '#fff' }}>Restez informés de nos<br/> prochains événements</h4>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="newsletter-1-form">
-                                            <form style={{ display: 'flex', gap: '10px' }} onSubmit={e => e.preventDefault()}>
-                                                <input type="email" placeholder="Votre adresse e-mail" style={{ flex: 1, padding: '15px 25px', border: 'none', borderRadius: '30px' }} />
-                                                <button type="button" className="btn-1" style={{ backgroundColor: '#1E4C81', color: '#fff', border: 'none' }}>S'abonner <span></span></button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                    
-                    <div style={{ paddingTop: '80px', backgroundColor: '#fff' }}>
-                        <Testmonial />
-                    </div>
-                </div>
-            </Layout>
-
-            {/* RESERVATION MODAL */}
-            {isModalOpen && selectedEvent && (
-                <div style={{
-                    position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundColor: 'rgba(0, 0, 0, 0.6)', backdropFilter: 'blur(5px)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 99999, padding: '20px'
-                }}>
-                    <div style={{
-                        backgroundColor: '#fff', borderRadius: '20px', padding: '40px', width: '100%', maxWidth: '550px',
-                        position: 'relative', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-                        animation: 'fadeInUp 0.3s ease-out'
-                    }}>
-                        <button onClick={closeModal} style={{
-                            position: 'absolute', top: '20px', right: '20px', background: 'none', border: 'none',
-                            fontSize: '24px', color: '#888', cursor: 'pointer'
-                        }}>×</button>
-
-                        <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-                            <span style={{ background: '#eef2f6', color: '#1E4C81', padding: '5px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '1px' }}>
-                                Formulaire de Réservation
-                            </span>
-                            <h3 style={{ marginTop: '15px', color: '#1E4C81', fontSize: '22px', lineHeight: 1.3 }}>{selectedEvent.title}</h3>
-                            <p style={{ color: '#666', fontSize: '14px', marginTop: '10px' }}>
-                                <i className="far fa-calendar-alt"></i> {new Date(selectedEvent.date).toLocaleDateString('fr-FR')} &nbsp;|&nbsp; 
-                                <i className="fas fa-map-marker-alt"></i> {selectedEvent.location}
-                            </p>
-                        </div>
-
-                        {message && <div style={{ background: '#dcfce7', color: '#16a34a', padding: '15px', borderRadius: '10px', marginBottom: '20px', textAlign: 'center', fontWeight: 'bold' }}>✅ {message}</div>}
-                        {error && <div style={{ background: '#fee2e2', color: '#dc2626', padding: '15px', borderRadius: '10px', marginBottom: '20px', textAlign: 'center', fontWeight: 'bold' }}>❌ {error}</div>}
-
-                        {!message && (
-                            <form onSubmit={handleSubmit} style={{ display: 'grid', gap: '20px' }}>
-                                <div>
-                                    <label style={{ display: 'block', color: '#444', fontWeight: 600, fontSize: '14px', marginBottom: '8px' }}>Nom complet *</label>
-                                    <input required type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} style={inputStyle} placeholder="Votre nom complet" onFocus={e => e.target.style.borderColor = '#1E4C81'} onBlur={e => e.target.style.borderColor = '#e8edf5'} />
-                                </div>
-                                
-                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                                    <div>
-                                        <label style={{ display: 'block', color: '#444', fontWeight: 600, fontSize: '14px', marginBottom: '8px' }}>Email *</label>
-                                        <input required type="email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} style={inputStyle} placeholder="adresse@email.com" onFocus={e => e.target.style.borderColor = '#1E4C81'} onBlur={e => e.target.style.borderColor = '#e8edf5'} />
-                                    </div>
-                                    <div>
-                                        <label style={{ display: 'block', color: '#444', fontWeight: 600, fontSize: '14px', marginBottom: '8px' }}>Téléphone</label>
-                                        <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} style={inputStyle} placeholder="Votre numéro" onFocus={e => e.target.style.borderColor = '#1E4C81'} onBlur={e => e.target.style.borderColor = '#e8edf5'} />
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label style={{ display: 'block', color: '#444', fontWeight: 600, fontSize: '14px', marginBottom: '8px' }}>Remarque ou message (optionnel)</label>
-                                    <textarea rows={3} value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})} style={{...inputStyle, resize: 'vertical'}} placeholder="Une question ou demande particulière ?" onFocus={e => e.target.style.borderColor = '#1E4C81'} onBlur={e => e.target.style.borderColor = '#e8edf5'} />
-                                </div>
-
-                                <button type="submit" disabled={formLoading} style={{
-                                    width: '100%', padding: '16px', background: formLoading ? '#8baed0' : '#1E4C81', color: '#fff',
-                                    border: 'none', borderRadius: '12px', fontSize: '16px', fontWeight: 700, cursor: formLoading ? 'not-allowed' : 'pointer',
-                                    boxShadow: '0 8px 20px rgba(30, 76, 129, 0.2)', transition: 'all 0.3s', marginTop: '10px'
-                                }}>
-                                    {formLoading ? '⏳ Envoi en cours...' : 'Envoyer la demande de réservation'}
-                                </button>
-                            </form>
-                        )}
-                    </div>
-                </div>
-            )}
-        </>
-    )
+  return (
+    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Nos Événements">
+      <main className="atr-events-page">
+        <style dangerouslySetInnerHTML={{ __html: `
+          .atr-events-page{background:#f5f7fa;color:#17233d;padding-bottom:90px}.atr-events-hero{padding:78px 0 62px;background:#fff}.atr-events-hero h1{color:#102b54;font-size:44px;line-height:1.15;margin:8px 0 14px}.atr-events-hero p{max-width:700px;color:#536175;font-size:18px;line-height:1.7}.atr-events-hero .section_heading_title_small,.atr-events-section .section_heading_title_small{color:#C07B1B;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.atr-events-section{padding:70px 0 52px;border-top:1px solid rgba(192,123,27,.3)}.atr-events-section h2{color:#102b54;font-size:34px;margin:8px 0 10px}.atr-events-intro{color:#68778c;line-height:1.7;margin-bottom:30px}.atr-events-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.atr-event-card{display:flex;flex-direction:column;overflow:hidden;background:#fff;border:1px solid #dfe6ee;border-radius:14px;box-shadow:0 10px 28px rgba(16,43,84,.07);transition:transform .2s,box-shadow .2s}.atr-event-card:hover{transform:translateY(-5px);box-shadow:0 18px 35px rgba(16,43,84,.14)}.atr-event-image{height:220px;overflow:hidden;background:#e9eef3}.atr-event-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}.atr-event-card:hover .atr-event-image img{transform:scale(1.04)}.atr-event-body{display:flex;flex:1;flex-direction:column;padding:24px}.atr-event-badge{align-self:flex-start;padding:5px 9px;border-radius:999px;color:#fff;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}.atr-event-title{color:#102b54;font-size:22px;line-height:1.3;margin:15px 0 11px}.atr-event-meta{display:grid;gap:7px;color:#68778c;font-size:13px;line-height:1.5;padding-bottom:16px;border-bottom:1px solid #e5ebf1}.atr-event-description{color:#536175;font-size:14px;line-height:1.65;margin:16px 0 20px}.atr-event-actions{display:flex;gap:10px;margin-top:auto}.atr-event-actions a,.atr-event-actions button{flex:1;padding:11px 10px;border-radius:7px;text-align:center;font:inherit;font-size:13px;font-weight:800;text-decoration:none;cursor:pointer}.atr-event-details{border:1px solid #1B5299;background:#fff;color:#174f86}.atr-event-reserve{border:0;background:#1B5299;color:#fff}.atr-event-reserve:hover{background:#C07B1B}.atr-events-empty{padding:38px;background:#fff;border:1px solid #dfe6ee;border-radius:12px;color:#536175}.atr-events-cta{margin-top:35px;padding:42px;background:#102b54;border-radius:14px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:25px}.atr-events-cta h2{color:#fff;font-size:27px;margin:0 0 8px}.atr-events-cta p{color:#d5dfeb;margin:0;line-height:1.6}.atr-events-cta a{padding:12px 18px;background:#C07B1B;color:#fff;border-radius:7px;text-decoration:none;font-weight:800;white-space:nowrap}.atr-events-modal{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:20px;background:rgba(10,27,50,.7)}.atr-events-modal-card{position:relative;width:100%;max-width:570px;max-height:90vh;overflow:auto;padding:34px;background:#fff;border-radius:16px;box-shadow:0 25px 60px rgba(0,0,0,.25)}.atr-events-modal-close{position:absolute;right:15px;top:10px;border:0;background:none;color:#68778c;font-size:26px;cursor:pointer}.atr-events-modal-card h2{color:#102b54;font-size:25px;line-height:1.3;margin:15px 0 8px}.atr-events-modal-card>p{color:#68778c;font-size:14px;line-height:1.6}.atr-events-form{display:grid;gap:15px;margin-top:22px}.atr-events-form label{display:grid;gap:7px;color:#304766;font-size:13px;font-weight:800}.atr-events-form button{padding:14px;border:0;border-radius:8px;background:#1B5299;color:#fff;font:inherit;font-weight:800;cursor:pointer}.atr-events-form button:disabled{opacity:.65;cursor:wait}.atr-events-message{padding:12px;border-radius:7px;background:#e9f7ef;color:#18794e;font-size:14px}.atr-events-error{padding:12px;border-radius:7px;background:#fff0ef;color:#b42318;font-size:14px}@media(max-width:991px){.atr-events-grid{grid-template-columns:1fr 1fr}}@media(max-width:767px){.atr-events-hero{padding:52px 0 38px}.atr-events-hero h1{font-size:34px}.atr-events-section{padding:48px 0 35px}.atr-events-grid{grid-template-columns:1fr}.atr-event-image{height:230px}.atr-events-cta{display:block;padding:28px}.atr-events-cta a{display:inline-block;margin-top:18px}}
+        `}} />
+        <section className="atr-events-hero"><div className="auto-container"><p className="section_heading_title_small">Agenda ATR</p><h1>Conférences, congrès et journées techniques</h1><p>Retrouvez les rendez-vous professionnels de l'Association Tunisienne des Routes : dates, lieux, sujets et modalités de réservation, dans une présentation claire et adaptée aux membres.</p></div></section>
+        <section className="atr-events-section"><div className="auto-container"><p className="section_heading_title_small">Programme</p><h2>Événements à venir</h2><p className="atr-events-intro">Les événements actifs sont chargés depuis l'agenda de l'ATR. Chaque fiche présente les informations disponibles avant toute réservation.</p>{loading ? <div className="atr-events-empty">Chargement des événements…</div> : events.length === 0 ? <div className="atr-events-empty">Aucun événement n'est actuellement publié. Consultez le calendrier pour les prochaines mises à jour.</div> : <div className="atr-events-grid">{events.map((event) => { const type = eventType(event.title); return <article className="atr-event-card" key={event.id}><div className="atr-event-image"><Link href={`/blog-details?id=${event.id}`}><img src={event.imageUrl || '/images/atr-bg-3.png'} alt={event.title} /></Link></div><div className="atr-event-body"><span className="atr-event-badge" style={{ background: type.color }}>{type.label}</span><h3 className="atr-event-title">{event.title}</h3><div className="atr-event-meta"><span>◷ {new Date(event.date).toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })} · {new Date(event.date).toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })}</span><span>⌖ {event.location}</span></div><p className="atr-event-description">{event.description}</p><div className="atr-event-actions"><Link href={`/blog-details?id=${event.id}`} className="atr-event-details">Détails</Link><button className="atr-event-reserve" onClick={() => openModal(event)}>Réserver</button></div></div></article>; })}</div>}<div className="atr-events-cta"><div><h2>Participer aux échanges de l'ATR</h2><p>Les événements et comités techniques permettent aux professionnels de partager leurs pratiques.</p></div><Link href="/contact">Devenir membre →</Link></div></div></section><section style={{ background: '#fff', padding: '35px 0 0' }}><Testimonial /></section>
+      </main>
+      {isModalOpen && selectedEvent && <div className="atr-events-modal" onClick={(event) => event.target === event.currentTarget && closeModal()}><div className="atr-events-modal-card"><button className="atr-events-modal-close" onClick={closeModal} aria-label="Fermer">×</button><span className="atr-event-badge" style={{ background: eventType(selectedEvent.title).color }}>{eventType(selectedEvent.title).label}</span><h2>{selectedEvent.title}</h2><p>{new Date(selectedEvent.date).toLocaleDateString('fr-FR')} · {selectedEvent.location}</p>{message && <div className="atr-events-message">{message}</div>}{error && <div className="atr-events-error">{error}</div>}{!message && <form className="atr-events-form" onSubmit={handleSubmit}><label>Nom complet *<input required type="text" value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} style={inputStyle} /></label><label>Email *<input required type="email" value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} style={inputStyle} /></label><label>Téléphone<input type="tel" value={formData.phone} onChange={(event) => setFormData({ ...formData, phone: event.target.value })} style={inputStyle} /></label><label>Message<textarea rows={3} value={formData.message} onChange={(event) => setFormData({ ...formData, message: event.target.value })} style={{ ...inputStyle, resize: 'vertical' }} /></label><button type="submit" disabled={formLoading}>{formLoading ? 'Envoi en cours…' : 'Envoyer la demande de réservation'}</button></form>}</div></div>}
+    </Layout>
+  );
 }

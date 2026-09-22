@@ -576,6 +576,7 @@ span.header-cart-icon-count {
 	flex-wrap: wrap;
 	align-items: center;
 	min-width: 0;
+	flex: 1 1 auto;
 }
 .navbar-right-info .mobile-nav-toggler {
 	position: relative;
@@ -619,7 +620,7 @@ span.header-cart-icon-count {
 .main-menu .navigation>li {
 	position: relative;
 	padding: 42px 0px;
-	margin-right: 25px;
+	margin-right: 20px;
 	-webkit-transition: all 300ms ease;
 	-o-transition: all 300ms ease;
 	transition: all 300ms ease;
@@ -645,6 +646,7 @@ span.header-cart-icon-count {
 .main-menu .navigation>li>a {
 	position: relative;
 	display: block;
+	white-space: nowrap;
 	text-align: center;
 	line-height: 30px;
 	text-transform: capitalize;
@@ -657,7 +659,7 @@ span.header-cart-icon-count {
 	font-family:  var(--poppins);
 	font-style: normal;
 	font-weight: 500;
-	font-size: 18px;
+	font-size: 16px;
 }
 .main-menu .navigation>li>a:hover {
 	color: var(--primary-color);
@@ -1261,6 +1263,9 @@ span.header-cart-icon-count {
 	line-height: 32px;
 	color: #ffffff;
 	background: rgba(255, 255, 255, 0.10);
+	border: 0;
+	padding: 0;
+	font-family: inherit;
 	cursor: pointer;
 	border-radius: 2px;
 	-webkit-transition: all 500ms ease;

@@ -25,12 +25,15 @@ export function LanguageProvider({ children }) {
             setLanguage(lang);
             localStorage.setItem('atr_language', lang);
             
-            // Adjust body dir for Arabic RTL
+            // RTL pour l'arabe — appliqué sur <body> uniquement
+            // Le header/navbar ont dir="ltr" forcé pour rester stables
             if (lang === 'ar') {
-                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('dir', 'ltr'); // <html> reste LTR
+                document.body.setAttribute('dir', 'rtl');            // <body> passe RTL
                 document.documentElement.classList.add('lang-ar');
             } else {
                 document.documentElement.setAttribute('dir', 'ltr');
+                document.body.setAttribute('dir', 'ltr');
                 document.documentElement.classList.remove('lang-ar');
             }
         }

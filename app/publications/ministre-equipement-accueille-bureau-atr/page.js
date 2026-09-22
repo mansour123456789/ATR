@@ -2,6 +2,7 @@
 import React from 'react'
 import Link from 'next/link'
 import Layout from '@/components/layout/Layout'
+import PublicationCard from '@/components/publications/PublicationCard'
 
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap');
@@ -223,33 +224,19 @@ export default function ArticlePresseMinistre() {
           <div className="row">
             {/* Colonne Principale (8 cols) */}
             <div className="col-lg-8 col-md-12">
+              <PublicationCard
+                className="publication-card--detail"
+                badge="Revue de presse"
+                date="6 août 2025"
+                location="Ministère de l'Équipement et de l'Habitat"
+                source="La Presse de Tunisie"
+                title="Le ministre de l’Équipement accueille le nouveau bureau de l’Association tunisienne des routes"
+                summary="Une audience officielle consacrée au nouveau bureau exécutif de l’ATR, à la coopération avec le ministère et au lien avec PIARC."
+                image="/images/ministre-bureau-atr.png"
+                alt="Le ministre de l'Équipement lors de l'accueil du nouveau bureau de l'ATR"
+                href="/publications/ministre-equipement-accueille-bureau-atr"
+              />
               <article className="atr-article-card">
-                <span className="atr-article-badge">Revue de Presse · La Presse de Tunisie</span>
-
-                <h1 className="atr-article-title">
-                  Le ministre de l’Équipement accueille le nouveau bureau de l’Association tunisienne des routes
-                </h1>
-
-                <div className="atr-article-meta-bar">
-                  <span className="atr-meta-item">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C07B1B" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    <strong>6 août 2025</strong> · 2 min de lecture
-                  </span>
-                  <span className="atr-meta-item">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5299" strokeWidth="2"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                    Source : <strong>La Presse de Tunisie</strong>
-                  </span>
-                  <span className="atr-meta-item">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    Audience officielle au Ministère
-                  </span>
-                </div>
-
-                {/* Photo officielle de la rencontre */}
-                <div className="atr-article-hero-img">
-                  <img src="/images/ministre-bureau-atr.png" alt="Le ministre de l'Équipement accueille le nouveau bureau de l'ATR" />
-                </div>
-
                 <div className="atr-article-content">
                   <div className="atr-article-lead">
                     Ce lundi matin, M. Salah Zouari, ministre de l’Équipement et de l’Habitat, a reçu les membres du nouveau bureau exécutif élu de l’Association tunisienne des routes (ATR). La rencontre s’est déroulée en présence du premier délégué de l’Association mondiale de la route (PIARC) et de la conseillère technique de la PIARC.

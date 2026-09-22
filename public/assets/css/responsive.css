@@ -18,6 +18,44 @@
 	}
 
 }
+
+@media only screen and (min-width: 1201px){
+	.main-header .header-upper .left-column {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.main-header .header-upper .left-column .ml_60 {
+		margin-left: 24px !important;
+		margin-right: 24px !important;
+	}
+
+	.main-header .nav-outer,
+	.main-header .nav-outer .main-menu,
+	.main-header .nav-outer .navbar-collapse {
+		min-width: 0;
+		width: 100%;
+	}
+
+	.main-header .main-menu .navigation {
+		justify-content: center;
+		gap: 4px;
+	}
+
+	.main-header .main-menu .navigation > li {
+		margin-right: 12px;
+	}
+
+	.main-header .header-language {
+		margin-right: 20px !important;
+		white-space: nowrap;
+	}
+
+	.main-header .contact-info-1-phone-number,
+	.main-header .contact-info-1-phone-number a {
+		white-space: nowrap;
+	}
+}
 @media only screen and (max-width: 1400px){
 	.main-menu .navigation>li:nth-last-child(-n+3)>ul>li>ul {
 	    left: auto;

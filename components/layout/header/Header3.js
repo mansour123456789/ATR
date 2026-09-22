@@ -20,7 +20,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
                     </div>
                     <div className="right-column d-flex align-items-center">
                         <div className="nav-outer">
-                        <div className="mobile-nav-toggler" onClick={handleMobileMenu}>
+                        <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu}>
                             <i className="icon-bar"></i>
                             <i className="icon-bar"></i>
                             <i className="icon-bar"></i>
@@ -59,7 +59,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
                     </div>
                     <div className="right-column d-flex align-items-center">
                         <div className="nav-outer">
-                            <div className="mobile-nav-toggler" onClick={handleMobileMenu}>
+                            <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu}>
                                 <img src="assets/images/icons/icon-bar-2.png" alt="" /></div>
                             <nav className="main-menu navbar-expand-md navbar-light">
                             <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">

@@ -61,7 +61,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
                 <div className="inner-container d-flex align-items-center justify-content-between">
                     <div className="left-column d-flex align-items-center">
                         <div className="nav-outer">
-                            <div className="mobile-nav-toggler" onClick={handleMobileMenu}>
+                            <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu}>
                                 <img src="assets/images/icons/icon-bar-2.png" alt="" /></div>
                             <nav className="main-menu navbar-expand-md navbar-light">
                                 <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
@@ -83,7 +83,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
                 <div className="inner-container d-flex align-items-center justify-content-between">
                     <div className="left-column d-flex align-items-center">
                         <div className="nav-outer">
-                            <div className="mobile-nav-toggler" onClick={handleMobileMenu}>
+                            <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu}>
                                 <img src="assets/images/icons/icon-bar-2.png" alt="" /></div>
                             <nav className="main-menu navbar-expand-md navbar-light">
                             <Menu/>

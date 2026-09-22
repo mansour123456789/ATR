@@ -51,5 +51,30 @@
   "home": {
     "welcome": "L'association rassemble l'ensemble des acteurs routiers publics et privés",
     "title": "Au cœur du réseau<br/>routier Tunisien"
+  },
+  "common": {
+    "discover": "Découvrir",
+    "join": "Nous Rejoindre",
+    "about": "À propos",
+    "aboutTitle": "L'Association Tunisienne des Routes",
+    "aboutText": "L'ATR fédère les professionnels du secteur routier tunisien autour de l'expertise technique, de la sécurité et du développement durable des infrastructures.",
+    "readAbout": "En savoir plus",
+    "featured": "À la une",
+    "agenda": "Agenda",
+    "resources": "Ressources",
+    "publications": "Publications récentes",
+    "allPublications": "Toutes les publications",
+    "technicalWork": "Travaux techniques",
+    "committeesTitle": "Nos Comités Techniques",
+    "committeesText": "Quatre axes de travail structurent l'action de l'ATR pour contribuer à l'amélioration du réseau routier tunisien.",
+    "governance": "Gouvernance",
+    "board": "Comité Directeur",
+    "team": "Voir l'équipe",
+    "cooperation": "Coopération",
+    "cooperationTitle": "Nos Partenaires Institutionnels",
+    "cooperationText": "L'ATR agit en lien étroit avec ses partenaires nationaux et internationaux pour promouvoir les meilleures pratiques dans le domaine routier.",
+    "membership": "Adhésion",
+    "membershipTitle": "Rejoignez l'ATR",
+    "membershipButton": "Devenir membre"
   }
 }

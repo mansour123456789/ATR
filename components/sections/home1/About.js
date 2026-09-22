@@ -1,5 +1,6 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
+import { institutionalFacts } from '@/data/institutional';
 
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap');
@@ -252,7 +253,7 @@ export default function AboutModern() {
                 </h2>
               </div>
               <p className={`text atr-animate atr-delay-1 ${inView ? 'atr-in-view' : ''}`}>
-                Créée en 2018 et présidée par Mme Lilia Sifaoui, l'Association Tunisienne des Routes (ATR) est une organisation de référence qui réunit les cadres du Ministère de l’Équipement et de l’Habitat, ingénieurs et experts du secteur pour bâtir des infrastructures modernes, résilientes et hautement sécurisées.
+                Créée en {institutionalFacts.foundingYear} et présidée par Mme Lilia Sifaoui, l'Association Tunisienne des Routes (ATR) est une organisation de référence qui réunit les cadres du Ministère de l’Équipement et de l’Habitat, ingénieurs et experts du secteur pour bâtir des infrastructures modernes, résilientes et hautement sécurisées.
               </p>
               <div className={`about-image atr-animate atr-delay-2 ${inView ? 'atr-in-view' : ''}`}>
                 <img src="/images/road-hero.png" alt="ATR Infrastructure" />
