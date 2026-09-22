@@ -168,7 +168,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                                     </div>
                                 </div>
                                 <div className="header-link-btn"><Link href="/contact" className="btn-1">{t('menu.btn_join') || "Nous Rejoindre"} <span></span></Link></div>
-                                <div className="mobile-nav-toggler d-block d-lg-none" onClick={handleMobileMenu} style={{ marginLeft: '30px', cursor: 'pointer' }}>
+                                <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu} style={{ marginLeft: '30px', cursor: 'pointer' }}>
                                     <img src="assets/images/icons/icon-bar-2.png" alt="" />
                                 </div>
                             </div>

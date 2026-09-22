@@ -550,6 +550,7 @@ span.header-cart-icon-count {
 }
 .main-header .header-upper .inner-container {
 	position: relative;
+	flex-wrap: nowrap;
 }
 .main-header .header-upper .logo-box {
 	z-index: 10;
@@ -564,6 +565,8 @@ span.header-cart-icon-count {
 }
 .main-header .header-upper .left-column {
 	position: relative;
+	min-width: 0;
+	flex: 1 1 auto;
 }
 
 .main-header .nav-outer {
@@ -572,6 +575,7 @@ span.header-cart-icon-count {
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
+	min-width: 0;
 }
 .navbar-right-info .mobile-nav-toggler {
 	position: relative;
@@ -609,7 +613,7 @@ span.header-cart-icon-count {
 	position: relative;
 	margin: 0px;
 	display: flex;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	align-items: center;
 }
 .main-menu .navigation>li {
