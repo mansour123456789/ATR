@@ -14,21 +14,6 @@ const monthNames = [
   'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
 ];
 
-'use client';
-import { useEffect, useState } from 'react';
-import { useRouter, useParams } from 'next/navigation';
-import Link from 'next/link';
-
-const inputStyle = {
-  width: '100%', padding: '12px 16px', border: '2px solid #e8edf5', borderRadius: '10px',
-  fontSize: '15px', outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit',
-};
-
-const monthNames = [
-  'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-  'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
-];
-
 export default function EditEvent() {
   const router = useRouter();
   const { id } = useParams();
