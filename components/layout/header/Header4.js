@@ -28,8 +28,13 @@ export default function Header4({ scroll, isMobileMenu, handleMobileMenu, isSide
                 </div>
                 <div className="ml_60 mr_60 d-none d-xl-block"><img src="assets/images/shape/shape-1.png" alt="" /></div>
                 <div className="nav-outer">
-                    <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu}>
-                        <img src="assets/images/icons/icon-bar-2.png" alt="" /></div>
+                    <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu} aria-label="Menu" role="button">
+                        <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect width="24" height="2.6" rx="1.3" fill="currentColor" />
+                            <rect y="7.7" width="24" height="2.6" rx="1.3" fill="currentColor" />
+                            <rect y="15.4" width="24" height="2.6" rx="1.3" fill="currentColor" />
+                        </svg>
+                    </div>
                     {/* Your navigation component goes here */}
                     <nav className="main-menu navbar-expand-md navbar-light">
                                 <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
@@ -73,7 +78,13 @@ export default function Header4({ scroll, isMobileMenu, handleMobileMenu, isSide
                         </div>
                         <div className="ml_60 mr_60 d-none d-xl-block"><img src="assets/images/shape/shape-1.png" alt="" /></div>
                         <div className="nav-outer">
-                            <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu}><img src="assets/images/icons/icon-bar-2.png" alt="" /></div>
+                            <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu} aria-label="Menu" role="button">
+                                <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                    <rect y="7.7" width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                    <rect y="15.4" width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                </svg>
+                            </div>
                             {/* Your navigation component goes here */}
                             <nav className="main-menu navbar-expand-md navbar-light">
                             <div className="collapse navbar-collapse show clearfix" id="navbarSupportedContent">

@@ -91,15 +91,15 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                     }
                     @media (max-width: 1200px) {
                         .atr-logo-img {
-                            height: 85px !important;
+                            height: 70px !important;
                         }
                         .main-header {
                             position: absolute !important;
                             background: transparent !important;
-                            padding: 5px 0;
+                            padding: 4px 0;
                         }
                         .header-upper {
-                            padding-top: 5px !important;
+                            padding-top: 4px !important;
                             padding-bottom: 4px !important;
                         }
                         .auto-container, .inner-container, .logo-box, .logo, .left-column, .right-column {
@@ -109,8 +109,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                             margin-bottom: 0 !important;
                         }
                         .logo {
-                            margin-top: -8px !important;
-                            margin-bottom: -8px !important;
+                            margin-top: 0 !important;
+                            margin-bottom: 0 !important;
                         }
                         .main-header.fixed-header {
                             position: fixed !important;
@@ -126,6 +126,37 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                         .main-header.fixed-header .header-upper {
                             display: block !important;
                         }
+                        .contact-info-1 {
+                            display: none !important;
+                        }
+                        .header-link-btn {
+                            display: none !important;
+                        }
+                        .header-language {
+                            margin-right: 10px !important;
+                        }
+                        .mobile-nav-toggler {
+                            display: flex !important;
+                            align-items: center !important;
+                            justify-content: center !important;
+                            width: 44px !important;
+                            height: 44px !important;
+                            border-radius: 8px !important;
+                            background: #102b54 !important;
+                            color: #ffffff !important;
+                            border: 1px solid rgba(255, 255, 255, 0.25) !important;
+                            margin-left: 10px !important;
+                            cursor: pointer !important;
+                            flex-shrink: 0 !important;
+                            box-shadow: 0 3px 10px rgba(16, 43, 84, 0.25) !important;
+                            transition: all 0.2s ease !important;
+                        }
+                        .mobile-nav-toggler:hover,
+                        .mobile-nav-toggler:active {
+                            background: #C07B1B !important;
+                            color: #ffffff !important;
+                            transform: scale(1.04);
+                        }
                     }
                 ` }} />
                 {/* Header Top */}
@@ -137,7 +168,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                                 <div className="logo-box">
                                     <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" className="atr-logo-img" /></Link></div>
                                 </div>
-                                <div className="ml_60 mr_60 d-none d-xl-block"><img src="assets/images/shape/shape-1.png" alt="" /></div>
+                                <div className="ml_60 mr_60 d-none d-xl-block"><img src="/assets/images/shape/shape-1.png" alt="" /></div>
                                 <div className="nav-outer">
                                     {/* Your navigation component goes here */}
                                     <nav className="main-menu navbar-expand-md navbar-light">
@@ -168,8 +199,12 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                                     </div>
                                 </div>
                                 <div className="header-link-btn"><Link href="/contact" className="btn-1">{t('menu.btn_join') || "Nous Rejoindre"} <span></span></Link></div>
-                                <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu} style={{ marginLeft: '30px', cursor: 'pointer' }}>
-                                    <img src="assets/images/icons/icon-bar-2.png" alt="" />
+                                <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu} aria-label="Menu" role="button">
+                                    <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <rect width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                        <rect y="7.7" width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                        <rect y="15.4" width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +217,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                                 <div className="logo-box">
                                     <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" className="atr-logo-img" /></Link></div>
                                 </div>
-                                <div className="ml_60 mr_60 d-none d-xl-block"><img src="assets/images/shape/shape-1.png" alt="" /></div>
+                                <div className="ml_60 mr_60 d-none d-xl-block"><img src="/assets/images/shape/shape-1.png" alt="" /></div>
                                 <div className="nav-outer">
                                     {/* Your navigation component goes here */}
                                     <nav className="main-menu navbar-expand-md navbar-light">
@@ -213,8 +248,12 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                                     </div>
                                 </div>
                                 <div className="header-link-btn"><Link href="/contact" className="btn-1">{t('menu.btn_join') || "Nous Rejoindre"} <span></span></Link></div>
-                                <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu} style={{ marginLeft: '30px', cursor: 'pointer' }}>
-                                    <img src="assets/images/icons/icon-bar-2.png" alt="" />
+                                <div className="mobile-nav-toggler d-block d-xl-none" onClick={handleMobileMenu} aria-label="Menu" role="button">
+                                    <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                        <rect width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                        <rect y="7.7" width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                        <rect y="15.4" width="24" height="2.6" rx="1.3" fill="currentColor" />
+                                    </svg>
                                 </div>
                             </div>
                         </div>

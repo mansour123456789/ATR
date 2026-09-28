@@ -4,12 +4,14 @@ const STYLES = `
   .page-title {
     position: relative;
   }
-  .page-title::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    
-    z-index: 1;
+  .page-title .bg-layer::before {
+    background: linear-gradient(
+      105deg,
+      rgba(10,31,57,.95) 0%,
+      rgba(10,31,57,.75) 50%,
+      rgba(10,31,57,.30) 100%
+    ) !important;
+    opacity: 1 !important;
   }
   .page-title .auto-container {
     position: relative;

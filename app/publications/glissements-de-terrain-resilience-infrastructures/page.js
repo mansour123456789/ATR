@@ -208,6 +208,80 @@ const STYLES = `
     padding-bottom: 12px;
     border-bottom: 1px solid #E2E8F0;
   }
+
+  .atr-article-actions {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid #E2E8F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .atr-btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    background: #C07B1B;
+    color: #ffffff !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 14.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border-radius: 8px;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(192, 123, 27, 0.2);
+  }
+
+  .atr-btn-back:hover {
+    background: #a36612;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(192, 123, 27, 0.3);
+    color: #ffffff !important;
+  }
+
+  .atr-btn-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 26px;
+    background: #1B5299;
+    color: #ffffff !important;
+    font-family: 'DM Sans', sans-serif !important;
+    font-size: 14.5px;
+    font-weight: 700;
+    border-radius: 8px;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(27, 82, 153, 0.2);
+    white-space: nowrap;
+  }
+
+  .atr-btn-source:hover {
+    background: #123e75;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(27, 82, 153, 0.3);
+    color: #ffffff !important;
+  }
+
+  @media (max-width: 640px) {
+    .atr-article-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .atr-btn-back,
+    .atr-btn-source {
+      width: 100%;
+      justify-content: center;
+      text-align: center;
+      white-space: normal;
+    }
+  }
 `
 
 export default function ArticleGlissementsTerrain() {
@@ -322,19 +396,18 @@ export default function ArticleGlissementsTerrain() {
                 </div>
 
                 {/* Boutons d'action et lien source FindGlocal */}
-                <div className="mt_40 pt_20 border-top d-flex justify-content-between align-items-center flex-wrap gap-3">
-                  <Link href="/publications" className="btn-1" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                <div className="atr-article-actions">
+                  <Link href="/publications" className="atr-btn-back">
                     ← Retour aux Publications
                   </Link>
                   <a
                     href="https://www.findglocal.com/XX/Unknown/568251543595076/Association-Tunisienne-des-Routes"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-1"
-                    style={{ background: '#1B5299', display: 'inline-flex', alignItems: 'center', gap: '10px' }}
+                    className="atr-btn-source"
                   >
-                    <span>Consulter la publication sur FindGlocal ↗</span>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <span>Consulter la publication sur FindGlocal</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                       <polyline points="15 3 21 3 21 9" />
                       <line x1="10" y1="14" x2="21" y2="3" />

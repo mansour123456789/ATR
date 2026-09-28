@@ -65,8 +65,8 @@ export default function AboutUsPage() {
               </div>
               <div className="col-lg-6 mb_30">
                 <figure className="atr-about-figure">
-                  <img src="/images/bizerte_bridge.png" alt="Ouvrage routier et pont de Bizerte en Tunisie" />
-                  <figcaption>Ouvrage routier de Bizerte — visuel institutionnel de l'ATR.</figcaption>
+                  <img src="/home.jpg" alt="Association Tunisienne des Routes" />
+                  <figcaption>Association Tunisienne des Routes — visuel institutionnel de l'ATR.</figcaption>
                 </figure>
               </div>
             </div>

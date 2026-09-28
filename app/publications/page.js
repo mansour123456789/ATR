@@ -36,6 +36,17 @@ const publications = [
     alt: "Le ministre de l'Équipement lors de l'accueil du nouveau bureau de l'ATR",
     href: "/publications/ministre-equipement-accueille-bureau-atr",
   },
+  {
+    badge: "Séminaire technique",
+    date: "6 juin 2026",
+    location: "Hôtel Le Palace, Gammarth",
+    source: "ATR, ATMS & Ministère de l'Équipement",
+    title: "Glissements de terrain et résilience des infrastructures routières",
+    summary: "Retour complet sur le séminaire international consacré aux techniques de stabilisation des talus, au drainage profond et à l'adaptation climatique des corridors.",
+    image: "/images/atr-event.png",
+    alt: "Séminaire technique ATR sur les glissements de terrain et la résilience",
+    href: "/publications/glissements-de-terrain-resilience-infrastructures",
+  },
 ];
 
 const styles = `

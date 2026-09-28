@@ -22,7 +22,7 @@ const publications = [
     date: '06 juin 2026',
     source: "ATR, ATMS & Ministère de l'Équipement",
     title: 'Glissements de terrain et résilience des infrastructures',
-    href: '/publications/glissements-terrain-resilience',
+    href: '/publications/glissements-de-terrain-resilience-infrastructures',
     image: '/images/atr-event.png',
   },
 ];
@@ -51,17 +51,80 @@ const committees = [
 ];
 
 const board = [
-  { name: 'Mme Lilia Sifaoui', role: "Présidente de l'ATR", detail: "DG de l'unité de gestion du nouveau pont de Bizerte", image: '/images/avatars/atr2.png' },
-  { name: 'Mme Eya Soueb', role: "Membre de l'ATR", detail: "Cadre du Ministère de l'Équipement et de l'Habitat", image: '/images/avatars/atr4.png' },
-  { name: 'M. Ahmed Ksentini', role: 'Expert sécurité routière', detail: 'Universitaire et spécialiste HSS', image: '/images/avatars/atr1.png' },
-  { name: 'M. Khaled Sioud', role: 'Ingénieur génie civil', detail: 'Expert HSS et prévention', image: '/images/avatars/atr3.png' },
+  {
+    name: 'Mme Lilia Sifaoui',
+    role: "Présidente de l'ATR",
+    detail: "DG de l'unité de gestion du nouveau pont de Bizerte",
+    image: '/membre/lilia-sifaoui.jpg',
+    position: 'top center',
+  },
+  {
+    name: 'M. Sami Montassar',
+    role: "Vice-Président de l'ATR",
+    detail: "Professeur de l'enseignement supérieur & spécialiste en génie civil (ENIT)",
+    image: '/membre/sami-montassar.jpg',
+    position: 'top center',
+  },
+  {
+    name: 'Mme Imen Ben Hassine',
+    role: "Secrétaire Générale Adjointe",
+    detail: "Cadre au Ministère de l'Équipement et de l'Habitat",
+    image: '/membre/imen-ben-hassine.jpg',
+    position: 'top center',
+  },
+  {
+    name: 'M. Saifeddine Ben Hfaiedh',
+    role: "Expert Sécurité Routière",
+    detail: "Spécialiste en sécurité routière et prévention des risques HSS",
+    image: '/membre/saifeddine-ben-hfaiedh.jpg',
+    position: 'top center',
+  },
 ];
 
 const pillars = [
-  ['fa-hard-hat', 'Expertise technique', "Partager les méthodes et les retours d'expérience du secteur routier."],
-  ['fa-shield-alt', 'Sécurité routière', "Placer la protection des usagers et des équipes au centre des projets."],
-  ['fa-leaf', 'Résilience', 'Préparer les infrastructures aux contraintes climatiques et territoriales.'],
-  ['fa-lightbulb', 'Innovation', 'Relier recherche, normes, matériaux et pratiques opérationnelles.'],
+  {
+    title: 'Expertise technique',
+    text: "Partager les méthodes et les retours d'expérience du secteur routier.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M2 18h20" />
+        <path d="M5 18a7 7 0 0 1 14 0" />
+        <path d="M10 5a2 2 0 0 1 4 0v6h-4V5z" />
+        <path d="M12 11v7" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Sécurité routière',
+    text: "Placer la protection des usagers et des équipes au centre des projets.",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="M9 12l2 2 4-4" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Résilience',
+    text: 'Préparer les infrastructures aux contraintes climatiques et territoriales.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
+        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+      </svg>
+    ),
+  },
+  {
+    title: 'Innovation',
+    text: 'Relier recherche, normes, matériaux et pratiques opérationnelles.',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M9 18h6" />
+        <path d="M10 22h4" />
+        <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5h6.18z" />
+      </svg>
+    ),
+  },
 ];
 
 export default function InstitutionalHome() {
@@ -109,10 +172,18 @@ export default function InstitutionalHome() {
             <p>{t('common.aboutText')}</p>
             <Link href="/about-us" className="atr-home-text-link">{t('common.readAbout')} <span aria-hidden="true">→</span></Link>
           </div>
-          <div className="atr-home-about-image"><img src="/images/bizerte_bridge.png" alt="Pont de Bizerte et infrastructure routière tunisienne" /></div>
+          <div className="atr-home-about-image"><img src="/home.jpg" alt="Association Tunisienne des Routes" /></div>
         </div>
         <div className="atr-home-container atr-home-pillars">
-          {pillars.map(([icon, title, text]) => <article key={title}><span className={`fas ${icon}`} aria-hidden="true" /><h3>{title}</h3><p>{text}</p></article>)}
+          {pillars.map((pillar) => (
+            <article key={pillar.title}>
+              <div className="atr-home-pillar-icon" aria-hidden="true">
+                {pillar.icon}
+              </div>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.text}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -133,11 +204,70 @@ export default function InstitutionalHome() {
       </section>
 
       <section className="atr-home-section atr-home-board">
-        <div className="atr-home-container"><div className="atr-home-section-heading"><div><p className="atr-home-eyebrow">{t('common.governance')}</p><h2>{t('common.board')}</h2></div><Link href="/team" className="atr-home-text-link">{t('common.team')} <span aria-hidden="true">→</span></Link></div><div className="atr-home-board-grid">{board.map((member) => <article key={member.name}><img src={member.image} alt={member.name} loading="lazy" /><div><h3>{member.name}</h3><p>{member.role}</p><small>{member.detail}</small></div></article>)}</div></div>
+        <div className="atr-home-container">
+          <div className="atr-home-section-heading">
+            <div>
+              <p className="atr-home-eyebrow">{t('common.governance')}</p>
+              <h2>{t('common.board')}</h2>
+            </div>
+            <Link href="/team" className="atr-home-text-link">{t('common.team')} <span aria-hidden="true">→</span></Link>
+          </div>
+          <div className="atr-home-board-grid">
+            {board.map((member) => (
+              <article key={member.name}>
+                <div className="atr-home-board-img-wrap">
+                  <img src={member.image} alt={member.name} style={{ objectPosition: member.position || 'top center' }} loading="lazy" />
+                </div>
+                <div className="atr-home-board-info">
+                  <h3>{member.name}</h3>
+                  <p>{member.role}</p>
+                  <small>{member.detail}</small>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section className="atr-home-section atr-home-trust">
-        <div className="atr-home-container atr-home-trust-grid"><div><p className="atr-home-eyebrow">{t('common.cooperation')}</p><h2>{t('common.cooperationTitle')}</h2><p>{t('common.cooperationText')}</p></div><div className="atr-home-partners"><a href="https://www.piarc.org/fr/" target="_blank" rel="noreferrer">PIARC<span>Association mondiale de la Route</span></a><a href="http://www.equipement.tn/" target="_blank" rel="noreferrer">MEHAT<span>Ministère de l'Équipement et de l'Habitat</span></a></div></div>
+        <div className="atr-home-container atr-home-trust-grid">
+          <div>
+            <p className="atr-home-eyebrow">{t('common.cooperation')}</p>
+            <h2>{t('common.cooperationTitle')}</h2>
+            <p>{t('common.cooperationText')}</p>
+          </div>
+          <div className="atr-home-partners">
+            <a href="https://www.piarc.org/fr/" target="_blank" rel="noreferrer" className="atr-home-partner-card">
+              <div className="atr-home-partner-logo-box">
+                <img src="/images/partners/piarc.png" alt="Logo PIARC - Association mondiale de la Route" loading="lazy" />
+              </div>
+              <div className="atr-home-partner-info">
+                <div className="atr-home-partner-header">
+                  <strong>PIARC</strong>
+                  <span className="atr-home-partner-badge">Comité National</span>
+                </div>
+                <h4>Association mondiale de la Route</h4>
+                <p>Organisation internationale de référence pour les politiques, techniques et normes routières mondiales.</p>
+                <span className="atr-home-partner-link">Visiter le site officiel <span aria-hidden="true">↗</span></span>
+              </div>
+            </a>
+
+            <a href="http://www.equipement.tn/" target="_blank" rel="noreferrer" className="atr-home-partner-card">
+              <div className="atr-home-partner-logo-box">
+                <img src="/images/partners/mehat.jpg" alt="Logo MEHAT - Ministère de l'Équipement et de l'Habitat" loading="lazy" />
+              </div>
+              <div className="atr-home-partner-info">
+                <div className="atr-home-partner-header">
+                  <strong>MEHAT</strong>
+                  <span className="atr-home-partner-badge">Tutelle Institutionnelle</span>
+                </div>
+                <h4>Ministère de l'Équipement et de l'Habitat</h4>
+                <p>Tutelle gouvernementale et partenaire stratégique dans le développement des réseaux d'infrastructures en Tunisie.</p>
+                <span className="atr-home-partner-link">Visiter le portail officiel <span aria-hidden="true">↗</span></span>
+              </div>
+            </a>
+          </div>
+        </div>
       </section>
 
       <section className="atr-home-join"><div className="atr-home-container"><p className="atr-home-eyebrow">{t('common.membership')}</p><h2>{t('common.membershipTitle')}</h2><Link href="/contact" className="atr-home-button atr-home-button-primary">{t('common.membershipButton')} <span aria-hidden="true">→</span></Link></div></section>
