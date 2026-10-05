@@ -1,1 +1,82 @@
-.atr-legal-page{padding:80px 0;background:#f5f7fa;min-height:420px}.atr-legal-page .auto-container{max-width:900px}.atr-legal-page h1{color:#102b54;font-size:42px;margin:0 0 25px}.atr-legal-page h2{color:#102b54;font-size:25px;margin:30px 0 10px}.atr-legal-page p{color:#536175;font-size:16px;line-height:1.8}.atr-legal-page a{color:#174f86;font-weight:700}.atr-legal-back{margin-top:35px}.atr-sitemap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:30px}.atr-sitemap-grid a{padding:16px 18px;background:#fff;border-left:3px solid #F69F1A;text-decoration:none}@media(max-width:575px){.atr-legal-page{padding:55px 0}.atr-legal-page h1{font-size:32px}.atr-sitemap-grid{grid-template-columns:1fr}}
+.atr-legal-page {
+  padding: 80px 0 95px;
+  background: #F8FAFC;
+  min-height: 450px;
+}
+
+.atr-legal-page .auto-container {
+  max-width: 920px;
+}
+
+.atr-legal-page h1 {
+  color: #102B54;
+  font-size: clamp(30px, 4vw, 42px);
+  margin: 0 0 25px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.atr-legal-page h2 {
+  color: #102B54;
+  font-size: clamp(20px, 2.5vw, 24px);
+  margin: 32px 0 12px;
+  font-weight: 700;
+}
+
+.atr-legal-page p {
+  color: #334155;
+  font-size: 15.5px;
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+.atr-legal-page a {
+  color: #1B5299;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.atr-legal-page a:hover {
+  color: #C07B1B;
+}
+
+.atr-legal-back {
+  margin-top: 35px;
+}
+
+.atr-sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.atr-sitemap-grid a {
+  padding: 16px 20px;
+  background: #FFFFFF;
+  border: 1px solid #DFE6EE;
+  border-left: 4px solid #C07B1B;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: #102B54;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(16, 43, 84, 0.03);
+}
+
+.atr-sitemap-grid a:hover {
+  transform: translateX(4px);
+  color: #1B5299;
+  border-color: #1B5299;
+  box-shadow: 0 8px 20px rgba(16, 43, 84, 0.08);
+}
+
+@media (max-width: 575px) {
+  .atr-legal-page {
+    padding: 55px 0 65px;
+  }
+  .atr-sitemap-grid {
+    grid-template-columns: 1fr;
+  }
+}

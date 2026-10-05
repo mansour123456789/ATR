@@ -40,7 +40,7 @@ export default function WhyChooseUs() {
                                   <div className="icon-outer"><span className="far fa-plus"></span> <span className="far fa-minus"></span></div>Comment adhérer à l'Association Tunisienne des Routes ?</div>
                                   <div className={isActive.key == 1 ? "acc-content current" : "acc-content"}>
                                     <div className="content">
-                                        <div className="text">L'adhésion est ouverte aux professionnels, entreprises et étudiants du secteur. Vous pouvez remplir le formulaire en ligne sur la page Contact ou nous envoyer un email à contact@atr.org.tn.</div>
+                                        <div className="text">L'adhésion est ouverte aux professionnels, entreprises et étudiants du secteur. Vous pouvez remplir le formulaire en ligne sur la page Contact ou nous envoyer un email à contact@atr-tunisie.org.</div>
                                     </div>
                                 </div>
                             </li>

@@ -1,102 +1,97 @@
+'use client'
 import Layout from "@/components/layout/Layout";
 import PublicationCard from "@/components/publications/PublicationCard";
 import Link from "next/link";
-
-export const metadata = {
-  title: "Publications & Actualités | ATR",
-  description: "Comptes-rendus et revues de presse documentant les activités de l'Association Tunisienne des Routes.",
-  openGraph: {
-    title: "Publications & Actualités | ATR",
-    description: "Les publications vérifiées de l'Association Tunisienne des Routes.",
-    type: "website",
-    images: ["/images/atr-event.png"],
-  },
-};
-
-const publications = [
-  {
-    badge: "Compte-rendu",
-    date: "30 avril 2026",
-    location: "Cité des Sciences, Tunis",
-    source: "L'Obs Éco",
-    title: "Rencontre ATR : Enjeux HSS et Sécurité Routière sur les Chantiers",
-    summary: "Une rencontre consacrée aux enjeux HSS, à la sécurité routière sur les chantiers et à la responsabilité humaine dans les projets d'infrastructure.",
-    image: "/images/atr-event.png",
-    alt: "Participants à la rencontre ATR sur la sécurité routière et les enjeux HSS",
-    href: "/publications/securite-routiere-hss-chantiers",
-  },
-  {
-    badge: "Revue de presse",
-    date: "6 août 2025",
-    location: "Ministère de l'Équipement et de l'Habitat",
-    source: "La Presse de Tunisie",
-    title: "Le ministre de l'Équipement accueille le nouveau bureau de l'Association tunisienne des routes",
-    summary: "Une audience officielle consacrée au nouveau bureau exécutif de l'ATR, à la coopération avec le ministère et au lien avec PIARC.",
-    image: "/images/ministre-bureau-atr.png",
-    alt: "Le ministre de l'Équipement lors de l'accueil du nouveau bureau de l'ATR",
-    href: "/publications/ministre-equipement-accueille-bureau-atr",
-  },
-  {
-    badge: "Séminaire technique",
-    date: "6 juin 2026",
-    location: "Hôtel Le Palace, Gammarth",
-    source: "ATR, ATMS & Ministère de l'Équipement",
-    title: "Glissements de terrain et résilience des infrastructures routières",
-    summary: "Retour complet sur le séminaire international consacré aux techniques de stabilisation des talus, au drainage profond et à l'adaptation climatique des corridors.",
-    image: "/images/atr-event.png",
-    alt: "Séminaire technique ATR sur les glissements de terrain et la résilience",
-    href: "/publications/glissements-de-terrain-resilience-infrastructures",
-  },
-];
-
-const styles = `
-  .atr-publications-page { background: #f5f7fa; color: #17233d; }
-  .atr-publications-intro { padding: 82px 0 55px; background: #fff; }
-  .atr-publications-intro h1 { max-width: 760px; color: #102b54; font-size: 44px; line-height: 1.15; margin: 9px 0 15px; }
-  .atr-publications-intro p:not(.section_heading_title_small) { max-width: 720px; color: #536175; font-size: 18px; line-height: 1.7; margin: 0; }
-  .atr-publications-intro .section_heading_title_small, .atr-publications-section .section_heading_title_small { color: #bd7417; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-  .atr-publications-section { padding: 58px 0 95px; }
-  .atr-publications-section h2 { color: #102b54; font-size: 34px; margin: 8px 0 12px; }
-  .atr-publications-count { color: #66758a; margin-bottom: 28px; }
-  .atr-publications-grid { display: grid; gap: 26px; }
-  .atr-publications-note { padding: 45px 0; background: #102b54; color: #fff; }
-  .atr-publications-note h2 { color: #fff; font-size: 28px; margin: 0 0 10px; }
-  .atr-publications-note p { color: #d5dfeb; line-height: 1.7; max-width: 760px; margin: 0; }
-  .atr-publications-cta { padding: 64px 0; background: #102b54; color: #fff; }
-  .atr-publications-cta .section_heading_title_small { color: #F69F1A; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-  .atr-publications-cta h2 { max-width: 650px; color: #fff; font-size: 32px; line-height: 1.25; margin: 8px 0 12px; }
-  .atr-publications-cta p:not(.section_heading_title_small) { max-width: 650px; color: #d5dfeb; line-height: 1.7; margin-bottom: 22px; }
-  @media (max-width: 767px) { .atr-publications-intro { padding: 55px 0 38px; } .atr-publications-intro h1 { font-size: 32px; } .atr-publications-section { padding: 42px 0 65px; } }
-`;
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function PublicationsPage() {
+  const { t } = useLanguage();
+
+  const publications = [
+    {
+      badge: "Compte-rendu",
+      date: "30 avril 2026",
+      location: "Cité des Sciences, Tunis",
+      source: "L'Observatoire Économique",
+      title: "Zéro décès : l'ATR relève le défi HSS d'une \"route qui pardonne\"",
+      summary: "Le 30 avril 2026 à la Cité des Sciences, l'ATR a consacré une rencontre aux enjeux HSS et à la sécurité routière sur les chantiers, réunissant cadres du ministère de l'Équipement, ingénieurs et experts autour de la responsabilité humaine et du concept de route qui pardonne.",
+      image: "/1000007112.png",
+      alt: "Logo de l'Association Tunisienne des Routes (ATR)",
+      href: "/publications/securite-routiere-hss-chantiers",
+    },
+    {
+      badge: "Revue de presse",
+      date: "6 août 2025",
+      location: "Ministère de l'Équipement et de l'Habitat",
+      source: "La Presse de Tunisie",
+      title: "Le ministre de l'Équipement accueille le nouveau bureau de l'Association tunisienne des routes",
+      summary: "Ce lundi matin, M. Salah Zouari, ministre de l'Équipement et de l'Habitat, a reçu les membres du nouveau bureau exécutif de l'ATR présidée par Mme Lilia Sifaoui, en présence de représentants de PIARC.",
+      image: "/atrr.jpg",
+      alt: "Le ministre de l'Équipement lors de l'accueil du nouveau bureau de l'ATR",
+      href: "/publications/ministre-equipement-accueille-bureau-atr",
+    },
+    {
+      badge: "Compte-rendu technique",
+      date: "03 juin 2026",
+      location: "Hôtel El Mouradi Gammarth, Tunis",
+      source: "ATR, ATMS & Ministère de l'Équipement",
+      title: "Glissements de terrain, résilience des infrastructures et gestion des risques naturels",
+      summary: "Retour en images sur la journée technique organisée à l'Hôtel El Mouradi Gammarth en présence de M. le Ministre de l'Équipement et de l'Habitat, réunissant plus de 120 experts autour des risques géotechniques et de la stabilité des ouvrages.",
+      image: "/716310905_1300568632262137_7434795582044664526_n.jpg",
+      alt: "Journée technique ATR & ATMS à l'Hôtel El Mouradi Gammarth",
+      href: "/publications/glissements-de-terrain-resilience-infrastructures",
+    },
+  ];
+
+  const styles = `
+    .atr-publications-page { background: #F8FAFC; color: #17233D; }
+    .atr-publications-intro { padding: 80px 0 60px; background: #FFFFFF; }
+    .atr-publications-intro h1 { max-width: 760px; color: #102B54; font-size: clamp(32px, 4.5vw, 42px); line-height: 1.2; margin: 8px 0 16px; font-weight: 700; }
+    .atr-publications-intro p:not(.section_heading_title_small) { max-width: 720px; color: #334155; font-size: 17px; line-height: 1.72; margin: 0; }
+    .atr-publications-intro .section_heading_title_small, .atr-publications-section .section_heading_title_small { color: #C07B1B; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .atr-publications-section { padding: 64px 0 95px; }
+    .atr-publications-section h2 { color: #102B54; font-size: clamp(26px, 3.2vw, 34px); margin: 8px 0 12px; font-weight: 700; }
+    .atr-publications-count { color: #475569; margin-bottom: 28px; font-size: 15px; font-weight: 500; }
+    .atr-publications-grid { display: grid; gap: 28px; }
+    .atr-publications-note { padding: 45px 0; background: #102B54; color: #FFFFFF; }
+    .atr-publications-note h2 { color: #FFFFFF; font-size: 28px; margin: 0 0 10px; font-weight: 700; }
+    .atr-publications-note p { color: #E2E8F0; line-height: 1.7; max-width: 760px; margin: 0; font-size: 15.5px; }
+    .atr-publications-cta { padding: 64px 0; background: #102B54; color: #FFFFFF; }
+    .atr-publications-cta .section_heading_title_small { color: #C07B1B; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .atr-publications-cta h2 { max-width: 650px; color: #FFFFFF; font-size: clamp(24px, 3vw, 32px); line-height: 1.25; margin: 8px 0 12px; font-weight: 700; }
+    .atr-publications-cta p:not(.section_heading_title_small) { max-width: 650px; color: #E2E8F0; line-height: 1.7; margin-bottom: 22px; font-size: 15.5px; }
+    @media (max-width: 767px) { .atr-publications-intro { padding: 52px 0 38px; } .atr-publications-intro h1 { font-size: 32px; } .atr-publications-section { padding: 42px 0 65px; } }
+  `;
+
   return (
-    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Publications & Actualités">
+    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle={t('breadcrumb.publications', "Publications & Actualités")}>
       <main className="atr-publications-page">
         <style dangerouslySetInnerHTML={{ __html: styles }} />
         <section className="atr-publications-intro">
           <div className="auto-container">
-            <p className="section_heading_title_small">Documentation ATR</p>
-            <h1>Publications & Actualités</h1>
-            <p>Cette page rassemble les comptes-rendus de rencontres et les revues de presse consacrés à l'ATR. Les guides techniques téléchargeables ne sont pas encore publiés ici : seules les deux publications documentées sont présentées.</p>
+            <p className="section_heading_title_small">{t('publications.kicker', "Documentation ATR")}</p>
+            <h1>{t('publications.title', "Publications & Actualités")}</h1>
+            <p>{t('publications.intro', "Cette page rassemble les comptes-rendus de rencontres et les revues de presse consacrés à l'ATR. Les guides techniques téléchargeables ne sont pas encore publiés ici : seules les publications documentées sont présentées.")}</p>
           </div>
         </section>
         <section className="atr-publications-section">
           <div className="auto-container">
-            <p className="section_heading_title_small">Contenus vérifiés</p>
-            <h2>Les publications disponibles</h2>
-            <p className="atr-publications-count">2 publications · 2 pages de détail · sources externes accessibles</p>
+            <p className="section_heading_title_small">{t('publications.section_kicker', "Contenus vérifiés")}</p>
+            <h2>{t('publications.section_title', "Les publications disponibles")}</h2>
+            <p className="atr-publications-count">{t('publications.count', "Publications documentées · pages de détail · sources externes accessibles")}</p>
             <div className="atr-publications-grid">
-              {publications.map((publication) => <PublicationCard {...publication} key={publication.href} />)}
+              {publications.map((publication) => (
+                <PublicationCard {...publication} key={publication.href} />
+              ))}
             </div>
           </div>
         </section>
         <section className="atr-publications-cta">
           <div className="auto-container">
-            <p className="section_heading_title_small">Échanges professionnels</p>
-            <h2>Vous souhaitez suivre les prochaines rencontres de l'ATR ?</h2>
-            <p>Contactez le secrétariat pour recevoir les informations disponibles sur les événements, les comités et les futures publications.</p>
-            <Link href="/contact" className="publication-card-cta">Nous contacter <span aria-hidden="true">→</span></Link>
+            <p className="section_heading_title_small">{t('publications.cta_kicker', "Échanges professionnels")}</p>
+            <h2>{t('publications.cta_title', "Vous souhaitez suivre les prochaines rencontres de l'ATR ?")}</h2>
+            <p>{t('publications.cta_text', "Contactez le secrétariat pour recevoir les informations disponibles sur les événements, les comités et les futures publications.")}</p>
+            <Link href="/contact" className="publication-card-cta">{t('publications.cta_btn', "Nous contacter →")}</Link>
           </div>
         </section>
       </main>

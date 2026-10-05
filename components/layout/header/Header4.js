@@ -16,7 +16,7 @@ export default function Header4({ scroll, isMobileMenu, handleMobileMenu, isSide
 
     return (
         <>
-            <header className={`main-header  header-style-one ${scroll ? "fixed-header" : ""}`}>
+            <header dir="ltr" className={`main-header  header-style-one ${scroll ? "fixed-header" : ""}`}>
                 {/* Header Top */}
                 
                 <div className="header-upper">
@@ -24,7 +24,7 @@ export default function Header4({ scroll, isMobileMenu, handleMobileMenu, isSide
         <div className="inner-container d-flex align-items-center justify-content-between">
             <div className="left-column d-flex align-items-center">
                 <div className="logo-box">
-                    <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" style={{ height: "100px", width: "auto" }} /></Link></div>
+                    <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" className="atr-logo-img" style={{ height: "100px", width: "auto" }} /></Link></div>
                 </div>
                 <div className="ml_60 mr_60 d-none d-xl-block"><img src="assets/images/shape/shape-1.png" alt="" /></div>
                 <div className="nav-outer">

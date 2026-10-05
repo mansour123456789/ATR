@@ -2,8 +2,6 @@
 import React, { useState } from 'react'
 
 const STYLES = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
   .atr-pillars-light-section {
     background-color: #ffffff;
     padding: 110px 0 120px;

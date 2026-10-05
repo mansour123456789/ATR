@@ -1,4 +1,6 @@
+'use client'
 import Link from "next/link"
+import { useLanguage } from "@/context/LanguageContext"
 
 const STYLES = `
   .page-title {
@@ -19,7 +21,10 @@ const STYLES = `
   }
 `;
 
-export default function Breadcrumb({ breadcrumbTitle }) {
+export default function Breadcrumb({ breadcrumbTitle, titleKey }) {
+  const { t } = useLanguage();
+  const displayTitle = titleKey ? t(titleKey, breadcrumbTitle) : (breadcrumbTitle ? t(`breadcrumb.${breadcrumbTitle}`, breadcrumbTitle) : '');
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
@@ -27,10 +32,10 @@ export default function Breadcrumb({ breadcrumbTitle }) {
         <div className="bg-layer" style={{ backgroundImage: 'url(/images/road-hero.png)' }}></div>
         <div className="auto-container">
           <div className="content-box">
-            <h1>{breadcrumbTitle}</h1>
+            <h1>{displayTitle}</h1>
             <ul className="bread-crumb clearfix">
-              <li><Link href="/">Accueil</Link></li>
-              <li>{breadcrumbTitle}</li>
+              <li><Link href="/">{t('common.home', 'Accueil')}</Link></li>
+              <li>{displayTitle}</li>
             </ul>
           </div>
         </div>

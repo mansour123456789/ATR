@@ -125,7 +125,7 @@ export default function AdminLogin() {
                       type="email"
                       value={form.email}
                       onChange={e => setForm({ ...form, email: e.target.value })}
-                      placeholder="admin@atr.org.tn"
+                      placeholder="admin@atr-tunisie.org"
                       required
                       className="modern-input"
                     />

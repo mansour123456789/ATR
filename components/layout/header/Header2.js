@@ -15,12 +15,12 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
 
     return (
         <>
-            <header className={`main-header header-s2 ${scroll ? "fixed-header" : ""}`}>
+            <header dir="ltr" className={`main-header header-s2 ${scroll ? "fixed-header" : ""}`}>
                 {/* Header Top */}
                 <div className="header-s2-header-top">
             <div className="auto-container">
                 <div className="header-s2-wrapper">
-                    <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" style={{ height: "100px", width: "auto" }} /></Link></div>
+                    <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" className="atr-logo-img" style={{ height: "100px", width: "auto" }} /></Link></div>
                     <div className="right-column">
                         <div className="contact-info-1 d-flex align-items-center">
                             <i className="icon-28 contact-info-1-icon"></i>

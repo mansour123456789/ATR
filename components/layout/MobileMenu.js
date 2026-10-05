@@ -44,21 +44,22 @@ const IconLocation = () => (
 );
 
 /* ── MobileItem ── */
-function MobileItem({ item, itemKey, activeKey, onToggle, onNavigate }) {
+function MobileItem({ item, itemKey, activeKey, onToggle, onNavigate, t }) {
   const hasChildren = item.children?.length > 0;
   const isOpen = activeKey === itemKey;
+  const label = item.key ? t(item.key, item.label) : item.label;
 
   return (
     <li className={`atr-mob-item${hasChildren ? " has-children" : ""}${isOpen ? " open" : ""}`}>
       <div className="atr-mob-row">
         <Link href={item.href} className="atr-mob-link" onClick={hasChildren ? (e) => e.preventDefault() : onNavigate}>
-          {item.label}
+          {label}
         </Link>
         {hasChildren && (
           <button
             type="button"
             className={`atr-mob-toggle${isOpen ? " open" : ""}`}
-            aria-label={`${isOpen ? "Fermer" : "Ouvrir"} ${item.label}`}
+            aria-label={`${isOpen ? "Fermer" : "Ouvrir"} ${label}`}
             onClick={() => onToggle(itemKey)}
           >
             <IconChevron />
@@ -67,13 +68,16 @@ function MobileItem({ item, itemKey, activeKey, onToggle, onNavigate }) {
       </div>
       {hasChildren && (
         <ul className={`atr-mob-sub${isOpen ? " open" : ""}`}>
-          {item.children.map((child, index) => (
-            <li key={child.label}>
-              <Link href={child.href} className="atr-mob-sub-link" onClick={onNavigate}>
-                {child.label}
-              </Link>
-            </li>
-          ))}
+          {item.children.map((child, index) => {
+            const childLabel = child.key ? t(child.key, child.label) : child.label;
+            return (
+              <li key={child.key || child.label}>
+                <Link href={child.href} className="atr-mob-sub-link" onClick={onNavigate}>
+                  {childLabel}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       )}
     </li>
@@ -83,7 +87,7 @@ function MobileItem({ item, itemKey, activeKey, onToggle, onNavigate }) {
 /* ── MobileMenu ── */
 export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar }) {
   const [activeKey, setActiveKey] = useState("");
-  const { language, changeLanguage } = useLanguage();
+  const { language, changeLanguage, t } = useLanguage();
 
   const handleToggle = (key) => setActiveKey((cur) => cur === key ? "" : key);
   const handleNavigate = () => { setActiveKey(""); handleMobileMenu(); };
@@ -364,12 +368,13 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
           <ul className="atr-mob-nav">
             {navigationItems.map((item, index) => (
               <MobileItem
-                key={item.label}
+                key={item.key || item.label}
                 item={item}
                 itemKey={String(index)}
                 activeKey={activeKey}
                 onToggle={handleToggle}
                 onNavigate={handleNavigate}
+                t={t}
               />
             ))}
           </ul>
@@ -377,27 +382,24 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
 
         {/* Contact info */}
         <div className="atr-mob-contact">
-          <p className="atr-mob-contact-title">Contact ATR</p>
+          <p className="atr-mob-contact-title">{t('footer.contact_title', 'Contact ATR')}</p>
           <div className="atr-mob-contact-row">
             <IconLocation /><span>Bureau 102, Imm. El Wifak, Centre Urbain Nord, Tunis</span>
           </div>
-          <Link href="tel:+21671234567" className="atr-mob-contact-row">
-            <IconPhone /><span>+216 71 234 567</span>
-          </Link>
-          <Link href="mailto:contact@atr.org.tn" className="atr-mob-contact-row">
-            <IconMail /><span>contact@atr.org.tn</span>
+          <Link href="mailto:contact@atr-tunisie.org" className="atr-mob-contact-row">
+            <IconMail /><span>contact@atr-tunisie.org</span>
           </Link>
         </div>
 
         {/* Social */}
         <div className="atr-mob-social">
-          <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn"><IconLinkedIn /></a>
-          <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook"><IconFacebook /></a>
+          <a href="https://www.linkedin.com/company/association-tunisienne-des-routes/" target="_blank" rel="noreferrer" aria-label="LinkedIn"><IconLinkedIn /></a>
+          <a href="https://www.facebook.com/atroutes" target="_blank" rel="noreferrer" aria-label="Facebook"><IconFacebook /></a>
         </div>
 
         {/* CTA */}
         <div className="atr-mob-cta">
-          <Link href="/contact" onClick={handleNavigate}>Nous Rejoindre →</Link>
+          <Link href="/contact" onClick={handleNavigate}>{t('menu.btn_join', 'Nous Rejoindre')} →</Link>
         </div>
       </div>
 

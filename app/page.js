@@ -2,12 +2,12 @@ import Layout from "@/components/layout/Layout"
 import InstitutionalHome from "@/components/home/InstitutionalHome"
 
 export const metadata = {
-    title: 'ATR | Association Tunisienne des Routes',
-    description: 'Association Tunisienne des Routes : expertise technique, sécurité routière et coopération avec le Ministère de l’Équipement et PIARC.',
+    title: 'Accueil | Association Tunisienne des Routes',
+    description: 'Site officiel de l\'Association Tunisienne des Routes (ATR) : réseau d\'expertise technique, sécurité routière, comités nationaux et coopération avec PIARC.',
     openGraph: {
         title: 'ATR | Association Tunisienne des Routes',
         description: 'Expertise technique et échanges professionnels pour les infrastructures routières en Tunisie.',
-        images: ['/images/atr-hero-modern.png'],
+        images: ['/1000007112.png'],
         type: 'website',
     },
 }

@@ -1,11 +1,27 @@
+@import url('fontawesome-all.css');
+@import url('animate.css');
+@import url('bootstrap.css');
+@import url('color.css');
+@import url('elpath.css');
+@import url('icomoon.css');
+@import url('jquery.fancybox.min.css');
+@import url('swiper.min.css');
+@import url('rtl.css');
+@import url('nice-select.css');
+@import url('odometer.min.css');
+@import url('jquery-ui-1.9.2.custom.min.css');
+@import url('jquery.bootstrap-touchspin.css');
+@import url('jquery-ui.css');
+@import url('monthly.css');
+@import url('swiper-bundle.min.css');
+@import url('calander.css');
+
 /***************************************************************************************************************
 ||||||||||||||||||||||||||||       MASTER STYLESHEET FOR Poolix             ||||||||||||||||||||||||||||||||||
 ****************************************************************************************************************
 ||||||||||||||||||||||||||||              TABLE OF CONTENT                  ||||||||||||||||||||||||||||||||||||
 ****************************************************************************************************************
 ****************************************************************************************************************
-
-
 
 * 1. imported styles 
 * 2. miscelnious styles 
@@ -28,35 +44,9 @@
 * 19. comment form styles 
 * 20. contact styles 
 
-font-family:  var(--inter), sans-serif;
-font-family:  var(--oswald), sans-serif;
-font-family:  var(--playfair_display), serif;
-font-family:  var(--poppins), sans-serif;
-font-family:  var(--rubik), sans-serif;
-
 ****************************************************************************************************************
 ||||||||||||||||||||||||||||            End TABLE OF CONTENT                ||||||||||||||||||||||||||||||||||||
 ****************************************************************************************************************/
-
-@import url('fontawesome-all.css');
-@import url('animate.css');
-@import url('bootstrap.css');
-@import url('color.css');
-@import url('elpath.css');
-@import url('icomoon.css');
-@import url('jquery.fancybox.min.css');
-@import url('swiper.min.css');
-@import url('rtl.css');
-@import url('elpath.css');
-@import url('nice-select.css');
-@import url('odometer.min.css');
-@import url('jquery-ui-1.9.2.custom.min.css');
-@import url('jquery.bootstrap-touchspin.css');
-@import url('jquery-ui.css');
-@import url('monthly.css');
-@import url('swiper-bundle.min.css');
-@import url('swiper.min.css');
-@import url('calander.css');
 /*** 
 ====================================================================
 	Reset

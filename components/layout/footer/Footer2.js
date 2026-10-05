@@ -45,7 +45,7 @@ export default function Footer2() {
                                 <p>N'hésitez pas à nous contacter.</p>
                                 <ul className="contact-widget-1-list">
                                     <li><span>Adresse:</span> Tunis, Tunisie</li>
-                                    <li><span>Email:</span><Link href="mailto:contact@atr.tn">contact@atr.tn</Link></li>
+                                    <li><span>Email:</span><Link href="mailto:contact@atr-tunisie.org">contact@atr-tunisie.org</Link></li>
                                     <li><span>Tél:</span><Link href="tel:+21671000000">+216 71 000 000</Link></li>
                                 </ul>
                             </div>

@@ -31,7 +31,7 @@ export default function Home() {
                                 <ul className="info-list clearfix">
                                     <li><span>Spécialité:</span> Matériaux Innovants, Résilience</li>
                                     <li><span>Expérience:</span> 15 Années</li>
-                                    <li><span>Email:</span> <Link href="mailto:amine.trabelsi@atr.org.tn">amine.trabelsi@atr.org.tn</Link></li>
+                                    <li><span>Email:</span> <Link href="mailto:contact@atr-tunisie.org">contact@atr-tunisie.org</Link></li>
                                     <li><span>Organisation:</span> <Link href="#">Ministère de l'Équipement</Link></li>
                                 </ul>
                                 <ul className="social-links clearfix">

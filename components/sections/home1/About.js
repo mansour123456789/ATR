@@ -3,8 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { institutionalFacts } from '@/data/institutional';
 
 const STYLES = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap');
-
   .atr-about-section {
     background-color: #ffffff;
     padding: 120px 0;

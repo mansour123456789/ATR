@@ -2,8 +2,6 @@
 import React, { useState } from 'react'
 
 const STYLES = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
   .atr-testimonial-section {
     padding: 110px 0 120px;
     background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 50%, #F8FAFC 100%);

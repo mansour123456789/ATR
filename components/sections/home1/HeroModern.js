@@ -4,8 +4,6 @@ import { useState, useEffect, useRef } from "react"
 
 /* ─── keyframes injected via a <style> tag ─── */
 const STYLES = `
-  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
-
   :root {
     --atr-primary:   #1B5299;
     --atr-secondary: #C07B1B;

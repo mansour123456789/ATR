@@ -4,8 +4,6 @@ import Link from 'next/link'
 import Layout from '@/components/layout/Layout'
 
 const STYLES = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
   .atr-article-page {
     padding: 80px 0 120px;
     background: #F8FAFC;
@@ -316,7 +314,7 @@ export default function ArticleGlissementsTerrain() {
                 </div>
 
                 <div className="atr-article-hero-img">
-                  <img src="/images/atr_seminar.png" alt="Journée Technique Glissements de Terrain ATR ATMS" />
+                  <img src="/716310905_1300568632262137_7434795582044664526_n.jpg" alt="Journée Technique Glissements de Terrain ATR ATMS - Hôtel El Mouradi Gammarth" />
                 </div>
 
                 <div className="atr-article-content">

@@ -2,8 +2,6 @@
    MODERN OVERRIDE - ATR DESIGN SYSTEM (POOLIX APP)
    ========================================================================== */
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap');
 
 /* Color Variables */
 :root {
@@ -19,13 +17,23 @@
 }
 
 /* Typography Overrides */
-body,
+body {
+  font-family: 'Inter', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #334155;
+  font-size: 15.5px;
+  line-height: 1.68;
+}
+
 p,
 a,
 span,
 li,
 input,
-textarea {
+textarea,
+select,
+button {
   font-family: 'Inter', sans-serif !important;
   -webkit-font-smoothing: antialiased;
 }
@@ -39,46 +47,255 @@ h6,
 .sec-title h2 {
   font-family: 'DM Sans', sans-serif !important;
   letter-spacing: -0.02em;
+  color: #102B54;
 }
 
-/* Standard Section Headings across the project */
-.section_heading_title_small {
+/* ==========================================================================
+   UNIFIED PAGE HERO & SECTION TYPOGRAPHY SCALE (ACROSS ALL PAGES)
+   ========================================================================== */
+
+/* 1. Kicker / Small Badge Subtitle */
+.section_heading_title_small,
+.atr-section-badge,
+.atr-article-badge {
   font-family: 'Inter', sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
-  font-size: 12.5px !important;
+  font-size: 12px !important;
   color: #C07B1B !important;
-  background: rgba(192, 123, 27, 0.08) !important;
+  background: rgba(192, 123, 27, 0.09) !important;
   padding: 6px 18px !important;
   border-radius: 100px !important;
   display: inline-block !important;
-  margin-bottom: 15px !important;
-  border: 1px solid rgba(192, 123, 27, 0.2) !important;
+  margin-bottom: 14px !important;
+  border: 1px solid rgba(192, 123, 27, 0.22) !important;
 }
 
+/* 2. Hero Page Titles (H1) */
+.atr-events-hero h1,
+.atr-publications-intro h1,
+.atr-training-hero h1,
+.atr-news-intro h1,
+.atr-calendar-intro h1,
+.atr-press-intro h1,
+.atr-contact-intro h1,
+.atr-about-intro h2,
+.atr-domains-intro h2,
+.atr-legal-page h1,
+.page-hero-title,
 .section_heading_title_big {
   font-family: 'DM Sans', sans-serif !important;
-  font-size: clamp(32px, 5vw, 44px) !important;
+  font-size: clamp(32px, 4.5vw, 42px) !important;
   font-weight: 700 !important;
-  color: #0F172A !important;
+  color: #102B54 !important;
   line-height: 1.2 !important;
-  margin-bottom: 18px !important;
-  letter-spacing: -0.02em !important;
+  margin-top: 8px !important;
+  margin-bottom: 16px !important;
+  letter-spacing: -0.025em !important;
 }
 
 .section_heading_title_big span {
   color: #1B5299 !important;
 }
 
+/* 3. Section Titles (H2) */
+.atr-events-section h2,
+.atr-publications-section h2,
+.atr-training-section-heading h2,
+.atr-training-programs h2,
+.atr-training-speakers h2,
+.atr-training-faq h2,
+.atr-about-section-heading h2,
+.atr-about-section h2,
+.atr-domains-facts-heading h2,
+.atr-press-list h2,
+.atr-contact-form-card h2,
+.atr-legal-page h2 {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: clamp(26px, 3.2vw, 34px) !important;
+  font-weight: 700 !important;
+  color: #102B54 !important;
+  line-height: 1.25 !important;
+  margin-top: 8px !important;
+  margin-bottom: 14px !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* 4. Card Titles (H3) */
+.atr-event-title,
+.atr-domain-title h3,
+.atr-training-card h3,
+.atr-news-entry h2,
+.atr-press-entry h3,
+.atr-about-timeline h3,
+.atr-about-activity-grid h3,
+.atr-about-committee-grid h3,
+.atr-about-publication-list h3,
+.publication-card-title {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: clamp(20px, 2.2vw, 23px) !important;
+  font-weight: 700 !important;
+  color: #102B54 !important;
+  line-height: 1.3 !important;
+  margin-top: 6px !important;
+  margin-bottom: 10px !important;
+  letter-spacing: -0.015em !important;
+}
+
+/* 5. Hero Intro Lead Paragraphs (High Visibility) */
+.atr-events-hero p:not(.section_heading_title_small),
+.atr-publications-intro p:not(.section_heading_title_small),
+.atr-training-hero p:not(.section_heading_title_small),
+.atr-news-intro p:not(.section_heading_title_small),
+.atr-calendar-intro p:not(.section_heading_title_small),
+.atr-press-intro p:not(.section_heading_title_small),
+.atr-contact-intro p:not(.section_heading_title_small),
+.atr-about-lead,
+.atr-domains-intro p:not(.section_heading_title_small),
 .section_heading_desc {
   font-family: 'Inter', sans-serif !important;
-  font-size: 16.5px !important;
-  line-height: 1.7 !important;
+  font-size: 17px !important;
+  line-height: 1.72 !important;
   color: #334155 !important;
-  max-width: 720px !important;
-  margin: 0 auto !important;
   font-weight: 400 !important;
+}
+
+/* 6. Standard Body Text & Card Content (Clear High-Contrast Dark Slate on Light Backgrounds) */
+body,
+.atr-about-body,
+.atr-domain-content > p,
+.atr-domain-card-body > p,
+.atr-event-description,
+.atr-training-card-description,
+.atr-news-entry p,
+.atr-press-entry p,
+.atr-legal-page p,
+.publication-card-summary {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.68;
+  color: #334155;
+  font-weight: 400;
+}
+
+/* ==========================================================================
+   HOMEPAGE HERO SECTION - HIGH CONTRAST & VISIBILITY (DARK BACKGROUND)
+   ========================================================================== */
+.atr-home-hero,
+.atr-home-hero-inner,
+.atr-home-hero-copy {
+  color: #FFFFFF !important;
+}
+
+.atr-home-hero .atr-home-kicker,
+.atr-home-kicker {
+  color: #FFD18A !important;
+  background: rgba(192, 123, 27, 0.25) !important;
+  border: 1px solid rgba(255, 209, 138, 0.5) !important;
+  padding: 6px 18px !important;
+  border-radius: 100px !important;
+  display: inline-block !important;
+  font-size: 12.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 22px !important;
+  backdrop-filter: blur(8px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6) !important;
+}
+
+.atr-home-hero h1 {
+  color: #FFFFFF !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+
+.atr-home-hero .atr-home-lead,
+.atr-home-lead {
+  color: #F1F5F9 !important;
+  font-size: 19px !important;
+  line-height: 1.7 !important;
+  font-weight: 500 !important;
+  max-width: 680px !important;
+  margin-bottom: 34px !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7) !important;
+}
+
+.atr-home-facts strong {
+  color: #FFFFFF !important;
+}
+
+.atr-home-facts span {
+  color: #CBD5E1 !important;
+}
+
+/* 7. Unified CTA Dark Banners */
+.atr-events-cta,
+.atr-training-calendar,
+.atr-publications-cta,
+.atr-news-crosslink,
+.atr-calendar-cta,
+.atr-press-crosslink {
+  background: #102B54 !important;
+  border-radius: 16px !important;
+  padding: 40px 45px !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 32px rgba(16, 43, 84, 0.15) !important;
+}
+
+.atr-events-cta h2,
+.atr-training-calendar h2,
+.atr-publications-cta h2,
+.atr-news-crosslink h2,
+.atr-calendar-cta h2,
+.atr-press-crosslink h2 {
+  color: #FFFFFF !important;
+  font-size: clamp(22px, 2.8vw, 28px) !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+}
+
+.atr-events-cta p,
+.atr-training-calendar p,
+.atr-publications-cta p,
+.atr-news-crosslink p,
+.atr-calendar-cta p,
+.atr-press-crosslink p {
+  color: #E2E8F0 !important;
+  font-size: 15.5px !important;
+  line-height: 1.65 !important;
+}
+
+.atr-events-cta a,
+.atr-training-calendar a,
+.atr-publications-cta a,
+.atr-news-crosslink a,
+.atr-calendar-cta a,
+.atr-press-crosslink a {
+  background: #C07B1B !important;
+  color: #FFFFFF !important;
+  padding: 12px 22px !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  font-size: 14.5px !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 15px rgba(192, 123, 27, 0.25) !important;
+}
+
+.atr-events-cta a:hover,
+.atr-training-calendar a:hover,
+.atr-publications-cta a:hover,
+.atr-news-crosslink a:hover,
+.atr-calendar-cta a:hover,
+.atr-press-crosslink a:hover {
+  background: #D98E28 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 22px rgba(192, 123, 27, 0.35) !important;
 }
 
 /* Global Buttons */
@@ -708,4 +925,132 @@ section.section-padding .auto-container {
   .atr-panel-exp-title {
     font-size: 24px;
   }
+}
+
+/* ==========================================================================
+   ARABIC & RTL STYLING ENHANCEMENTS
+   ========================================================================== */
+body[dir="rtl"],
+.lang-ar body,
+.lang-ar {
+  font-family: 'Inter', 'Segoe UI', 'Cairo', 'Tajawal', Tahoma, sans-serif !important;
+  text-align: right;
+}
+
+body[dir="rtl"] h1,
+body[dir="rtl"] h2,
+body[dir="rtl"] h3,
+body[dir="rtl"] h4,
+body[dir="rtl"] h5,
+body[dir="rtl"] h6,
+.lang-ar h1,
+.lang-ar h2,
+.lang-ar h3,
+.lang-ar h4,
+.lang-ar h5,
+.lang-ar h6 {
+  font-family: 'DM Sans', 'Segoe UI', 'Cairo', 'Tajawal', Tahoma, sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+body[dir="rtl"] .atr-about-lead,
+body[dir="rtl"] .atr-about-body,
+body[dir="rtl"] .atr-domains-intro p,
+body[dir="rtl"] .atr-events-hero p,
+body[dir="rtl"] .atr-training-hero p,
+body[dir="rtl"] .atr-news-intro p,
+body[dir="rtl"] .atr-calendar-intro p,
+body[dir="rtl"] .atr-press-intro p,
+body[dir="rtl"] .atr-contact-intro p {
+  text-align: right;
+}
+
+/* Preserver layout LTR identique pour le navbar et le logo dans toutes les langues */
+.main-header,
+.main-header *,
+body[dir="rtl"] .main-header,
+body[dir="rtl"] .main-header *,
+.lang-ar .main-header,
+.lang-ar .main-header * {
+  direction: ltr !important;
+}
+
+.main-header .inner-container,
+body[dir="rtl"] .main-header .inner-container,
+.lang-ar .main-header .inner-container,
+.main-header .header-upper .inner-container,
+body[dir="rtl"] .main-header .header-upper .inner-container,
+.lang-ar .main-header .header-upper .inner-container,
+.main-header .sticky-header .inner-container,
+body[dir="rtl"] .main-header .sticky-header .inner-container,
+.lang-ar .main-header .sticky-header .inner-container {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  direction: ltr !important;
+}
+
+@media (max-width: 1200px) {
+  .main-header .left-column,
+  body[dir="rtl"] .main-header .left-column,
+  .lang-ar .main-header .left-column,
+  .main-header .header-upper .left-column,
+  body[dir="rtl"] .main-header .header-upper .left-column,
+  .lang-ar .main-header .header-upper .left-column {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    justify-content: flex-start !important;
+    direction: ltr !important;
+  }
+
+  .main-header .right-column,
+  body[dir="rtl"] .main-header .right-column,
+  .lang-ar .main-header .right-column,
+  .main-header .header-upper .right-column,
+  body[dir="rtl"] .main-header .header-upper .right-column,
+  .lang-ar .main-header .header-upper .right-column {
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    justify-content: flex-end !important;
+    direction: ltr !important;
+  }
+
+  .main-header .logo-box,
+  .main-header .logo,
+  body[dir="rtl"] .main-header .logo-box,
+  body[dir="rtl"] .main-header .logo,
+  .lang-ar .main-header .logo-box,
+  .lang-ar .main-header .logo {
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    direction: ltr !important;
+  }
+
+  .atr-logo-img {
+    height: 65px !important;
+    max-height: 65px !important;
+    width: auto !important;
+    display: block !important;
+  }
+}
+
+body[dir="rtl"] .atr-footer-column {
+  text-align: right;
+}
+
+body[dir="rtl"] .atr-contact-form-card,
+body[dir="rtl"] .atr-training-card,
+body[dir="rtl"] .atr-event-card,
+body[dir="rtl"] .atr-domain-card {
+  text-align: right;
+}
+
+body[dir="rtl"] .bread-crumb li {
+  float: none;
+  display: inline-block;
 }

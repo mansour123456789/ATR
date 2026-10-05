@@ -91,16 +91,43 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                     }
                     @media (max-width: 1200px) {
                         .atr-logo-img {
-                            height: 70px !important;
+                            height: 65px !important;
+                            max-height: 65px !important;
+                            width: auto !important;
+                            display: block !important;
                         }
                         .main-header {
                             position: absolute !important;
                             background: transparent !important;
                             padding: 4px 0;
+                            direction: ltr !important;
                         }
                         .header-upper {
                             padding-top: 4px !important;
                             padding-bottom: 4px !important;
+                            direction: ltr !important;
+                        }
+                        .main-header .inner-container {
+                            display: flex !important;
+                            flex-direction: row !important;
+                            justify-content: space-between !important;
+                            align-items: center !important;
+                            direction: ltr !important;
+                        }
+                        .main-header .left-column {
+                            flex: 0 0 auto !important;
+                            width: auto !important;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            justify-content: flex-start !important;
+                            direction: ltr !important;
+                        }
+                        .main-header .right-column {
+                            flex: 0 0 auto !important;
+                            margin-left: auto !important;
+                            margin-right: 0 !important;
+                            justify-content: flex-end !important;
+                            direction: ltr !important;
                         }
                         .auto-container, .inner-container, .logo-box, .logo, .left-column, .right-column {
                             padding-top: 0 !important;
@@ -108,9 +135,11 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                             margin-top: 0 !important;
                             margin-bottom: 0 !important;
                         }
-                        .logo {
-                            margin-top: 0 !important;
-                            margin-bottom: 0 !important;
+                        .logo, .logo-box {
+                            margin: 0 !important;
+                            padding: 0 !important;
+                            text-align: left !important;
+                            direction: ltr !important;
                         }
                         .main-header.fixed-header {
                             position: fixed !important;
@@ -194,8 +223,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                                 </div>
                                 <div className="contact-info-1 d-flex align-items-center">
                                     <div>
-                                        <p className="contact-info-1-phone-tel fs_15 ff_oswald mb_0">NOUS CONTACTER</p>
-                                        <h6 className="contact-info-1-phone-number fs_20 fw_medium "><Link href="tel:+21671234567">+216 71 234 567</Link></h6>
+                                        <p className="contact-info-1-phone-tel fs_15 ff_oswald mb_0">{t('menu.contact_us', 'NOUS CONTACTER')}</p>
+                                        <h6 className="contact-info-1-phone-number fs_15 fw_medium"><Link href="mailto:contact@atr-tunisie.org">contact@atr-tunisie.org</Link></h6>
                                     </div>
                                 </div>
                                 <div className="header-link-btn"><Link href="/contact" className="btn-1">{t('menu.btn_join') || "Nous Rejoindre"} <span></span></Link></div>
@@ -243,8 +272,8 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                                 </div>
                                 <div className="contact-info-1 d-flex align-items-center">
                                     <div>
-                                        <p className="contact-info-1-phone-tel fs_15 ff_oswald mb_0">NOUS CONTACTER</p>
-                                        <h6 className="contact-info-1-phone-number fs_20 fw_medium "><Link href="tel:+21671234567">+216 71 234 567</Link></h6>
+                                        <p className="contact-info-1-phone-tel fs_15 ff_oswald mb_0">{t('menu.contact_us', 'NOUS CONTACTER')}</p>
+                                        <h6 className="contact-info-1-phone-number fs_15 fw_medium"><Link href="mailto:contact@atr-tunisie.org">contact@atr-tunisie.org</Link></h6>
                                     </div>
                                 </div>
                                 <div className="header-link-btn"><Link href="/contact" className="btn-1">{t('menu.btn_join') || "Nous Rejoindre"} <span></span></Link></div>

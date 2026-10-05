@@ -2,14 +2,12 @@
 import React from 'react'
 import Link from 'next/link'
 import Layout from '@/components/layout/Layout'
-import PublicationCard from '@/components/publications/PublicationCard'
 
 const STYLES = `
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap');
-
   .atr-article-page {
     padding: 80px 0 120px;
     background: #F8FAFC;
+    font-family: 'Inter', sans-serif;
   }
 
   .atr-article-page .auto-container {
@@ -57,7 +55,7 @@ const STYLES = `
 
   .atr-article-title {
     font-family: 'DM Sans', sans-serif !important;
-    font-size: clamp(28px, 3.5vw, 42px);
+    font-size: clamp(28px, 3.5vw, 40px);
     font-weight: 700;
     color: #0F172A;
     line-height: 1.25;
@@ -90,17 +88,16 @@ const STYLES = `
 
   .atr-article-hero-img {
     width: 100%;
-    height: 420px;
+    max-height: 480px;
     border-radius: 20px;
     overflow: hidden;
     margin-bottom: 40px;
     position: relative;
     box-shadow: 0 15px 35px rgba(27, 82, 153, 0.1);
-  }
-  @media (max-width: 767px) {
-    .atr-article-hero-img {
-      height: 240px;
-    }
+    background: #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .atr-article-hero-img img {
@@ -146,8 +143,8 @@ const STYLES = `
   }
 
   .atr-speaker-avatar {
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: #1B5299;
     color: #ffffff;
@@ -157,11 +154,12 @@ const STYLES = `
     font-weight: 700;
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
+    flex-shrink: 0;
   }
 
   .atr-speaker-name {
     font-family: 'DM Sans', sans-serif !important;
-    font-size: 17px;
+    font-size: 17.5px;
     font-weight: 700;
     color: #0F172A;
     margin: 0;
@@ -301,28 +299,41 @@ const STYLES = `
 
 export default function ArticleHSS() {
   return (
-    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Publication Technique">
+    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Compte-Rendu Technique">
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
       <div className="atr-article-page">
         <div className="auto-container">
           <div className="row">
-            {/* Main Article Content (8 cols) */}
+            {/* Colonne Principale (8 cols) */}
             <div className="col-lg-8 col-md-12">
-              <PublicationCard
-                className="publication-card--detail"
-                badge="Compte-rendu"
-                date="30 avril 2026"
-                location="Cité des Sciences, Tunis"
-                source="L'Obs Éco"
-                title="Rencontre ATR : Enjeux HSS et Sécurité Routière sur les Chantiers"
-                summary="Une rencontre consacrée aux enjeux HSS, à la sécurité routière sur les chantiers et à la responsabilité humaine dans les projets d'infrastructure."
-                image="/images/atr-event.png"
-                alt="Participants à la rencontre ATR sur la sécurité routière et les enjeux HSS"
-                href="/publications/securite-routiere-hss-chantiers"
-              />
               <article className="atr-article-card">
+                <span className="atr-article-badge">Compte-Rendu Technique · HSS & Sécurité Routière</span>
+
+                <h1 className="atr-article-title">
+                  Zéro décès : l'ATR relève le défi HSS d'une « route qui pardonne »
+                </h1>
+
+                <div className="atr-article-meta-bar">
+                  <span className="atr-meta-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C07B1B" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                    <strong>30 Avril 2026</strong> (13h30 - 17h00)
+                  </span>
+                  <span className="atr-meta-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5299" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    Cité des Sciences, Tunis
+                  </span>
+                  <span className="atr-meta-item">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    ATR & L'Observatoire Économique
+                  </span>
+                </div>
+
+                <div className="atr-article-hero-img">
+                  <img src="/1000007112.png" alt="Zéro décès : l'ATR relève le défi HSS d'une route qui pardonne" />
+                </div>
+
                 <div className="atr-article-content">
-                  {/* Paragraphe d'introduction fourni par l'utilisateur */}
+                  {/* Lead / Paragraphe d'ouverture */}
                   <div className="atr-article-lead">
                     Le 30 avril 2026, l’Association Tunisienne des Routes (ATR) a consacré une rencontre aux enjeux HSS et à la sécurité routière sur les chantiers, réunissant dès 13h30 à la Cité des Sciences cadres du ministère de l’Équipement et de l’Habitat, ingénieurs, responsables HSE, universitaires, étudiants et professionnels du secteur.
                   </div>
@@ -400,10 +411,10 @@ export default function ArticleHSS() {
                   <p>
                     Lors d’un échange avec une audience attentive et engagée, une réflexion s’est faite sur les causes des accidents sur les chantiers. Parmi les pistes évoquées figurent notamment :
                   </p>
-                  <ul>
-                    <li><strong>Le renforcement des contrôles rigoureux</strong> sur l'ensemble des chantiers de travaux publics.</li>
-                    <li><strong>La délivrance stricte des certificats de conformité</strong> avant tout démarrage effectif des travaux.</li>
-                    <li><strong>La mise à disposition de matériel adéquat</strong> et certifié par les entreprises pour les grands projets.</li>
+                  <ul style={{ paddingLeft: '20px', marginBottom: '25px', lineHeight: '1.8' }}>
+                    <li style={{ marginBottom: '8px' }}><strong>Le renforcement des contrôles rigoureux</strong> sur l'ensemble des chantiers de travaux publics.</li>
+                    <li style={{ marginBottom: '8px' }}><strong>La délivrance stricte des certificats de conformité</strong> avant tout démarrage effectif des travaux.</li>
+                    <li style={{ marginBottom: '8px' }}><strong>La mise à disposition de matériel adéquat</strong> et certifié par les entreprises pour les grands projets.</li>
                   </ul>
 
                   {/* Intervenant 4 : Arij Naili */}
@@ -446,15 +457,15 @@ export default function ArticleHSS() {
                   <p>
                     Au terme des échanges, une idée s’est imposée avec clarté : la sécurité ne peut plus être traitée comme un simple volet technique ajouté en fin de projet. Elle implique :
                   </p>
-                  <ul>
-                    <li><strong>Des moyens matériels adaptés</strong> et disponibles dès la phase d'installation de chantier.</li>
-                    <li><strong>Un budget clair et préétabli</strong> dans les bordereaux de prix afin d’éviter tout déficit ou arbitrage au détriment de la protection.</li>
-                    <li><strong>Des contrôles inopinés et réguliers</strong> menés conjointement avec les équipes HSE.</li>
-                    <li><strong>Une responsabilité pleinement partagée</strong> entre les institutions donneuses d'ordre et les entreprises exécutantes.</li>
-                    <li><strong>Une vision durable et pérenne de la prévention</strong> intégrée dès la formation universitaire.</li>
+                  <ul style={{ paddingLeft: '20px', marginBottom: '25px', lineHeight: '1.8' }}>
+                    <li style={{ marginBottom: '8px' }}><strong>Des moyens matériels adaptés</strong> et disponibles dès la phase d'installation de chantier.</li>
+                    <li style={{ marginBottom: '8px' }}><strong>Un budget clair et préétabli</strong> dans les bordereaux de prix afin d’éviter tout déficit ou arbitrage au détriment de la protection.</li>
+                    <li style={{ marginBottom: '8px' }}><strong>Des contrôles inopinés et réguliers</strong> menés conjointement avec les équipes HSE.</li>
+                    <li style={{ marginBottom: '8px' }}><strong>Une responsabilité pleinement partagée</strong> entre les institutions donneuses d'ordre et les entreprises exécutantes.</li>
+                    <li style={{ marginBottom: '8px' }}><strong>Une vision durable et pérenne de la prévention</strong> intégrée dès la formation universitaire.</li>
                   </ul>
 
-                  <div className="atr-article-lead mt_40">
+                  <div className="atr-article-lead" style={{ marginTop: '40px' }}>
                     La rencontre s’est achevée à 17h autour d’un moment d’échange convivial. Mais au-delà des discussions techniques et institutionnelles, une conviction commune semblait dominer les débats : <strong>la modernisation des infrastructures ne peut plus être dissociée de la protection de la vie humaine.</strong>
                   </div>
                 </div>
@@ -507,10 +518,30 @@ export default function ArticleHSS() {
                         rel="noopener noreferrer"
                         style={{ color: '#1B5299', fontWeight: '600', textDecoration: 'underline' }}
                       >
-                        L'Obs Éco (Article complet)
+                        L'Obs Éco (Article complet) ↗
                       </a>
                     </li>
                   </ul>
+                </div>
+
+                <div className="atr-sidebar-card">
+                  <h4 className="atr-sidebar-title">Autres Publications</h4>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <Link
+                      href="/publications/ministre-equipement-accueille-bureau-atr"
+                      style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px', background: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0', textDecoration: 'none', color: '#1B5299', fontWeight: '600' }}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                      Audience avec M. le Ministre de l'Équipement
+                    </Link>
+                    <Link
+                      href="/publications/glissements-de-terrain-resilience-infrastructures"
+                      style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px', background: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0', textDecoration: 'none', color: '#1B5299', fontWeight: '600' }}
+                    >
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                      Journée Technique Glissements de Terrain
+                    </Link>
+                  </div>
                 </div>
 
                 <div className="atr-sidebar-card">

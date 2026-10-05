@@ -129,7 +129,7 @@ export default function Service() {
                                 </li>
                                 <li>
                                     <span>Écrivez-nous :</span>
-                                    <h3><i className="icon-59"></i><Link href="mailto:contact@atr.tn">contact@atr.tn</Link></h3>
+                                    <h3><i className="icon-59"></i><Link href="mailto:contact@atr-tunisie.org">contact@atr-tunisie.org</Link></h3>
                                 </li>
                             </ul>
                         </div>

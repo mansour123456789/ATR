@@ -6,7 +6,7 @@ import MobileMenu from "../MobileMenu"
 export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSidebar, handlePopup, handleSidebar }) {
     return (
         <>
-            <header className={`main-header header-style-three ${scroll ? "fixed-header" : ""}`}>
+            <header dir="ltr" className={`main-header header-style-three ${scroll ? "fixed-header" : ""}`}>
                 {/* Header Top */}
                 
                 {/* Header Upper */}
@@ -15,7 +15,7 @@ export default function Header2({ scroll, isMobileMenu, handleMobileMenu, isSide
                 <div className="inner-container d-flex align-items-center justify-content-between">
                     <div className="left-column d-flex align-items-center">
                         <div className="logo-box">
-                            <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" style={{ height: "100px", width: "auto" }} /></Link></div>
+                            <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" className="atr-logo-img" style={{ height: "100px", width: "auto" }} /></Link></div>
                         </div>                        
                     </div>
                     <div className="right-column d-flex align-items-center">
