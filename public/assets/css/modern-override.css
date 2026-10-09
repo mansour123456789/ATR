@@ -1,3 +1,6 @@
+/* Load Arabic fonts (must be first @import) */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Cairo:wght@300;400;600;700;900&display=swap');
+
 /* ==========================================================================
    MODERN OVERRIDE - ATR DESIGN SYSTEM (POOLIX APP)
    ========================================================================== */
@@ -928,29 +931,81 @@ section.section-padding .auto-container {
 }
 
 /* ==========================================================================
-   ARABIC & RTL STYLING ENHANCEMENTS
+   ARABIC & RTL STYLING ENHANCEMENTS — TYPOGRAPHY & CLARITY
    ========================================================================== */
 body[dir="rtl"],
 .lang-ar body,
 .lang-ar {
-  font-family: 'Inter', 'Segoe UI', 'Cairo', 'Tajawal', Tahoma, sans-serif !important;
+  font-family: 'Tajawal', 'Cairo', 'DM Sans', 'Segoe UI', Tahoma, sans-serif !important;
   text-align: right;
+  font-size: 16.5px;
+  line-height: 1.8;
+}
+
+body[dir="rtl"] p,
+.lang-ar p {
+  font-size: 1.05em;
+  line-height: 1.8;
 }
 
 body[dir="rtl"] h1,
+.lang-ar h1 {
+  font-family: 'Tajawal', 'Cairo', 'DM Sans', 'Segoe UI', Tahoma, sans-serif !important;
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+}
+
 body[dir="rtl"] h2,
+.lang-ar h2 {
+  font-family: 'Tajawal', 'Cairo', 'DM Sans', 'Segoe UI', Tahoma, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+}
+
 body[dir="rtl"] h3,
+.lang-ar h3 {
+  font-family: 'Tajawal', 'Cairo', 'DM Sans', 'Segoe UI', Tahoma, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.4 !important;
+}
+
 body[dir="rtl"] h4,
 body[dir="rtl"] h5,
 body[dir="rtl"] h6,
-.lang-ar h1,
-.lang-ar h2,
-.lang-ar h3,
 .lang-ar h4,
 .lang-ar h5,
 .lang-ar h6 {
-  font-family: 'DM Sans', 'Segoe UI', 'Cairo', 'Tajawal', Tahoma, sans-serif !important;
-  letter-spacing: normal !important;
+  font-family: 'Tajawal', 'Cairo', 'DM Sans', 'Segoe UI', Tahoma, sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.45 !important;
+}
+
+body[dir="rtl"] .atr-home-lead,
+.lang-ar .atr-home-lead {
+  font-size: 20.5px !important;
+  line-height: 1.8 !important;
+}
+
+body[dir="rtl"] .atr-home-event-card-title,
+.lang-ar .atr-home-event-card-title {
+  font-size: 20px !important;
+  line-height: 1.5 !important;
+}
+
+body[dir="rtl"] .atr-home-event-card-desc,
+.lang-ar .atr-home-event-card-desc {
+  font-size: 15.5px !important;
+  line-height: 1.75 !important;
+}
+
+body[dir="rtl"] .atr-home-button,
+.lang-ar .atr-home-button {
+  font-size: 16px !important;
+  padding: 14px 28px !important;
 }
 
 body[dir="rtl"] .atr-about-lead,
@@ -963,6 +1018,8 @@ body[dir="rtl"] .atr-calendar-intro p,
 body[dir="rtl"] .atr-press-intro p,
 body[dir="rtl"] .atr-contact-intro p {
   text-align: right;
+  font-size: 17px;
+  line-height: 1.85;
 }
 
 /* Preserver layout LTR identique pour le navbar et le logo dans toutes les langues */
@@ -1050,7 +1107,391 @@ body[dir="rtl"] .atr-domain-card {
   text-align: right;
 }
 
+/* ==========================================================================
+   HERO BREADCRUMB — ARABIC / RTL FIX
+   ========================================================================== */
+body[dir="rtl"] .page-title .bread-crumb,
+body[dir="rtl"] .bread-crumb {
+  direction: rtl !important;
+}
+
+body[dir="rtl"] .page-title .bread-crumb li,
 body[dir="rtl"] .bread-crumb li {
-  float: none;
-  display: inline-block;
+  float: none !important;
+  display: inline-block !important;
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 20px !important;
+  margin-left: 8px !important;
+}
+
+body[dir="rtl"] .page-title .bread-crumb li:last-child,
+body[dir="rtl"] .bread-crumb li:last-child {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}
+
+body[dir="rtl"] .page-title .bread-crumb li:before,
+body[dir="rtl"] .bread-crumb li:before {
+  content: '\e938' !important;
+  font-family: 'icomoon' !important;
+  font-size: 11px !important;
+  right: auto !important;
+  left: 0px !important;
+  top: 2px !important;
+  transform: none !important;
+}
+
+body[dir="rtl"] .page-title .bread-crumb li:last-child:before,
+body[dir="rtl"] .bread-crumb li:last-child:before {
+  display: none !important;
+}
+
+/* ==========================================================================
+   ARABIC TYPOGRAPHY — FONT SIZE BOOST & TAJAWAL/CAIRO FONT
+   ========================================================================== */
+
+/* Arabic fonts loaded via @import at top of file */
+
+/* Base: apply Arabic font family to all elements in RTL mode */
+body[dir="rtl"],
+body[dir="rtl"] p,
+body[dir="rtl"] a,
+body[dir="rtl"] span,
+body[dir="rtl"] li,
+body[dir="rtl"] label,
+body[dir="rtl"] input,
+body[dir="rtl"] textarea,
+body[dir="rtl"] select,
+body[dir="rtl"] button,
+body[dir="rtl"] td,
+body[dir="rtl"] th {
+  font-family: 'Tajawal', 'Cairo', sans-serif !important;
+  font-size: 17px !important;
+  line-height: 1.85 !important;
+  letter-spacing: 0 !important;
+}
+
+/* Headings in Arabic */
+body[dir="rtl"] h1,
+body[dir="rtl"] h2,
+body[dir="rtl"] h3,
+body[dir="rtl"] h4,
+body[dir="rtl"] h5,
+body[dir="rtl"] h6,
+body[dir="rtl"] .sec-title h2,
+body[dir="rtl"] .section_heading_title_big {
+  font-family: 'Cairo', 'Tajawal', sans-serif !important;
+  letter-spacing: 0 !important;
+  line-height: 1.5 !important;
+}
+
+body[dir="rtl"] h1 { font-size: clamp(30px, 4.5vw, 46px) !important; }
+body[dir="rtl"] h2 { font-size: clamp(24px, 3.2vw, 36px) !important; }
+body[dir="rtl"] h3 { font-size: clamp(20px, 2.4vw, 28px) !important; }
+body[dir="rtl"] h4 { font-size: clamp(17px, 1.8vw, 22px) !important; }
+body[dir="rtl"] h5 { font-size: 18px !important; }
+body[dir="rtl"] h6 { font-size: 16px !important; }
+
+/* Lead / intro paragraphs */
+body[dir="rtl"] .section_heading_desc,
+body[dir="rtl"] .atr-about-lead,
+body[dir="rtl"] .atr-events-hero p,
+body[dir="rtl"] .atr-publications-intro p,
+body[dir="rtl"] .atr-training-hero p,
+body[dir="rtl"] .atr-news-intro p,
+body[dir="rtl"] .atr-contact-intro p,
+body[dir="rtl"] .atr-domains-intro p {
+  font-size: 19px !important;
+  line-height: 1.9 !important;
+}
+
+/* Navigation links */
+body[dir="rtl"] .main-menu .navigation > li > a,
+body[dir="rtl"] .main-menu .navigation > li > ul > li > a {
+  font-family: 'Cairo', 'Tajawal', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+}
+
+/* Badges / section kickers */
+body[dir="rtl"] .section_heading_title_small,
+body[dir="rtl"] .atr-section-badge,
+body[dir="rtl"] .atr-article-badge,
+body[dir="rtl"] .atr-home-kicker {
+  font-family: 'Cairo', 'Tajawal', sans-serif !important;
+  font-size: 13px !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Buttons */
+body[dir="rtl"] .btn-1,
+body[dir="rtl"] .theme-btn,
+body[dir="rtl"] button {
+  font-family: 'Cairo', 'Tajawal', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+
+/* Card body text */
+body[dir="rtl"] .atr-event-description,
+body[dir="rtl"] .atr-training-card-description,
+body[dir="rtl"] .atr-news-entry p,
+body[dir="rtl"] .atr-press-entry p,
+body[dir="rtl"] .atr-legal-page p,
+body[dir="rtl"] .publication-card-summary,
+body[dir="rtl"] .atr-domain-content > p,
+body[dir="rtl"] .team-1-designaiton,
+body[dir="rtl"] .team-1-content p {
+  font-size: 16px !important;
+  line-height: 1.85 !important;
+}
+
+/* Footer */
+body[dir="rtl"] .footer-widget p,
+body[dir="rtl"] .footer-widget li,
+body[dir="rtl"] .footer-widget a {
+  font-size: 15.5px !important;
+  line-height: 1.8 !important;
+}
+
+/* Form fields */
+body[dir="rtl"] input,
+body[dir="rtl"] textarea,
+body[dir="rtl"] select {
+  font-size: 16px !important;
+}
+
+/* Table text & alignment */
+body[dir="rtl"] table,
+body[dir="rtl"] td,
+body[dir="rtl"] th,
+body[dir="rtl"] .atr-team-table,
+body[dir="rtl"] .atr-team-table th,
+body[dir="rtl"] .atr-team-table td {
+  text-align: right !important;
+  font-size: 15px !important;
+}
+
+body[dir="rtl"] .atr-team-table-topic {
+  text-align: right !important;
+  font-size: 16px !important;
+}
+
+body[dir="rtl"] .atr-team-table-badge {
+  font-family: 'Cairo', 'Tajawal', sans-serif !important;
+  font-size: 12.5px !important;
+}
+
+body[dir="rtl"] .atr-team-member-pill {
+  font-family: 'Tajawal', 'Cairo', sans-serif !important;
+  font-size: 14.5px !important;
+}
+
+/* ==========================================================================
+   ABOUT PAGE RTL OVERRIDES
+   ========================================================================== */
+body[dir="rtl"] .atr-about-page,
+body[dir="rtl"] .atr-about-intro,
+body[dir="rtl"] .atr-about-section,
+body[dir="rtl"] .atr-about-section-heading,
+body[dir="rtl"] .atr-about-timeline article,
+body[dir="rtl"] .atr-about-activity-grid article,
+body[dir="rtl"] .atr-about-committee-grid article,
+body[dir="rtl"] .atr-about-colleges div {
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-about-pillars article {
+  border-left: none !important;
+  border-right: 4px solid #C07B1B !important;
+  border-radius: 12px 0 0 12px !important;
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-about-colleges div {
+  border-left: none !important;
+  border-right: 3px solid #C07B1B !important;
+  border-radius: 8px 0 0 8px !important;
+}
+
+body[dir="rtl"] .atr-about-timeline article:before {
+  left: auto !important;
+  right: 0 !important;
+}
+
+body[dir="rtl"] .atr-about-audience {
+  justify-content: flex-start !important;
+}
+
+@media (max-width: 575px) {
+  body[dir="rtl"] .atr-about-timeline {
+    border-left: 0 !important;
+    border-right: 2px solid #C07B1B !important;
+    padding: 0 25px 0 0 !important;
+  }
+  body[dir="rtl"] .atr-about-timeline article:before {
+    left: auto !important;
+    right: -34px !important;
+  }
+}
+
+/* ==========================================================================
+   DOMAINES PAGE RTL OVERRIDES
+   ========================================================================== */
+body[dir="rtl"] .atr-domains-page,
+body[dir="rtl"] .atr-domains-intro,
+body[dir="rtl"] .atr-domains-facts-heading,
+body[dir="rtl"] .atr-domain-card-body,
+body[dir="rtl"] .atr-domains-facts-grid article,
+body[dir="rtl"] .atr-domains-note p {
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-domain-card-media span {
+  left: auto !important;
+  right: 16px !important;
+}
+
+body[dir="rtl"] .atr-domain-card .atr-domain-title {
+  flex-direction: row !important;
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-domain-card ul {
+  padding-right: 0 !important;
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-domain-card li {
+  text-align: right !important;
+}
+
+/* ==========================================================================
+   EVENTS PAGE RTL OVERRIDES
+   ========================================================================== */
+body[dir="rtl"] .atr-events-page,
+body[dir="rtl"] .atr-events-hero,
+body[dir="rtl"] .atr-featured-content,
+body[dir="rtl"] .atr-event-body,
+body[dir="rtl"] .atr-events-modal-card {
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-featured-badge-float {
+  left: auto !important;
+  right: 14px !important;
+}
+
+body[dir="rtl"] .atr-stamp-passed {
+  right: auto !important;
+  left: 20px !important;
+  transform: rotate(8deg) !important;
+}
+
+body[dir="rtl"] .atr-featured-tags {
+  justify-content: flex-start !important;
+}
+
+body[dir="rtl"] .atr-featured-meta-row {
+  justify-content: flex-start !important;
+}
+
+body[dir="rtl"] .atr-pillar-item {
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-events-filters {
+  justify-content: flex-start !important;
+}
+
+body[dir="rtl"] .atr-sort-select-wrapper {
+  direction: rtl !important;
+}
+
+body[dir="rtl"] .atr-events-modal-close {
+  right: auto !important;
+  left: 16px !important;
+}
+
+body[dir="rtl"] .atr-events-form label {
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-pricing-badges {
+  justify-content: flex-start !important;
+}
+
+body[dir="rtl"] .atr-events-cta {
+  text-align: right !important;
+}
+
+/* ==========================================================================
+   PUBLICATIONS PAGE RTL OVERRIDES
+   ========================================================================== */
+body[dir="rtl"] .atr-publications-page,
+body[dir="rtl"] .atr-publications-intro,
+body[dir="rtl"] .atr-publications-section,
+body[dir="rtl"] .atr-publications-cta,
+body[dir="rtl"] .publication-card-content {
+  text-align: right !important;
+  align-items: flex-start !important;
+}
+
+body[dir="rtl"] .publication-card-meta {
+  justify-content: flex-start !important;
+}
+
+body[dir="rtl"] .atr-publications-cta h2,
+body[dir="rtl"] .atr-publications-cta p {
+  text-align: right !important;
+}
+
+/* ==========================================================================
+   ARTICLE DETAILS PAGE RTL OVERRIDES
+   ========================================================================== */
+body[dir="rtl"] .atr-article-card,
+body[dir="rtl"] .atr-article-content,
+body[dir="rtl"] .atr-sidebar-card {
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-article-lead {
+  border-left: none !important;
+  border-right: 5px solid #1B5299 !important;
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-speaker-block {
+  border-left: 1px solid #E2E8F0 !important;
+  border-right: 4px solid #C07B1B !important;
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-speaker-header {
+  flex-direction: row !important;
+}
+
+body[dir="rtl"] .atr-article-meta-bar {
+  justify-content: flex-start !important;
+}
+
+body[dir="rtl"] .atr-article-content ul {
+  padding-left: 0 !important;
+  padding-right: 20px !important;
+}
+
+body[dir="rtl"] .atr-quote-callout {
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-quote-callout p {
+  font-style: normal !important;
+  text-align: right !important;
+}
+
+body[dir="rtl"] .atr-sidebar-title {
+  text-align: right !important;
 }

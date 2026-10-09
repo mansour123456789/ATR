@@ -1,23 +1,34 @@
 'use client'
+import { useEffect } from "react";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import CounterUp from "@/components/elements/CounterUp";
 import { useLanguage } from "@/context/LanguageContext";
 
-function ActionLink({ href, children }) {
+function ActionLink({ href, children, isRtl }) {
   const external = href.startsWith('http');
-  return <Link href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>{children}<span aria-hidden="true"> ↗</span></Link>;
+  return (
+    <Link href={href} target={external ? '_blank' : undefined} rel={external ? 'noreferrer' : undefined}>
+      {children}
+      <span aria-hidden="true">{external ? (isRtl ? ' ↖' : ' ↗') : (isRtl ? ' ←' : ' →')}</span>
+    </Link>
+  );
 }
 
 export default function DomainesPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
+
+  useEffect(() => {
+    const pageTitle = t('breadcrumb.domains', "Domaines Techniques");
+    document.title = `${pageTitle} | ATR - Association Tunisienne des Routes`;
+  }, [language, t]);
 
   const domains = [
     {
       id: 'securite-routiere',
       icon: 'fa-shield-alt',
       image: '/assets/images/risques_route.png',
-      imageAlt: 'Dispositif de prévention et de sécurité sur une route',
       title: t('domaines.domain1_title', 'Sécurité routière & prévention'),
       mission: t('domaines.domain1_mission', 'L’ATR traduit l’approche « Vision Zéro décès » en méthodes de prévention applicables aux infrastructures et aux chantiers. Le domaine relie analyse des risques, audits, signalisation et formation HSS.'),
       actions: [
@@ -29,7 +40,6 @@ export default function DomainesPage() {
       id: 'ouvrages-art',
       icon: 'fa-bridge',
       image: '/assets/images/ponts_entretien.png',
-      imageAlt: 'Ouvrage d’art et opérations d’entretien des ponts',
       title: t('domaines.domain2_title', 'Ouvrages d’art & ponts'),
       mission: t('domaines.domain2_mission', 'Ce domaine couvre la conception, la surveillance, l’auscultation et la maintenance durable des ponts et ouvrages d’art.'),
       actions: [
@@ -41,7 +51,6 @@ export default function DomainesPage() {
       id: 'conception-normes',
       icon: 'fa-drafting-compass',
       image: '/assets/images/conception_route.png',
-      imageAlt: 'Conception et planification d’une infrastructure routière',
       title: t('domaines.domain3_title', 'Conception & normes techniques'),
       mission: t('domaines.domain3_mission', 'L’ATR rapproche les exigences réglementaires, les méthodes d’ingénierie et les besoins opérationnels du réseau routier. Elle contribue à diffuser des guides, des normes de qualité et des pratiques compatibles avec les échanges internationaux.'),
       actions: [
@@ -75,7 +84,7 @@ export default function DomainesPage() {
               {domains.map((domain, index) => (
                 <article className="atr-domain-card" id={domain.id} key={domain.id}>
                   <div className="atr-domain-card-media">
-                    <img src={domain.image} alt={domain.imageAlt} loading={index === 0 ? 'eager' : 'lazy'} />
+                    <img src={domain.image} alt={domain.title} width="600" height="390" loading={index === 0 ? 'eager' : 'lazy'} />
                     <span>{`${t('domaines.domain_label', 'Domaine')} ${String(index + 1).padStart(2, '0')}`}</span>
                   </div>
                   <div className="atr-domain-card-body">
@@ -86,7 +95,7 @@ export default function DomainesPage() {
                     <p>{domain.mission}</p>
                     <ul>
                       {domain.actions.slice(0, 2).map(([label, href]) => (
-                        <li key={label}><ActionLink href={href}>{label}</ActionLink></li>
+                        <li key={label}><ActionLink href={href} isRtl={isRtl}>{label}</ActionLink></li>
                       ))}
                     </ul>
                   </div>
@@ -122,7 +131,7 @@ export default function DomainesPage() {
               <strong>{t('domaines.note_title', "À propos des effectifs :")}</strong> {t('domaines.note_text', "le nombre de membres actifs et le volume de guides publiés ne sont pas encore établis par une source publique unique dans le site. Ils ne sont donc pas affichés comme chiffres vérifiés.")}
             </p>
             <Link href="/contact" className="btn-1">
-              {t('domaines.note_btn', "Demander les données institutionnelles")} <span aria-hidden="true">→</span>
+              {t('domaines.note_btn', "Demander les données institutionnelles")} <span aria-hidden="true">{isRtl ? '←' : '→'}</span>
             </Link>
           </div>
         </section>

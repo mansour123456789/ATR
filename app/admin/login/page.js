@@ -1,14 +1,20 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-
-import Layout from "@/components/layout/Layout";
 
 export default function AdminLogin() {
   const router = useRouter();
   const [form, setForm] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [readOnlyEmail, setReadOnlyEmail] = useState(true);
+  const [readOnlyPass, setReadOnlyPass] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+
+  // Force empty fields on initial mount
+  useEffect(() => {
+    setForm({ email: '', password: '' });
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -67,12 +73,21 @@ export default function AdminLogin() {
               transition: all 0.3s ease;
               font-size: 15px;
               margin-bottom: 20px;
+              color: #172b45;
           }
           .modern-input:focus {
               border-color: #1B5299;
               background-color: #ffffff;
               box-shadow: 0 0 0 4px rgba(27,82,153,0.1);
               outline: none;
+          }
+          .modern-input:-webkit-autofill,
+          .modern-input:-webkit-autofill:hover, 
+          .modern-input:-webkit-autofill:focus, 
+          .modern-input:-webkit-autofill:active {
+              -webkit-box-shadow: 0 0 0 1000px #f8fafc inset !important;
+              -webkit-text-fill-color: #172b45 !important;
+              transition: background-color 5000s ease-in-out 0s;
           }
           .modern-btn {
               width: 100%;
@@ -117,29 +132,69 @@ export default function AdminLogin() {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} autoComplete="off">
+                {/* Dummy inputs to prevent browser autofill interception */}
+                <input type="text" name="prevent_autofill_user" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+                <input type="password" name="prevent_autofill_pwd" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+
                 <div className="row clearfix">
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <label style={{ display: 'block', color: '#444', fontWeight: 600, fontSize: '14px', marginBottom: '8px' }}>Adresse Email</label>
                     <input
                       type="email"
+                      name="atr_admin_user_account"
+                      id="atr_admin_user_account"
                       value={form.email}
+                      readOnly={readOnlyEmail}
+                      onFocus={() => setReadOnlyEmail(false)}
+                      onClick={() => setReadOnlyEmail(false)}
                       onChange={e => setForm({ ...form, email: e.target.value })}
-                      placeholder="admin@atr-tunisie.org"
+                      placeholder="Entrez votre adresse email"
+                      autoComplete="off"
                       required
                       className="modern-input"
                     />
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12">
                     <label style={{ display: 'block', color: '#444', fontWeight: 600, fontSize: '14px', marginBottom: '8px' }}>Mot de passe</label>
-                    <input
-                      type="password"
-                      value={form.password}
-                      onChange={e => setForm({ ...form, password: e.target.value })}
-                      placeholder="••••••••"
-                      required
-                      className="modern-input"
-                    />
+                    <div style={{ position: 'relative' }}>
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="atr_admin_user_secret"
+                        id="atr_admin_user_secret"
+                        value={form.password}
+                        readOnly={readOnlyPass}
+                        onFocus={() => setReadOnlyPass(false)}
+                        onClick={() => setReadOnlyPass(false)}
+                        onChange={e => setForm({ ...form, password: e.target.value })}
+                        placeholder="Entrez votre mot de passe"
+                        autoComplete="new-password"
+                        required
+                        className="modern-input"
+                        style={{ paddingRight: '50px' }}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        style={{
+                          position: 'absolute',
+                          right: '18px',
+                          top: '18px',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          fontSize: '18px',
+                          color: '#64748b',
+                          padding: '0',
+                          lineHeight: '1',
+                          outline: 'none',
+                        }}
+                        title={showPassword ? "Masquer le mot de passe" : "Afficher le mot de passe"}
+                        aria-label="Afficher ou masquer le mot de passe"
+                      >
+                        {showPassword ? '👁️' : '👁️‍🗨️'}
+                      </button>
+                    </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 message-btn">
                     <button className="btn-1 modern-btn" type="submit" disabled={loading} style={{ background: loading ? '#8baed0' : '' }}>

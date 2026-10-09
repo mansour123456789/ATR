@@ -5,22 +5,93 @@ import Layout from '@/components/layout/Layout';
 import { useLanguage } from '@/context/LanguageContext';
 
 const fallbackEvents = [
-  { id: 'seed-1', title: 'Séminaire PIARC Tunis 2026', description: 'Séminaire international sur la sécurité routière organisé en collaboration avec la PIARC.', location: 'Centre de Conférences, Tunis', date: '2026-03-15T09:00:00', endDate: '2026-03-15T17:00:00', type: 'seminar', href: '/events/seminaire-piarc-2026' },
-  { id: 'seed-3', title: 'Les enjeux HSS et sécurité routière sur nos chantiers', description: 'Après-midi d’échanges, partage d’expériences et solutions concrètes pour la sécurité sur les chantiers.', location: 'Cité des Sciences à Tunis', date: '2026-04-30T13:30:00', endDate: '2026-04-30T17:00:00', type: 'workshop', href: '/publications/securite-routiere-hss-chantiers' },
-  { id: 'seed-4', title: 'Glissements de Terrain : Gestion des Risques et Stabilité des Ouvrages', description: 'Journée Technique exceptionnelle ATR & ATMS en partenariat avec le Ministère de l’Équipement.', location: 'Hôtel El Mouradi Gammarth, Tunis', date: '2026-06-03T08:30:00', endDate: '2026-06-03T17:30:00', type: 'workshop', href: '/publications/glissements-de-terrain-resilience-infrastructures' },
-  { id: 'seed-2', title: "Journée Technique sur les Ouvrages d'Art", description: 'Formation sur la conception et la maintenance des ouvrages d’art en Tunisie.', location: "École Nationale d'Ingénieurs de Tunis (ENIT)", date: '2026-05-20T08:30:00', endDate: '2026-05-20T16:30:00', type: 'workshop', href: '/events' },
+  {
+    id: 5,
+    title: 'ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)',
+    description: 'L’Association Tunisienne des Routes (ATR) a le plaisir de vous convier à son Assemblée Générale. Votre présence est importante pour la vie de l’ATR et pour continuer à développer ensemble nos actions au service du secteur routier en Tunisie. Nous comptons sur votre présence !',
+    location: 'Startup Village, Tunis',
+    date: '2026-10-24T09:00:00',
+    endDate: '2026-10-24T13:00:00',
+    type: 'assembly',
+    href: '/events',
+  },
+  {
+    id: 1,
+    title: "Concevoir et gérer les routes selon l'approche du système sûr",
+    description: 'L’Association Tunisienne des Routes (ATR), en collaboration avec l’Association mondiale de la Route (PIARC), organise un grand séminaire international sous le thème : « La sécurité routière, la conception géométrique et l\'approche système sûr ».',
+    location: 'Tunis, Tunisie',
+    date: '2026-12-09T09:00:00',
+    endDate: '2026-12-11T18:00:00',
+    type: 'seminar',
+    href: '/events/seminaire-piarc-2026',
+  },
 ];
 
 function classifyEvent(title = '') {
-  const value = title.toLowerCase();
-  if (value.includes('assembl') || value.includes('عامة')) return 'assembly';
+  const value = (title || '').toLowerCase();
+  if (value.includes('assembl') || value.includes('عامة') || value.includes('general assembly')) return 'assembly';
   if (value.includes('atelier') || value.includes('journée technique') || value.includes('formation') || value.includes('workshop') || value.includes('ورشة')) return 'workshop';
-  if (value.includes('séminaire') || value.includes('congrès') || value.includes('seminar') || value.includes('ندوة')) return 'seminar';
+  if (value.includes('séminaire') || value.includes('congrès') || value.includes('seminar') || value.includes('ندوة') || value.includes('système sûr') || value.includes('safe system') || value.includes('النظام الآمن') || value.includes('piarc')) return 'seminar';
   return 'committee';
 }
 
 function normalizeEvent(event) {
-  return { ...event, date: event.date, endDate: event.endDate || event.date, type: event.type || classifyEvent(event.title), href: event.href || `/blog-details?id=${event.id}` };
+  let href = event.href;
+  const idStr = String(event.id);
+  if (!href) {
+    if (idStr === '1' || idStr === 'seed-1') href = '/events/seminaire-piarc-2026';
+    else if (idStr === '5' || idStr === 'seed-5') href = '/events';
+    else if (idStr === '3' || idStr === 'seed-3') href = '/publications/securite-routiere-hss-chantiers';
+    else if (idStr === '4' || idStr === 'seed-4') href = '/publications/glissements-de-terrain-resilience-infrastructures';
+    else href = '/events';
+  }
+  return {
+    ...event,
+    date: event.date,
+    endDate: event.endDate || event.date,
+    type: event.type || classifyEvent(event.title),
+    href,
+  };
+}
+
+function getLocalizedCalendarEvent(event, t) {
+  if (!event) return event;
+  const idStr = String(event.id);
+  const titleLower = (event.title || '').toLowerCase();
+
+  if (idStr === '5' || idStr === 'seed-5' || titleLower.includes('assembl') || titleLower.includes('عامة')) {
+    return {
+      ...event,
+      title: t('events.ev5_title', event.title),
+      description: t('events.ev5_desc', event.description),
+      location: t('events.ev5_location', event.location),
+    };
+  }
+  if (idStr === '1' || idStr === 'seed-1' || titleLower.includes('système sûr') || titleLower.includes('safe system') || titleLower.includes('piarc') || (event.title && event.title.includes('النظام الآمن'))) {
+    return {
+      ...event,
+      title: t('events.ev1_title', event.title),
+      description: t('events.ev1_desc', event.description),
+      location: t('events.ev1_location', event.location),
+    };
+  }
+  if (idStr === '4' || idStr === 'seed-4' || titleLower.includes('glissement')) {
+    return {
+      ...event,
+      title: t('events.ev4_title', event.title),
+      description: t('events.ev4_desc', event.description),
+      location: t('events.ev4_location', event.location),
+    };
+  }
+  if (idStr === '3' || idStr === 'seed-3' || titleLower.includes('hss')) {
+    return {
+      ...event,
+      title: t('events.ev3_title', event.title),
+      description: t('events.ev3_desc', event.description),
+      location: t('events.ev3_location', event.location),
+    };
+  }
+  return event;
 }
 
 function dateKey(date) {
@@ -93,16 +164,50 @@ export default function CalendrierPage() {
     return new Intl.DateTimeFormat(dateLocale, { hour: '2-digit', minute: '2-digit' }).format(new Date(date));
   }
 
+  function formatEventDates(event) {
+    if (!event) return '';
+    const startStr = formatDate(event.date);
+    if (event.endDate && dateKey(event.endDate) !== dateKey(event.date)) {
+      const endStr = formatDate(event.endDate);
+      return `${startStr} – ${endStr}`;
+    }
+    return startStr;
+  }
+
   useEffect(() => {
     setView(window.matchMedia('(max-width: 767px)').matches ? 'list' : 'calendar');
     fetch('/api/events?active=true')
       .then((response) => response.ok ? response.json() : Promise.reject(new Error('API unavailable')))
-      .then((data) => { if (Array.isArray(data) && data.length) setEvents(data.map(normalizeEvent)); })
+      .then((data) => {
+        if (Array.isArray(data) && data.length) {
+          const filteredData = data.filter((item) => {
+            const id = Number(item.id);
+            const title = (item.title || '').toLowerCase();
+            return id === 5 || id === 1 || title.includes('assembl') || title.includes('système sûr') || title.includes('piarc') || title.includes('general assembly');
+          });
+
+          const merged = fallbackEvents.map((fb) => {
+            const apiItem = filteredData.find((d) => d.id === fb.id || String(d.id) === String(fb.id));
+            return apiItem ? { ...fb, ...apiItem, endDate: fb.endDate || apiItem.endDate || apiItem.date, href: fb.href, type: fb.type } : fb;
+          });
+
+          setEvents(merged.map(normalizeEvent));
+        } else {
+          setEvents(fallbackEvents.map(normalizeEvent));
+        }
+      })
       .catch(() => setEvents(fallbackEvents.map(normalizeEvent)))
       .finally(() => setLoading(false));
   }, []);
 
-  const visibleEvents = useMemo(() => activeType === 'all' ? events : events.filter((event) => event.type === activeType), [activeType, events]);
+  const localizedEvents = useMemo(() => {
+    return events.map((event) => getLocalizedCalendarEvent(event, t));
+  }, [events, t]);
+
+  const visibleEvents = useMemo(() => activeType === 'all' ? localizedEvents : localizedEvents.filter((event) => event.type === activeType), [activeType, localizedEvents]);
+  const listEvents = useMemo(() => {
+    return [...visibleEvents].sort((a, b) => new Date(a.date) - new Date(b.date));
+  }, [visibleEvents]);
   const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
   const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
   const startOffset = firstDay === 0 ? 6 : firstDay - 1;
@@ -111,7 +216,7 @@ export default function CalendrierPage() {
     const end = new Date(event.endDate || event.date);
     return start <= new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0, 23, 59) && end >= currentDate;
   });
-  const upcomingEvents = [...visibleEvents].filter((event) => new Date(event.endDate || event.date) >= today).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 4);
+  const upcomingEvents = [...visibleEvents].filter((event) => new Date(event.endDate || event.date) >= today).sort((a, b) => new Date(a.date) - new Date(b.date)).slice(0, 6);
 
   const eventsForDay = (day) => currentMonthEvents.filter((event) => {
     const key = dateKey(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
@@ -215,7 +320,7 @@ export default function CalendrierPage() {
             <button className={activeType === 'all' ? 'active' : ''} onClick={() => setActiveType('all')}>
               {t('calendrier.all_events', 'Tous')} ({events.length})
             </button>
-            {Object.entries(typeConfig).map(([key, config]) => (
+            {Object.entries(typeConfig).filter(([key]) => events.some(e => e.type === key)).map(([key, config]) => (
               <button className={activeType === key ? 'active' : ''} key={key} onClick={() => setActiveType(key)}>
                 <span className="atr-calendar-dot" style={{ background: config.color }} />
                 {config.label}
@@ -250,7 +355,7 @@ export default function CalendrierPage() {
                           {dayEvents.map((event) => selectedEvent?.id === event.id ? (
                             <div className="atr-calendar-popover" key={`popover-${event.id}`}>
                               <h4>{event.title}</h4>
-                              <p>{formatDate(event.date)} · {formatTime(event.date)}</p>
+                              <p>{formatEventDates(event)}</p>
                               <p>{event.location}</p>
                               <Link href={event.href}>{t('calendrier.see_details', "Voir les détails →")}</Link>
                             </div>
@@ -262,20 +367,26 @@ export default function CalendrierPage() {
                 </div>
               ) : (
                 <div className="atr-calendar-list">
-                  {currentMonthEvents.length ? currentMonthEvents.map((event) => (
-                    <article className="atr-calendar-list-card" key={event.id}>
-                      <div className="atr-calendar-list-date">
-                        <strong>{new Date(event.date).getDate()}</strong>
-                        <span>{monthNames[new Date(event.date).getMonth()]}</span>
-                      </div>
-                      <div className="atr-calendar-list-body">
-                        <span className="atr-calendar-type" style={{ background: typeConfig[event.type]?.color || '#1B5299' }}>{typeConfig[event.type]?.label}</span>
-                        <h3>{event.title}</h3>
-                        <p>⌚ {formatTime(event.date)} · {event.location}</p>
-                        <button className="atr-calendar-ics" onClick={() => setSelectedEvent(event)}>{t('calendrier.see_card', "Voir la fiche →")}</button>
-                      </div>
-                    </article>
-                  )) : <p>{t('calendrier.no_month_events', "Aucun événement pour ce mois avec ce filtre.")}</p>}
+                  {listEvents.length ? listEvents.map((event) => {
+                    const eventDate = new Date(event.date);
+                    const eventEndDate = event.endDate ? new Date(event.endDate) : eventDate;
+                    const isMultiDay = dateKey(eventEndDate) !== dateKey(eventDate);
+                    const dayLabel = isMultiDay ? `${String(eventDate.getDate()).padStart(2, '0')}-${String(eventEndDate.getDate()).padStart(2, '0')}` : String(eventDate.getDate()).padStart(2, '0');
+                    return (
+                      <article className="atr-calendar-list-card" key={event.id}>
+                        <div className="atr-calendar-list-date">
+                          <strong style={{ fontSize: isMultiDay ? '21px' : '26px', letterSpacing: isMultiDay ? '-0.5px' : 'normal' }}>{dayLabel}</strong>
+                          <span>{monthNames[eventDate.getMonth()]}</span>
+                        </div>
+                        <div className="atr-calendar-list-body">
+                          <span className="atr-calendar-type" style={{ background: typeConfig[event.type]?.color || '#1B5299' }}>{typeConfig[event.type]?.label}</span>
+                          <h3>{event.title}</h3>
+                          <p>{event.location}</p>
+                          <button className="atr-calendar-ics" onClick={() => setSelectedEvent(event)}>{t('calendrier.see_card', "Voir la fiche →")}</button>
+                        </div>
+                      </article>
+                    );
+                  }) : <p>{t('calendrier.no_month_events', "Aucun événement disponible avec ce filtre.")}</p>}
                 </div>
               )}
             </section>
@@ -283,7 +394,7 @@ export default function CalendrierPage() {
             <aside className="atr-calendar-side">
               <h2>{t('calendrier.upcoming_title', "Prochains événements")}</h2>
               {upcomingEvents.length ? upcomingEvents.map((event) => (
-                <article className="atr-calendar-mini" key={event.id}>
+                <article className="atr-calendar-mini" key={event.id} style={{ cursor: 'pointer' }} onClick={() => setSelectedEvent(event)}>
                   <time>{formatDate(event.date)}</time>
                   <h3>{event.title}</h3>
                   <p>{event.location}</p>
@@ -306,10 +417,16 @@ export default function CalendrierPage() {
               <button className="atr-calendar-close" onClick={() => setSelectedEvent(null)} aria-label="Fermer">×</button>
               <span className="atr-calendar-type" style={{ background: typeConfig[selectedEvent.type]?.color || '#1B5299' }}>{typeConfig[selectedEvent.type]?.label}</span>
               <h2>{selectedEvent.title}</h2>
-              <p><strong>{formatDate(selectedEvent.date)}</strong> · {formatTime(selectedEvent.date)}</p>
+              <p><strong>{formatEventDates(selectedEvent)}</strong></p>
               <p><strong>{t('calendrier.location_label', 'Lieu :')}</strong> {selectedEvent.location}</p>
               <p>{selectedEvent.description}</p>
-              <button className="atr-calendar-ics" onClick={() => downloadCalendar(selectedEvent)}>{t('calendrier.add_ics', "Ajouter à mon calendrier (.ics)")}</button>
+              {selectedEvent.href && (
+                <div style={{ marginTop: '16px', marginBottom: '8px' }}>
+                  <Link href={selectedEvent.href} style={{ color: '#1B5299', fontWeight: 700, fontSize: '14.5px', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                    <span>{t('calendrier.see_details', "Voir les détails et inscription →")}</span>
+                  </Link>
+                </div>
+              )}
             </article>
           </div>
         )}

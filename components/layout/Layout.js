@@ -19,7 +19,7 @@ import Header3 from "./header/Header3";
 import Header4 from "./header/Header4";
 import Footer3 from "./footer/footer3";
 
-export default function Layout({ headerStyle, footerStyle, headTitle, breadcrumbTitle, children, wrapperCls }) {
+export default function Layout({ headerStyle, footerStyle, headTitle, breadcrumbTitle, titleKey, children, wrapperCls }) {
     const [scroll, setScroll] = useState(0);
     const [isMobileMenu, setMobileMenu] = useState(false);
     const handleMobileMenu = () => {
@@ -58,7 +58,7 @@ export default function Layout({ headerStyle, footerStyle, headTitle, breadcrumb
                 <Sidebar isSidebar={isSidebar} handleSidebar={handleSidebar} />
                 <SearchPopup isPopup={isPopup} handlePopup={handlePopup} />
 
-                {breadcrumbTitle && <Breadcrumb breadcrumbTitle={breadcrumbTitle} />}
+                {breadcrumbTitle && <Breadcrumb breadcrumbTitle={breadcrumbTitle} titleKey={titleKey} />}
 
                 {children}
 

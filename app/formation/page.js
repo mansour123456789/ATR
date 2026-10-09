@@ -1,10 +1,34 @@
 'use client'
+import React, { useState, useEffect } from 'react';
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function FormationPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
+  const [selectedProgram, setSelectedProgram] = useState(null);
+
+  useEffect(() => {
+    const kicker = t('formation.hero_kicker', "Académie ATR");
+    document.title = `${kicker} | ATR - Association Tunisienne des Routes`;
+  }, [language, t]);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedProgram(null);
+    };
+    if (selectedProgram) {
+      document.addEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [selectedProgram]);
 
   const programs = [
     {
@@ -48,12 +72,6 @@ export default function FormationPage() {
     },
   ];
 
-  const speakers = [
-    ["M. Ahmed Ksentini", "Universitaire, expert en sécurité routière et spécialiste HSS", "fa-shield-alt"],
-    ["M. Khaled Sioud", "Ingénieur génie civil, expert HSS et prévention", "fa-hard-hat"],
-    ["Mme Eya Soueb", "Sous-directrice au Ministère de l'Équipement et de l'Habitat", "fa-book"],
-  ];
-
   const faqs = [
     [t('formation.faq1_q', "Comment s'inscrire ?"), t('formation.faq1_a', "Envoyez votre demande via le formulaire Contact en indiquant le programme choisi. Le secrétariat vous transmettra les modalités et la prochaine date confirmée.")],
     [t('formation.faq2_q', "Les formations sont-elles réservées aux membres ?"), t('formation.faq2_a', "Les conditions varient selon le programme. Contactez l'ATR pour connaître les modalités d'accès et les éventuels avantages membres.")],
@@ -76,13 +94,18 @@ export default function FormationPage() {
     .atr-training-section-heading p{color:#334155;line-height:1.7;max-width:700px;font-size:15.5px}
     .atr-training-formats{display:grid;grid-template-columns:1fr 1fr;gap:24px}
     .atr-training-format{display:flex;gap:20px;padding:28px;background:#FFFFFF;border:1px solid #DFE6EE;border-radius:16px;box-shadow:0 10px 26px rgba(16,43,84,.06)}
-    .atr-training-format i{color:#C07B1B;font-size:26px;margin-top:3px}
+    .atr-training-format i{color:#C07B1B;font-size:26px;margin-top:3px;flex-shrink:0}
     .atr-training-format h3{color:#102B54;font-size:20px;margin:0 0 8px;font-weight:700}
     .atr-training-format p{color:#334155;line-height:1.68;margin:0;font-size:15px}
     .atr-training-programs{padding:76px 0 88px;border-top:1px solid rgba(192,123,27,.25);margin-top:48px}
     .atr-training-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-    .atr-training-card{display:flex;flex-direction:column;background:#FFFFFF;border:1px solid #DFE6EE;border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(16,43,84,.07);transition:transform .25s ease,box-shadow .25s ease}
+    .atr-training-card{position:relative;display:flex;flex-direction:column;background:#FFFFFF;border:1px solid #DFE6EE;border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(16,43,84,.07);transition:transform .25s ease,box-shadow .25s ease}
     .atr-training-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(16,43,84,.13)}
+
+    /* Corner Cachet Stamp */
+    .atr-card-corner-stamp{position:absolute;top:18px;right:18px;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:2px dashed #C07B1B;border-radius:6px;background:#FEF9ED;color:#C07B1B;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;transform:rotate(4deg);box-shadow:0 2px 8px rgba(192,123,27,0.12);pointer-events:none;z-index:2}
+    body[dir="rtl"] .atr-card-corner-stamp{right:auto;left:18px;transform:rotate(-4deg)}
+
     .atr-training-card-top{display:flex;align-items:center;justify-content:space-between;padding:24px 24px 15px}
     .atr-training-card-icon{display:grid;place-items:center;width:44px;height:44px;background:#EEF5FB;color:#1B5299;border-radius:10px;font-size:20px}
     .atr-training-badge{padding:6px 12px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
@@ -93,20 +116,20 @@ export default function FormationPage() {
     .atr-training-card-description{color:#334155;font-size:15px;line-height:1.68;margin:0 0 18px}
     .atr-training-meta{display:grid;gap:8px;padding:14px 0;border-top:1px solid #E5EBF1;border-bottom:1px solid #E5EBF1;color:#475569;font-size:13.5px;line-height:1.5;font-weight:500}
     .atr-training-meta strong{color:#102B54}
+    
     .atr-training-card-footer{display:flex;flex-direction:column;gap:13px;margin-top:auto;padding-top:20px}
-    .atr-training-card-footer a{display:block;padding:12px 18px;background:#1B5299;color:#FFFFFF;text-align:center;border-radius:10px;text-decoration:none;font-size:14.5px;font-weight:700;transition:all .3s ease}
-    .atr-training-card-footer a:hover{background:#C07B1B}
+    
+    /* Cachet Stamp Button */
+    .atr-training-stamp{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:13px 20px;background:#FEF9ED;border:2px dashed #C07B1B;border-radius:10px;color:#C07B1B;font-family:inherit;font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;transition:all .25s ease;box-shadow:0 4px 12px rgba(192,123,27,.08)}
+    .atr-training-stamp:hover{background:#FDF2DC;border-color:#B06F15;color:#B06F15;transform:translateY(-2px);box-shadow:0 8px 18px rgba(192,123,27,.18)}
+    .atr-training-stamp i{font-size:16px}
+
     .atr-training-calendar{padding:42px 48px;background:#102B54;border-radius:16px;color:#FFFFFF;display:flex;align-items:center;justify-content:space-between;gap:30px;box-shadow:0 12px 32px rgba(16,43,84,.15)}
     .atr-training-calendar h2{color:#FFFFFF;font-size:clamp(22px,2.8vw,28px);margin:0 0 8px;font-weight:700}
     .atr-training-calendar p{color:#E2E8F0;margin:0;line-height:1.65;font-size:15.5px}
     .atr-training-calendar a,.atr-training-cta a{display:inline-block;white-space:nowrap;padding:13px 22px;background:#C07B1B;color:#FFFFFF;border-radius:10px;text-decoration:none;font-weight:700;font-size:14.5px;transition:all .3s ease}
     .atr-training-calendar a:hover,.atr-training-cta a:hover{background:#D98E28;transform:translateY(-2px)}
-    .atr-training-speakers{padding:78px 0}
-    .atr-training-speaker-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .atr-training-speaker{display:flex;gap:16px;padding:22px;background:#FFFFFF;border:1px solid #DFE6EE;border-radius:14px;box-shadow:0 6px 18px rgba(16,43,84,.04)}
-    .atr-training-speaker i{color:#C07B1B;font-size:22px}
-    .atr-training-speaker h3{color:#102B54;font-size:17.5px;margin:0 0 5px;font-weight:700}
-    .atr-training-speaker p{color:#475569;font-size:13.5px;line-height:1.55;margin:0}
+    
     .atr-training-faq{padding:70px 0;background:#EEF5FB}
     .atr-training-faq-list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
     .atr-training-faq article{padding:24px;background:#FFFFFF;border-radius:14px;border:1px solid #DFE6EE;box-shadow:0 6px 18px rgba(16,43,84,.04)}
@@ -117,8 +140,47 @@ export default function FormationPage() {
     .atr-training-cta p{color:#334155;line-height:1.72;max-width:650px;margin-bottom:24px;font-size:16px}
     .atr-training-cta a{margin-right:12px}
     .atr-training-cta a.secondary{background:#1B5299}
-    @media(max-width:991px){.atr-training-hero-grid{grid-template-columns:1fr;gap:30px}.atr-training-hero-media{order:-1}.atr-training-grid{grid-template-columns:1fr 1fr}.atr-training-speaker-grid,.atr-training-faq-list{grid-template-columns:1fr 1fr}}
-    @media(max-width:767px){.atr-training-hero{padding:48px 0}.atr-training-hero h1{font-size:32px}.atr-training-hero-media img{height:250px}.atr-training-formats,.atr-training-grid,.atr-training-speaker-grid,.atr-training-faq-list{grid-template-columns:1fr}.atr-training-intro,.atr-training-speakers{padding:48px 0}.atr-training-programs{padding:48px 0 55px}.atr-training-section-heading h2{font-size:28px}.atr-training-calendar{display:block;padding:28px}.atr-training-calendar a{margin-top:18px}.atr-training-cta a{display:block;margin:10px 0 0;text-align:center}}
+
+    /* Coming Soon Modal */
+    .atr-coming-soon-backdrop{position:fixed;inset:0;background:rgba(16,43,84,0.72);backdrop-filter:blur(5px);z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;animation:atrModalFadeIn .2s ease-out}
+    .atr-coming-soon-modal{position:relative;background:#FFFFFF;border-radius:20px;max-width:500px;width:100%;padding:36px 32px 30px;box-shadow:0 24px 60px rgba(16,43,84,0.28);border:1px solid rgba(223,230,238,0.8);animation:atrModalScaleIn .25s cubic-bezier(0.16,1,0.3,1);text-align:center}
+    .atr-coming-soon-close{position:absolute;top:14px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid #DFE6EE;background:#F8FAFC;color:#64748B;font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer;transition:all .2s ease}
+    .atr-coming-soon-close:hover{background:#EEF5FB;color:#102B54;border-color:#1B5299}
+    .atr-coming-soon-icon{width:64px;height:64px;margin:0 auto 16px;border-radius:18px;background:#FEF3E2;color:#C07B1B;display:grid;place-items:center;font-size:28px;box-shadow:0 8px 20px rgba(192,123,27,0.15)}
+    .atr-coming-soon-badge{display:inline-block;background:#EEF5FB;color:#1B5299;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:4px 14px;border-radius:999px;margin-bottom:12px}
+    .atr-coming-soon-modal h3{color:#102B54;font-size:22px;font-weight:800;line-height:1.3;margin:0 0 10px}
+    .atr-coming-soon-prog-name{display:inline-block;background:#F1F5F9;color:#102B54;font-size:14px;font-weight:700;padding:6px 14px;border-radius:8px;margin-bottom:14px;max-width:100%}
+    .atr-coming-soon-modal p{color:#475569;font-size:14.5px;line-height:1.65;margin:0 0 24px}
+    .atr-coming-soon-actions{display:flex;gap:12px;justify-content:center}
+    .atr-coming-soon-btn-contact{flex:1;padding:12px 20px;background:#1B5299;color:#FFFFFF !important;border-radius:10px;text-decoration:none !important;font-weight:700;font-size:14px;text-align:center;transition:all .25s ease}
+    .atr-coming-soon-btn-contact:hover{background:#C07B1B}
+    .atr-coming-soon-btn-close{padding:12px 20px;background:#F1F5F9;color:#475569;border:1px solid #DFE6EE;border-radius:10px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:all .2s ease}
+    .atr-coming-soon-btn-close:hover{background:#E2E8F0;color:#102B54}
+
+    /* RTL Layout Overrides */
+    body[dir="rtl"] .atr-training-hero-grid { text-align: right; }
+    body[dir="rtl"] .atr-training-section-heading { text-align: right; }
+    body[dir="rtl"] .atr-training-format { text-align: right; }
+    body[dir="rtl"] .atr-training-card { text-align: right; }
+    body[dir="rtl"] .atr-training-meta { text-align: right; }
+    body[dir="rtl"] .atr-training-calendar { text-align: right; }
+    body[dir="rtl"] .atr-training-faq article { text-align: right; }
+    body[dir="rtl"] .atr-training-cta { text-align: right; }
+    body[dir="rtl"] .atr-training-cta a { margin-right: 0; margin-left: 12px; }
+    body[dir="rtl"] .atr-coming-soon-close { right: auto; left: 16px; }
+    body[dir="rtl"] .atr-coming-soon-actions { flex-direction: row-reverse; }
+
+    @keyframes atrModalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes atrModalScaleIn {
+      from { opacity: 0; transform: scale(0.92) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    @media(max-width:991px){.atr-training-hero-grid{grid-template-columns:1fr;gap:30px}.atr-training-hero-media{order:-1}.atr-training-grid{grid-template-columns:1fr 1fr}.atr-training-faq-list{grid-template-columns:1fr 1fr}}
+    @media(max-width:767px){.atr-training-hero{padding:48px 0}.atr-training-hero h1{font-size:32px}.atr-training-hero-media img{height:250px}.atr-training-formats,.atr-training-grid,.atr-training-faq-list{grid-template-columns:1fr}.atr-training-intro{padding:48px 0}.atr-training-programs{padding:48px 0 55px}.atr-training-section-heading h2{font-size:28px}.atr-training-calendar{display:block;padding:28px}.atr-training-calendar a{margin-top:18px}.atr-training-cta a{display:block;margin:10px 0 0;text-align:center}.atr-coming-soon-actions{flex-direction:column}.atr-coming-soon-modal{padding:28px 20px}}
   `;
 
   return (
@@ -133,7 +195,7 @@ export default function FormationPage() {
               <p>{t('formation.hero_lead', "L'Académie ATR propose des formats de formation continue pour les ingénieurs, techniciens, cadres publics et entreprises du secteur routier. Les dates et modalités sont confirmées par le secrétariat pour chaque session.")}</p>
             </div>
             <figure className="atr-training-hero-media">
-              <img src="/images/atr-road-design.png" alt="Conception technique d'une infrastructure routière pour la formation ATR" />
+              <img src="/images/atr-road-design.png" alt={t('formation.caption', "Conception technique d'une infrastructure routière pour la formation ATR")} />
               <figcaption>{t('formation.caption', "Visuel technique de conception routière — les sessions de l'Académie privilégient l'application aux projets réels.")}</figcaption>
             </figure>
           </div>
@@ -174,6 +236,11 @@ export default function FormationPage() {
             <div className="atr-training-grid">
               {programs.map((program) => (
                 <article className="atr-training-card" key={program.title}>
+                  {/* Corner Cachet Stamp */}
+                  <div className="atr-card-corner-stamp" aria-hidden="true">
+                    <i className="fas fa-stamp" /> {t('formation.stamp_coming_soon', "Bientôt disponible")}
+                  </div>
+
                   <div className="atr-training-card-top">
                     <span className="atr-training-card-icon"><i className={`fas ${program.icon}`} aria-hidden="true" /></span>
                     <span className={`atr-training-badge ${program.formatClass}`}>{program.format}</span>
@@ -189,7 +256,15 @@ export default function FormationPage() {
                       <span><strong>{t('formation.session_label', 'Prochaine session :')}</strong> {t('formation.to_confirm', 'à confirmer')}</span>
                     </div>
                     <div className="atr-training-card-footer">
-                      <Link href={program.href}>{program.cta} <span aria-hidden="true">→</span></Link>
+                      <button
+                        type="button"
+                        className="atr-training-stamp"
+                        onClick={() => setSelectedProgram(program)}
+                        aria-label={t('formation.stamp_coming_soon', "Bientôt disponible")}
+                      >
+                        <i className="fas fa-stamp" aria-hidden="true" />
+                        <span>{t('formation.stamp_coming_soon', "Bientôt disponible")}</span>
+                      </button>
                     </div>
                   </div>
                 </article>
@@ -204,27 +279,9 @@ export default function FormationPage() {
               <h2>{t('formation.calendar_title', "Voir les sessions publiées dans l'agenda")}</h2>
               <p>{t('formation.calendar_text', "Les dates confirmées sont centralisées dans le calendrier de l'ATR pour éviter les informations contradictoires.")}</p>
             </div>
-            <Link href="/calendrier">{t('formation.calendar_btn', "Ouvrir le calendrier →")}</Link>
-          </div>
-        </section>
-
-        <section className="atr-training-speakers">
-          <div className="auto-container">
-            <div className="atr-training-section-heading">
-              <p className="section_heading_title_small">{t('formation.speakers_kicker', "Intervenants identifiés")}</p>
-              <h2>{t('formation.speakers_title', "Une expertise issue du terrain")}</h2>
-            </div>
-            <div className="atr-training-speaker-grid">
-              {speakers.map(([name, role, icon]) => (
-                <article className="atr-training-speaker" key={name}>
-                  <i className={`fas ${icon}`} aria-hidden="true" />
-                  <div>
-                    <h3>{name}</h3>
-                    <p>{role}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
+            <Link href="/calendrier">
+              {isRtl ? `← ${t('formation.calendar_btn', "Ouvrir le calendrier →").replace('→', '').trim()}` : t('formation.calendar_btn', "Ouvrir le calendrier →")}
+            </Link>
           </div>
         </section>
 
@@ -250,11 +307,68 @@ export default function FormationPage() {
             <p className="section_heading_title_small">{t('formation.cta_kicker', "Prochaine étape")}</p>
             <h2>{t('formation.cta_title', "Construire votre parcours avec l'ATR")}</h2>
             <p>{t('formation.cta_text', "Demandez le programme détaillé, les conditions d'accès et les prochaines dates au secrétariat.")}</p>
-            <Link href="/contact?subject=formation">{t('formation.cta_btn1', "Demander les informations →")}</Link>
-            <Link href="/calendrier" className="secondary">{t('formation.cta_btn2', "Voir le calendrier →")}</Link>
+            <Link href="/contact?subject=formation">
+              {isRtl ? `← ${t('formation.cta_btn1', "Demander les informations →").replace('→', '').trim()}` : t('formation.cta_btn1', "Demander les informations →")}
+            </Link>
+            <Link href="/calendrier" className="secondary">
+              {isRtl ? `← ${t('formation.cta_btn2', "Voir le calendrier →").replace('→', '').trim()}` : t('formation.cta_btn2', "Voir le calendrier →")}
+            </Link>
           </div>
         </section>
       </main>
+
+      {/* Coming Soon Modal */}
+      {selectedProgram && (
+        <div 
+          className="atr-coming-soon-backdrop"
+          onClick={(e) => e.target === e.currentTarget && setSelectedProgram(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="atr-coming-soon-title"
+        >
+          <div className="atr-coming-soon-modal">
+            <button
+              type="button"
+              className="atr-coming-soon-close"
+              onClick={() => setSelectedProgram(null)}
+              aria-label={t('formation.coming_soon_close', "Fermer")}
+            >
+              ×
+            </button>
+            <div className="atr-coming-soon-icon">
+              <i className="fas fa-hourglass-half" aria-hidden="true" />
+            </div>
+            <span className="atr-coming-soon-badge">
+              {t('formation.coming_soon_badge', "Bientôt disponible")}
+            </span>
+            <h3 id="atr-coming-soon-title">
+              {t('formation.coming_soon_title', "Inscriptions bientôt ouvertes !")}
+            </h3>
+            <div className="atr-coming-soon-prog-name">
+              {selectedProgram.title}
+            </div>
+            <p>
+              {t('formation.coming_soon_text', "Le calendrier officiel et la plateforme d'inscription pour cette session seront mis en ligne très prochainement. Vous pouvez contacter le secrétariat de l'ATR pour vous inscrire sur la liste d'attente prioritaire.")}
+            </p>
+            <div className="atr-coming-soon-actions">
+              <Link 
+                href="/contact?subject=formation" 
+                className="atr-coming-soon-btn-contact"
+                onClick={() => setSelectedProgram(null)}
+              >
+                {t('formation.coming_soon_contact', "Contacter le secrétariat")}
+              </Link>
+              <button
+                type="button"
+                className="atr-coming-soon-btn-close"
+                onClick={() => setSelectedProgram(null)}
+              >
+                {t('formation.coming_soon_close', "Fermer")}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </Layout>
   );
 }

@@ -1,7 +1,8 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import Layout from '@/components/layout/Layout'
+import { useLanguage } from '@/context/LanguageContext'
 
 const STYLES = `
   .atr-article-page {
@@ -295,11 +296,68 @@ const STYLES = `
       white-space: normal;
     }
   }
+
+  /* RTL Enhancements */
+  body[dir="rtl"] .atr-article-card {
+    text-align: right;
+  }
+  body[dir="rtl"] .atr-article-lead {
+    border-right: 5px solid #1B5299;
+    border-left: none;
+    text-align: right;
+    font-size: 19.5px;
+    line-height: 1.9;
+  }
+  body[dir="rtl"] .atr-speaker-block {
+    border-right: 4px solid #C07B1B;
+    border-left: 1px solid #E2E8F0;
+    text-align: right;
+  }
+  body[dir="rtl"] .atr-quote-callout {
+    text-align: right;
+  }
+  body[dir="rtl"] .atr-quote-callout p {
+    font-style: normal !important;
+    font-size: 19.5px;
+    line-height: 1.85;
+  }
+  body[dir="rtl"] .atr-quote-callout cite {
+    text-align: right;
+  }
+  body[dir="rtl"] .atr-sidebar-card {
+    text-align: right;
+  }
+  body[dir="rtl"] .atr-sidebar-title {
+    text-align: right;
+  }
+  body[dir="rtl"] .atr-article-content p {
+    font-size: 17px;
+    line-height: 1.85;
+  }
 `
 
 export default function ArticleHSS() {
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
+
+  useEffect(() => {
+    const title = t('pub_hss.title', "Zéro décès : l'ATR relève le défi HSS d'une « route qui pardonne »");
+    document.title = `${title} | ATR - Association Tunisienne des Routes`;
+  }, [language, t]);
+
+  const keywords = [
+    t('pub_hss.kw_1', '#SécuritéRoutière'),
+    t('pub_hss.kw_2', '#HSS'),
+    t('pub_hss.kw_3', '#NormesISO'),
+    t('pub_hss.kw_4', '#PontDeBizerte'),
+    t('pub_hss.kw_5', '#ZéroDécès'),
+    t('pub_hss.kw_6', '#PréventionChantiers'),
+    t('pub_hss.kw_7', '#ATR2026'),
+    t('pub_hss.kw_8', '#MinistèreÉquipement')
+  ];
+
   return (
-    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Compte-Rendu Technique">
+    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle={t('pub_hss.breadcrumb', "Compte-Rendu Technique")}>
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
       <div className="atr-article-page">
         <div className="auto-container">
@@ -307,39 +365,39 @@ export default function ArticleHSS() {
             {/* Colonne Principale (8 cols) */}
             <div className="col-lg-8 col-md-12">
               <article className="atr-article-card">
-                <span className="atr-article-badge">Compte-Rendu Technique · HSS & Sécurité Routière</span>
+                <span className="atr-article-badge">{t('pub_hss.badge', "Compte-Rendu Technique · HSS & Sécurité Routière")}</span>
 
                 <h1 className="atr-article-title">
-                  Zéro décès : l'ATR relève le défi HSS d'une « route qui pardonne »
+                  {t('pub_hss.title', "Zéro décès : l'ATR relève le défi HSS d'une « route qui pardonne »")}
                 </h1>
 
                 <div className="atr-article-meta-bar">
                   <span className="atr-meta-item">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C07B1B" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                    <strong>30 Avril 2026</strong> (13h30 - 17h00)
+                    <strong>{t('pub_hss.date', "30 Avril 2026 (13h30 - 17h00)")}</strong>
                   </span>
                   <span className="atr-meta-item">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1B5299" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    Cité des Sciences, Tunis
+                    {t('pub_hss.location', "Cité des Sciences, Tunis")}
                   </span>
                   <span className="atr-meta-item">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" strokeWidth="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                    ATR & L'Observatoire Économique
+                    {t('pub_hss.source', "ATR & L'Observatoire Économique")}
                   </span>
                 </div>
 
                 <div className="atr-article-hero-img">
-                  <img src="/1000007112.png" alt="Zéro décès : l'ATR relève le défi HSS d'une route qui pardonne" />
+                  <img src="/1000007112.png" alt={t('pub_hss.hero_alt', "Zéro décès : l'ATR relève le défi HSS d'une route qui pardonne")} />
                 </div>
 
                 <div className="atr-article-content">
                   {/* Lead / Paragraphe d'ouverture */}
                   <div className="atr-article-lead">
-                    Le 30 avril 2026, l’Association Tunisienne des Routes (ATR) a consacré une rencontre aux enjeux HSS et à la sécurité routière sur les chantiers, réunissant dès 13h30 à la Cité des Sciences cadres du ministère de l’Équipement et de l’Habitat, ingénieurs, responsables HSE, universitaires, étudiants et professionnels du secteur.
+                    {t('pub_hss.lead_1', "Le 30 avril 2026, l’Association Tunisienne des Routes (ATR) a consacré une rencontre aux enjeux HSS et à la sécurité routière sur les chantiers, réunissant dès 13h30 à la Cité des Sciences cadres du ministère de l’Équipement et de l’Habitat, ingénieurs, responsables HSE, universitaires, étudiants et professionnels du secteur.")}
                   </div>
 
                   <p>
-                    Très vite, les échanges ont dépassé le cadre purement technique : derrière les normes, les procédures et les infrastructures, c’est la question de la responsabilité humaine qui s’est imposée au cœur du débat.
+                    {t('pub_hss.p_1', "Très vite, les échanges ont dépassé le cadre purement technique : derrière les normes, les procédures et les infrastructures, c’est la question de la responsabilité humaine qui s’est imposée au cœur du débat.")}
                   </p>
 
                   {/* Intervenant 1 : Lilia Sifaoui */}
@@ -347,21 +405,21 @@ export default function ArticleHSS() {
                     <div className="atr-speaker-header">
                       <div className="atr-speaker-avatar">LS</div>
                       <div>
-                        <h4 className="atr-speaker-name">Lilia Sifaoui</h4>
-                        <p className="atr-speaker-title">Présidente de l’Association Tunisienne des Routes (ATR) & Directrice Générale de l’unité de gestion du nouveau pont de Bizerte</p>
+                        <h4 className="atr-speaker-name">{t('pub_hss.spk1_name', "Lilia Sifaoui")}</h4>
+                        <p className="atr-speaker-title">{t('pub_hss.spk1_title', "Présidente de l’Association Tunisienne des Routes (ATR) & Directrice Générale de l’unité de gestion du nouveau pont de Bizerte")}</p>
                       </div>
                     </div>
                     <p className="mb-0">
-                      Le mot d’ouverture a été assuré par Lilia Sifaoui. Présentant l’ATR, créée en 2018, elle a rappelé le travail mené par l’association en étroite collaboration avec le Ministère de l’Équipement et de l’Habitat autour des enjeux liés aux infrastructures et à la sécurité routière. Elle a également salué l’engagement constant du ministère en faveur de ces mêmes priorités.
+                      {t('pub_hss.spk1_text', "Le mot d’ouverture a été assuré par Lilia Sifaoui. Présentant l’ATR, créée en 2018, elle a rappelé le travail mené par l’association en étroite collaboration avec le Ministère de l’Équipement et de l’Habitat autour des enjeux liés aux infrastructures et à la sécurité routière. Elle a également salué l’engagement constant du ministère en faveur de ces mêmes priorités.")}
                     </p>
                   </div>
 
                   <p>
-                    Au fil des interventions, le <strong>HSS (Health, Safety and Security)</strong> s’est imposé comme une composante désormais incontournable dans la conduite des grands projets d’infrastructure.
+                    {t('pub_hss.p_2', "Au fil des interventions, le HSS (Health, Safety and Security) s’est imposé comme une composante désormais incontournable dans la conduite des grands projets d’infrastructure.")}
                   </p>
 
                   <p>
-                    Plusieurs intervenants ont insisté sur la nécessité de dépasser une perception encore répandue selon laquelle les exigences de sécurité freineraient l’avancement des travaux ou pèseraient sur la rentabilité des projets. À l’inverse, la maîtrise des standards HSS apparaît aujourd’hui comme un indicateur de crédibilité, de gouvernance et de performance pour les entreprises comme pour les institutions publiques.
+                    {t('pub_hss.p_3', "Plusieurs intervenants ont insisté sur la nécessité de dépasser une perception encore répandue selon laquelle les exigences de sécurité freineraient l’avancement des travaux ou pèseraient sur la rentabilité des projets. À l’inverse, la maîtrise des standards HSS apparaît aujourd’hui comme un indicateur de crédibilité, de gouvernance et de performance pour les entreprises comme pour les institutions publiques.")}
                   </p>
 
                   {/* Intervenant 2 : Eya Soueb */}
@@ -369,20 +427,20 @@ export default function ArticleHSS() {
                     <div className="atr-speaker-header">
                       <div className="atr-speaker-avatar">ES</div>
                       <div>
-                        <h4 className="atr-speaker-name">Eya Soueb</h4>
-                        <p className="atr-speaker-title">Sous-directrice au Ministère de l’Équipement et de l’Habitat & Membre de l’ATR</p>
+                        <h4 className="atr-speaker-name">{t('pub_hss.spk2_name', "Eya Soueb")}</h4>
+                        <p className="atr-speaker-title">{t('pub_hss.spk2_title', "Sous-directrice au Ministère de l’Équipement et de l’Habitat & Membre de l’ATR")}</p>
                       </div>
                     </div>
                     <p>
-                      Intervenant à son tour, Eya Soueb est revenue sur les normes ISO ainsi que sur les défis liés à leur application sur le terrain. Elle a rappelé qu’aucune politique de prévention ne pouvait produire de résultats sans une coordination réelle entre promoteurs, entreprises et autorités publiques.
+                      {t('pub_hss.spk2_text1', "Intervenant à son tour, Eya Soueb est revenue sur les normes ISO ainsi que sur les défis liés à leur application sur le terrain. Elle a rappelé qu’aucune politique de prévention ne pouvait produire de résultats sans une coordination réelle entre promoteurs, entreprises et autorités publiques.")}
                     </p>
                     <p className="mb-0">
-                      À ce stade, il a été question d’échanger avec l’audience sur le fait que les bailleurs de fonds exigent la conformité aux normes internationales de sécurité routière et sur les chantiers, comme conditions pour investir dans les projets. Car le vrai problème des bailleurs de fonds est le souci de protéger et éviter le risque de toucher à leurs réputations. Lors de cette intervention, Eya Soueb a exposé aussi les problèmes des retards de décaissement, et sur le fait de recruter afin de former. En effet, elle a insisté sur l’importance de la sensibilisation continue de l’ensemble des acteurs du secteur, anciens comme nouveaux.
+                      {t('pub_hss.spk2_text2', "À ce stade, il a été question d’échanger avec l’audience sur le fait que les bailleurs de fonds exigent la conformité aux normes internationales de sécurité routière et sur les chantiers, comme conditions pour investir dans les projets. Car le vrai problème des bailleurs de fonds est le souci de protéger et éviter le risque de toucher à leurs réputations. Lors de cette intervention, Eya Soueb a exposé aussi les problèmes des retards de décaissement, et sur le fait de recruter afin de former. En effet, elle a insisté sur l’importance de la sensibilisation continue de l’ensemble des acteurs du secteur, anciens comme nouveaux.")}
                     </p>
                   </div>
 
                   <p>
-                    Dans une salle particulièrement attentive, les discussions ont ensuite quitté le terrain des référentiels techniques pour aborder une réalité plus lourde : celle des drames humains provoqués par les défaillances en matière de sécurité.
+                    {t('pub_hss.p_4', "Dans une salle particulièrement attentive, les discussions ont ensuite quitté le terrain des référentiels techniques pour aborder une réalité plus lourde : celle des drames humains provoqués par les défaillances en matière de sécurité.")}
                   </p>
 
                   {/* Intervenant 3 : Ahmed Ksentini */}
@@ -390,31 +448,31 @@ export default function ArticleHSS() {
                     <div className="atr-speaker-header">
                       <div className="atr-speaker-avatar">AK</div>
                       <div>
-                        <h4 className="atr-speaker-name">Ahmed Ksentini</h4>
-                        <p className="atr-speaker-title">Expert en sécurité routière et universitaire</p>
+                        <h4 className="atr-speaker-name">{t('pub_hss.spk3_name', "Ahmed Ksentini")}</h4>
+                        <p className="atr-speaker-title">{t('pub_hss.spk3_title', "Expert en sécurité routière et universitaire")}</p>
                       </div>
                     </div>
                     <p>
-                      L’intervention de Ahmed Ksentini a marqué l’assistance par son ton direct et profondément humain. Évoquant les morts sur les routes comme un véritable fléau, il a regretté que ces décès soient encore perçus comme une fatalité.
+                      {t('pub_hss.spk3_text', "L’intervention de Ahmed Ksentini a marqué l’assistance par son ton direct et profondément humain. Évoquant les morts sur les routes comme un véritable fléau, il a regretté que ces décès soient encore perçus comme une fatalité.")}
                     </p>
                     <div className="atr-quote-callout">
-                      <p>« Quand on veut, on peut. L'objectif du "zéro décès" ne doit pas être considéré comme un slogan institutionnel, mais comme une exigence absolue : une seule vie perdue représente déjà une perte immense. »</p>
-                      <cite>— Ahmed Ksentini, Expert Sécurité Routière</cite>
+                      <p>{t('pub_hss.quote1_text', "« Quand on veut, on peut. L'objectif du \"zéro décès\" ne doit pas être considéré comme un slogan institutionnel, mais comme une exigence absolue : une seule vie perdue représente déjà une perte immense. »")}</p>
+                      <cite>{t('pub_hss.quote1_author', "— Ahmed Ksentini, Expert Sécurité Routière")}</cite>
                     </div>
                     <p className="mb-0">
-                      Rappelant qu’une route sécurisée relève avant tout d’un droit humain fondamental, il a également plaidé pour une meilleure intégration des questions de sécurité dans les parcours universitaires destinés aux futurs professionnels du secteur.
+                      {t('pub_hss.spk3_ending', "Rappelant qu’une route sécurisée relève avant tout d’un droit humain fondamental, il a également plaidé pour une meilleure intégration des questions de sécurité dans les parcours universitaires destinés aux futurs professionnels du secteur.")}
                     </p>
                   </div>
 
-                  <h3 className="atr-article-h3">Réflexion collective et causes concrètes sur les chantiers</h3>
+                  <h3 className="atr-article-h3">{t('pub_hss.h3_causes', "Réflexion collective et causes concrètes sur les chantiers")}</h3>
 
                   <p>
-                    Lors d’un échange avec une audience attentive et engagée, une réflexion s’est faite sur les causes des accidents sur les chantiers. Parmi les pistes évoquées figurent notamment :
+                    {t('pub_hss.causes_intro', "Lors d’un échange avec une audience attentive et engagée, une réflexion s’est faite sur les causes des accidents sur les chantiers. Parmi les pistes évoquées figurent notamment :")}
                   </p>
-                  <ul style={{ paddingLeft: '20px', marginBottom: '25px', lineHeight: '1.8' }}>
-                    <li style={{ marginBottom: '8px' }}><strong>Le renforcement des contrôles rigoureux</strong> sur l'ensemble des chantiers de travaux publics.</li>
-                    <li style={{ marginBottom: '8px' }}><strong>La délivrance stricte des certificats de conformité</strong> avant tout démarrage effectif des travaux.</li>
-                    <li style={{ marginBottom: '8px' }}><strong>La mise à disposition de matériel adéquat</strong> et certifié par les entreprises pour les grands projets.</li>
+                  <ul style={{ paddingLeft: isRtl ? '0' : '20px', paddingRight: isRtl ? '20px' : '0', marginBottom: '25px', lineHeight: '1.8' }}>
+                    <li style={{ marginBottom: '8px' }}>{t('pub_hss.cause_1', "Le renforcement des contrôles rigoureux sur l'ensemble des chantiers de travaux publics.")}</li>
+                    <li style={{ marginBottom: '8px' }}>{t('pub_hss.cause_2', "La délivrance stricte des certificats de conformité avant tout démarrage effectif des travaux.")}</li>
+                    <li style={{ marginBottom: '8px' }}>{t('pub_hss.cause_3', "La mise à disposition de matériel adéquat et certifié par les entreprises pour les grands projets.")}</li>
                   </ul>
 
                   {/* Intervenant 4 : Arij Naili */}
@@ -422,15 +480,15 @@ export default function ArticleHSS() {
                     <div className="atr-speaker-header">
                       <div className="atr-speaker-avatar">AN</div>
                       <div>
-                        <h4 className="atr-speaker-name">Arij Naili</h4>
-                        <p className="atr-speaker-title">Chef de service à l’unité de réalisation du pont de Bizerte</p>
+                        <h4 className="atr-speaker-name">{t('pub_hss.spk4_name', "Arij Naili")}</h4>
+                        <p className="atr-speaker-title">{t('pub_hss.spk4_title', "Chef de service à l’unité de réalisation du pont de Bizerte")}</p>
                       </div>
                     </div>
                     <p>
-                      De son côté, Arij Naili a évoqué plusieurs causes d’accidents liées à la non-conformité sur les chantiers. Revenant sur le décès de la victime survenu suite à un accident qui a eu lieu le 20 mars 2023 à la suite d’une mauvaise gestion des conditions de sécurité sur un chantier, son intervention a rappelé avec gravité les conséquences concrètes des défaillances humaines et organisationnelles.
+                      {t('pub_hss.spk4_text1', "De son côté, Arij Naili a évoqué plusieurs causes d’accidents liées à la non-conformité sur les chantiers. Revenant sur le décès de la victime survenu suite à un accident qui a eu lieu le 20 mars 2023 à la suite d’une mauvaise gestion des conditions de sécurité sur un chantier, son intervention a rappelé avec gravité les conséquences concrètes des défaillances humaines et organisationnelles.")}
                     </p>
                     <p className="mb-0">
-                      Elle a notamment souligné que, malgré les procédures existantes, le principal défi reste souvent lié au comportement humain et au respect effectif des règles de sécurité, aussi bien chez certains ouvriers que chez certains responsables hiérarchiques. Selon elle, l’enjeu ne se limite plus à l’application des textes, mais repose également sur l’installation d’une véritable culture de responsabilité au sein des entreprises et des spécialistes de terrain.
+                      {t('pub_hss.spk4_text2', "Elle a notamment souligné que, malgré les procédures existantes, le principal défi reste souvent lié au comportement humain et au respect effectif des règles de sécurité, aussi bien chez certains ouvriers que chez certains responsables hiérarchiques. Selon elle, l’enjeu ne se limite plus à l’application des textes, mais repose également sur l’installation d’une véritable culture de responsabilité au sein des entreprises et des spécialistes de terrain.")}
                     </p>
                   </div>
 
@@ -439,41 +497,41 @@ export default function ArticleHSS() {
                     <div className="atr-speaker-header">
                       <div className="atr-speaker-avatar">KS</div>
                       <div>
-                        <h4 className="atr-speaker-name">Khaled Sioud</h4>
-                        <p className="atr-speaker-title">Ingénieur en génie civil et expert HSS</p>
+                        <h4 className="atr-speaker-name">{t('pub_hss.spk5_name', "Khaled Sioud")}</h4>
+                        <p className="atr-speaker-title">{t('pub_hss.spk5_title', "Ingénieur en génie civil et expert HSS")}</p>
                       </div>
                     </div>
                     <p>
-                      La dimension réglementaire a également occupé une place importante dans les discussions tout en proposant l’établissement d’un guide applicatif. Khaled Sioud a insisté sur la nécessité de disposer de textes plus précis afin de mieux encadrer les sanctions liées aux manquements en matière de sécurité.
+                      {t('pub_hss.spk5_text', "La dimension réglementaire a également occupé une place importante dans les discussions tout en proposant l’établissement d’un guide applicatif. Khaled Sioud a insisté sur la nécessité de disposer de textes plus précis afin de mieux encadrer les sanctions liées aux manquements en matière de sécurité.")}
                     </p>
                     <div className="atr-quote-callout">
-                      <p>« La route doit pardonner. Il ne s’agit pas uniquement d'un problème d'inattention du piéton ou de l'usager, mais des circonstances et de l’environnement dans lesquels il évolue. L'infrastructure doit être pensée pour réduire autant que possible les conséquences de l'erreur humaine. »</p>
-                      <cite>— Khaled Sioud, Ingénieur Génie Civil & Expert HSS</cite>
+                      <p>{t('pub_hss.quote2_text', "« La route doit pardonner. Il ne s’agit pas uniquement d'un problème d'inattention du piéton ou de l'usager, mais des circonstances et de l’environnement dans lesquels il évolue. L'infrastructure doit être pensée pour réduire autant que possible les conséquences de l'erreur humaine. »")}</p>
+                      <cite>{t('pub_hss.quote2_author', "— Khaled Sioud, Ingénieur Génie Civil & Expert HSS")}</cite>
                     </div>
                   </div>
 
-                  <h3 className="atr-article-h3">Les résolutions et orientations retenues</h3>
+                  <h3 className="atr-article-h3">{t('pub_hss.h3_resolutions', "Les résolutions et orientations retenues")}</h3>
 
                   <p>
-                    Au terme des échanges, une idée s’est imposée avec clarté : la sécurité ne peut plus être traitée comme un simple volet technique ajouté en fin de projet. Elle implique :
+                    {t('pub_hss.resolutions_intro', "Au terme des échanges, une idée s’est imposée avec clarté : la sécurité ne peut plus être traitée comme un simple volet technique ajouté en fin de projet. Elle implique :")}
                   </p>
-                  <ul style={{ paddingLeft: '20px', marginBottom: '25px', lineHeight: '1.8' }}>
-                    <li style={{ marginBottom: '8px' }}><strong>Des moyens matériels adaptés</strong> et disponibles dès la phase d'installation de chantier.</li>
-                    <li style={{ marginBottom: '8px' }}><strong>Un budget clair et préétabli</strong> dans les bordereaux de prix afin d’éviter tout déficit ou arbitrage au détriment de la protection.</li>
-                    <li style={{ marginBottom: '8px' }}><strong>Des contrôles inopinés et réguliers</strong> menés conjointement avec les équipes HSE.</li>
-                    <li style={{ marginBottom: '8px' }}><strong>Une responsabilité pleinement partagée</strong> entre les institutions donneuses d'ordre et les entreprises exécutantes.</li>
-                    <li style={{ marginBottom: '8px' }}><strong>Une vision durable et pérenne de la prévention</strong> intégrée dès la formation universitaire.</li>
+                  <ul style={{ paddingLeft: isRtl ? '0' : '20px', paddingRight: isRtl ? '20px' : '0', marginBottom: '25px', lineHeight: '1.8' }}>
+                    <li style={{ marginBottom: '8px' }}>{t('pub_hss.res_1', "Des moyens matériels adaptés et disponibles dès la phase d'installation de chantier.")}</li>
+                    <li style={{ marginBottom: '8px' }}>{t('pub_hss.res_2', "Un budget clair et préétabli dans les bordereaux de prix afin d’éviter tout déficit ou arbitrage au détriment de la protection.")}</li>
+                    <li style={{ marginBottom: '8px' }}>{t('pub_hss.res_3', "Des contrôles inopinés et réguliers menés conjointement avec les équipes HSE.")}</li>
+                    <li style={{ marginBottom: '8px' }}>{t('pub_hss.res_4', "Une responsabilité pleinement partagée entre les institutions donneuses d'ordre et les entreprises exécutantes.")}</li>
+                    <li style={{ marginBottom: '8px' }}>{t('pub_hss.res_5', "Une vision durable et pérenne de la prévention intégrée dès la formation universitaire.")}</li>
                   </ul>
 
                   <div className="atr-article-lead" style={{ marginTop: '40px' }}>
-                    La rencontre s’est achevée à 17h autour d’un moment d’échange convivial. Mais au-delà des discussions techniques et institutionnelles, une conviction commune semblait dominer les débats : <strong>la modernisation des infrastructures ne peut plus être dissociée de la protection de la vie humaine.</strong>
+                    {t('pub_hss.lead_ending', "La rencontre s’est achevée à 17h autour d’un moment d’échange convivial. Mais au-delà des discussions techniques et institutionnelles, une conviction commune semblait dominer les débats : la modernisation des infrastructures ne peut plus être dissociée de la protection de la vie humaine.")}
                   </div>
                 </div>
 
                 {/* Boutons d'action et lien source L'Obs Éco */}
                 <div className="atr-article-actions">
                   <Link href="/publications" className="atr-btn-back">
-                    ← Retour aux Publications
+                    {isRtl ? `${t('pub_hss.btn_back', 'Retour aux Publications')} ←` : `← ${t('pub_hss.btn_back', 'Retour aux Publications')}`}
                   </Link>
                   <a
                     href="https://www.lobseco.com/zero-deces-latr-releve-le-defi-hss-dune-route-qui-pardonne/"
@@ -481,7 +539,7 @@ export default function ArticleHSS() {
                     rel="noopener noreferrer"
                     className="atr-btn-source"
                   >
-                    <span>Consulter la publication sur L'Obs Éco</span>
+                    <span>{t('pub_hss.btn_source', "Consulter la publication sur L'Obs Éco")}</span>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                       <polyline points="15 3 21 3 21 9" />
@@ -496,60 +554,60 @@ export default function ArticleHSS() {
             <div className="col-lg-4 col-md-12 mt-4 mt-lg-0">
               <aside>
                 <div className="atr-sidebar-card">
-                  <h4 className="atr-sidebar-title">Fiche de la Rencontre</h4>
+                  <h4 className="atr-sidebar-title">{t('pub_hss.sidebar_title', "Fiche de la Rencontre")}</h4>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '14.5px', color: '#475569' }}>
                     <li style={{ marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px solid #F1F5F9' }}>
-                      <strong style={{ color: '#0F172A' }}>Date :</strong> 30 Avril 2026 (13h30 - 17h00)
+                      <strong style={{ color: '#0F172A' }}>{t('pub_hss.sb_date_label', "Date :")}</strong> {t('pub_hss.date', "30 Avril 2026 (13h30 - 17h00)")}
                     </li>
                     <li style={{ marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px solid #F1F5F9' }}>
-                      <strong style={{ color: '#0F172A' }}>Lieu :</strong> Cité des Sciences, Tunis
+                      <strong style={{ color: '#0F172A' }}>{t('pub_hss.sb_location_label', "Lieu :")}</strong> {t('pub_hss.location', "Cité des Sciences, Tunis")}
                     </li>
                     <li style={{ marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px solid #F1F5F9' }}>
-                      <strong style={{ color: '#0F172A' }}>Organisation :</strong> ATR en coordination avec le Ministère de l'Équipement
+                      <strong style={{ color: '#0F172A' }}>{t('pub_hss.sb_org_label', "Organisation :")}</strong> {t('pub_hss.sb_org_val', "ATR en coordination avec le Ministère de l'Équipement")}
                     </li>
                     <li style={{ marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px solid #F1F5F9' }}>
-                      <strong style={{ color: '#0F172A' }}>Thématique :</strong> HSS, Sécurité Routière & Chantiers
+                      <strong style={{ color: '#0F172A' }}>{t('pub_hss.sb_theme_label', "Thématique :")}</strong> {t('pub_hss.sb_theme_val', "HSS, Sécurité Routière & Chantiers")}
                     </li>
                     <li>
-                      <strong style={{ color: '#0F172A' }}>Source Médias :</strong>{' '}
+                      <strong style={{ color: '#0F172A' }}>{t('pub_hss.sb_source_label', "Source Médias :")}</strong>{' '}
                       <a
                         href="https://www.lobseco.com/zero-deces-latr-releve-le-defi-hss-dune-route-qui-pardonne/"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{ color: '#1B5299', fontWeight: '600', textDecoration: 'underline' }}
                       >
-                        L'Obs Éco (Article complet) ↗
+                        {t('pub_hss.sb_source_link', "L'Obs Éco (Article complet) ↗")}
                       </a>
                     </li>
                   </ul>
                 </div>
 
                 <div className="atr-sidebar-card">
-                  <h4 className="atr-sidebar-title">Autres Publications</h4>
+                  <h4 className="atr-sidebar-title">{t('pub_hss.sb_other_title', "Autres Publications")}</h4>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <Link
                       href="/publications/ministre-equipement-accueille-bureau-atr"
                       style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px', background: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0', textDecoration: 'none', color: '#1B5299', fontWeight: '600' }}
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1m2 13a2 2 0 0 1-2-2V7m2 13a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
-                      Audience avec M. le Ministre de l'Équipement
+                      {t('pub_hss.sb_other_pub1', "Audience avec M. le Ministre de l'Équipement")}
                     </Link>
                     <Link
                       href="/publications/glissements-de-terrain-resilience-infrastructures"
                       style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '12px', background: '#F8FAFC', borderRadius: '10px', border: '1px solid #E2E8F0', textDecoration: 'none', color: '#1B5299', fontWeight: '600' }}
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-                      Journée Technique Glissements de Terrain
+                      {t('pub_hss.sb_other_pub2', "Journée Technique Glissements de Terrain")}
                     </Link>
                   </div>
                 </div>
 
                 <div className="atr-sidebar-card">
-                  <h4 className="atr-sidebar-title">Mots-clés</h4>
+                  <h4 className="atr-sidebar-title">{t('pub_hss.sb_keywords_title', "Mots-clés")}</h4>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                    {['#SécuritéRoutière', '#HSS', '#NormesISO', '#PontDeBizerte', '#ZéroDécès', '#PréventionChantiers', '#ATR2026', '#MinistèreÉquipement'].map((t, idx) => (
+                    {keywords.map((kw, idx) => (
                       <span key={idx} style={{ background: '#F1F5F9', color: '#475569', padding: '4px 10px', borderRadius: '6px', fontSize: '12px', fontWeight: '600' }}>
-                        {t}
+                        {kw}
                       </span>
                     ))}
                   </div>
@@ -562,3 +620,4 @@ export default function ArticleHSS() {
     </Layout>
   )
 }
+

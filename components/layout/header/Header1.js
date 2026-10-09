@@ -195,7 +195,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                         <div className="inner-container d-flex align-items-center justify-content-between">
                             <div className="left-column d-flex align-items-center">
                                 <div className="logo-box">
-                                    <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" className="atr-logo-img" /></Link></div>
+                                    <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR - Association Tunisienne des Routes" title="ATR - Association Tunisienne des Routes" className="atr-logo-img" /></Link></div>
                                 </div>
                                 <div className="ml_60 mr_60 d-none d-xl-block"><img src="/assets/images/shape/shape-1.png" alt="" /></div>
                                 <div className="nav-outer">
@@ -244,7 +244,7 @@ export default function Header1({ scroll, isMobileMenu, handleMobileMenu, isSide
                         <div className="inner-container d-flex align-items-center justify-content-between">
                             <div className="left-column d-flex align-items-center">
                                 <div className="logo-box">
-                                    <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR Logo" className="atr-logo-img" /></Link></div>
+                                    <div className="logo"><Link href="/"><img src="/1000007112.png" alt="ATR - Association Tunisienne des Routes" title="ATR - Association Tunisienne des Routes" className="atr-logo-img" /></Link></div>
                                 </div>
                                 <div className="ml_60 mr_60 d-none d-xl-block"><img src="/assets/images/shape/shape-1.png" alt="" /></div>
                                 <div className="nav-outer">

@@ -1,44 +1,51 @@
 'use client'
+import { useEffect } from "react";
 import Layout from "@/components/layout/Layout";
 import PublicationCard from "@/components/publications/PublicationCard";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function PublicationsPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
+
+  useEffect(() => {
+    const pageTitle = t('breadcrumb.publications', "Publications & Actualités");
+    document.title = `${pageTitle} | ATR - Association Tunisienne des Routes`;
+  }, [language, t]);
 
   const publications = [
     {
-      badge: "Compte-rendu",
-      date: "30 avril 2026",
-      location: "Cité des Sciences, Tunis",
-      source: "L'Observatoire Économique",
-      title: "Zéro décès : l'ATR relève le défi HSS d'une \"route qui pardonne\"",
-      summary: "Le 30 avril 2026 à la Cité des Sciences, l'ATR a consacré une rencontre aux enjeux HSS et à la sécurité routière sur les chantiers, réunissant cadres du ministère de l'Équipement, ingénieurs et experts autour de la responsabilité humaine et du concept de route qui pardonne.",
+      badge: t('publications.pub1_badge', "Compte-rendu"),
+      date: t('publications.pub1_date', "30 avril 2026"),
+      location: t('publications.pub1_location', "Cité des Sciences, Tunis"),
+      source: t('publications.pub1_source', "L'Observatoire Économique"),
+      title: t('publications.pub1_title', "Zéro décès : l'ATR relève le défi HSS d'une \"route qui pardonne\""),
+      summary: t('publications.pub1_summary', "Le 30 avril 2026 à la Cité des Sciences, l'ATR a consacré une rencontre aux enjeux HSS et à la sécurité routière sur les chantiers, réunissant cadres du ministère de l'Équipement, ingénieurs et experts autour de la responsabilité humaine et du concept de route qui pardonne."),
       image: "/1000007112.png",
-      alt: "Logo de l'Association Tunisienne des Routes (ATR)",
+      alt: t('publications.pub1_alt', "Logo de l'Association Tunisienne des Routes (ATR)"),
       href: "/publications/securite-routiere-hss-chantiers",
     },
     {
-      badge: "Revue de presse",
-      date: "6 août 2025",
-      location: "Ministère de l'Équipement et de l'Habitat",
-      source: "La Presse de Tunisie",
-      title: "Le ministre de l'Équipement accueille le nouveau bureau de l'Association tunisienne des routes",
-      summary: "Ce lundi matin, M. Salah Zouari, ministre de l'Équipement et de l'Habitat, a reçu les membres du nouveau bureau exécutif de l'ATR présidée par Mme Lilia Sifaoui, en présence de représentants de PIARC.",
+      badge: t('publications.pub2_badge', "Revue de presse"),
+      date: t('publications.pub2_date', "6 août 2025"),
+      location: t('publications.pub2_location', "Ministère de l'Équipement et de l'Habitat"),
+      source: t('publications.pub2_source', "La Presse de Tunisie"),
+      title: t('publications.pub2_title', "Le ministre de l'Équipement accueille le nouveau bureau de l'Association tunisienne des routes"),
+      summary: t('publications.pub2_summary', "Ce lundi matin, M. Salah Zouari, ministre de l'Équipement et de l'Habitat, a reçu les membres du nouveau bureau exécutif de l'ATR présidée par Mme Lilia Sifaoui, en présence de représentants de PIARC."),
       image: "/atrr.jpg",
-      alt: "Le ministre de l'Équipement lors de l'accueil du nouveau bureau de l'ATR",
+      alt: t('publications.pub2_alt', "Le ministre de l'Équipement lors de l'accueil du nouveau bureau de l'ATR"),
       href: "/publications/ministre-equipement-accueille-bureau-atr",
     },
     {
-      badge: "Compte-rendu technique",
-      date: "03 juin 2026",
-      location: "Hôtel El Mouradi Gammarth, Tunis",
-      source: "ATR, ATMS & Ministère de l'Équipement",
-      title: "Glissements de terrain, résilience des infrastructures et gestion des risques naturels",
-      summary: "Retour en images sur la journée technique organisée à l'Hôtel El Mouradi Gammarth en présence de M. le Ministre de l'Équipement et de l'Habitat, réunissant plus de 120 experts autour des risques géotechniques et de la stabilité des ouvrages.",
+      badge: t('publications.pub3_badge', "Compte-rendu technique"),
+      date: t('publications.pub3_date', "03 juin 2026"),
+      location: t('publications.pub3_location', "Hôtel El Mouradi Gammarth, Tunis"),
+      source: t('publications.pub3_source', "ATR, ATMS & Ministère de l'Équipement"),
+      title: t('publications.pub3_title', "Glissements de terrain, résilience des infrastructures et gestion des risques naturels"),
+      summary: t('publications.pub3_summary', "Retour en images sur la journée technique organisée à l'Hôtel El Mouradi Gammarth en présence de M. le Ministre de l'Équipement et de l'Habitat, réunissant plus de 120 experts autour des risques géotechniques et de la stabilité des ouvrages."),
       image: "/716310905_1300568632262137_7434795582044664526_n.jpg",
-      alt: "Journée technique ATR & ATMS à l'Hôtel El Mouradi Gammarth",
+      alt: t('publications.pub3_alt', "Journée technique ATR & ATMS à l'Hôtel El Mouradi Gammarth"),
       href: "/publications/glissements-de-terrain-resilience-infrastructures",
     },
   ];
@@ -91,7 +98,7 @@ export default function PublicationsPage() {
             <p className="section_heading_title_small">{t('publications.cta_kicker', "Échanges professionnels")}</p>
             <h2>{t('publications.cta_title', "Vous souhaitez suivre les prochaines rencontres de l'ATR ?")}</h2>
             <p>{t('publications.cta_text', "Contactez le secrétariat pour recevoir les informations disponibles sur les événements, les comités et les futures publications.")}</p>
-            <Link href="/contact" className="publication-card-cta">{t('publications.cta_btn', "Nous contacter →")}</Link>
+            <Link href="/contact" className="publication-card-cta">{t('publications.cta_btn', isRtl ? "اتصل بنا ←" : "Nous contacter →")}</Link>
           </div>
         </section>
       </main>

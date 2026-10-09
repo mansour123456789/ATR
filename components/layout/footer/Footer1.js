@@ -33,8 +33,8 @@ export default function Footer1() {
         <div className="auto-container">
           <div className="atr-footer-grid">
             <section className="atr-footer-identity">
-              <Link href="/" className="atr-footer-logo" aria-label="ATR, accueil">
-                <img src="/1000007112.png" alt="Association Tunisienne des Routes" />
+              <Link href="/" className="atr-footer-logo" aria-label="ATR - Association Tunisienne des Routes, accueil">
+                <img src="/1000007112.png" alt="ATR - Association Tunisienne des Routes" title="ATR - Association Tunisienne des Routes" />
               </Link>
               <p>{t('footer.tagline', 'Fédérer les compétences routières tunisiennes autour de la sécurité, de la qualité et du partage technique.')}</p>
             </section>
@@ -59,7 +59,7 @@ export default function Footer1() {
             <section className="atr-footer-column atr-footer-contact">
               <h2>{t('footer.contact_title', 'Contact')}</h2>
               <address>
-                <p><span aria-hidden="true">⌖</span> Bureau 102, Imm. El Wifak,<br />Centre Urbain Nord, Tunis</p>
+                <p><span aria-hidden="true">⌖</span> {t('footer.address', "App n°2, 2ème étage, bloc « B » du complexe immobilier Espace Tunis Montplaisir, rue 8002, Tunis 1002")}</p>
                 <p><span aria-hidden="true">@</span> <a href="mailto:contact@atr-tunisie.org">contact@atr-tunisie.org</a></p>
               </address>
               <Link href="/contact" className="atr-footer-join">{t('footer.join_link', 'Nous rejoindre')} <span aria-hidden="true">→</span></Link>

@@ -1,15 +1,23 @@
 'use client'
+import { useEffect } from "react";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { institutionalFacts } from "@/data/institutional";
 import { useLanguage } from "@/context/LanguageContext";
 
-function ExternalArrow({ external }) {
-  return <span aria-hidden="true">{external ? " ↗" : " →"}</span>;
+function ExternalArrow({ external, isRtl }) {
+  if (external) return <span aria-hidden="true">{isRtl ? " ↖" : " ↗"}</span>;
+  return <span aria-hidden="true">{isRtl ? " ←" : " →"}</span>;
 }
 
 export default function AboutUsPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
+
+  useEffect(() => {
+    const pageTitle = t('breadcrumb.about', "À propos de l'ATR");
+    document.title = `${pageTitle} | ATR - Association Tunisienne des Routes`;
+  }, [language, t]);
 
   const pillars = [
     { icon: "fa-heartbeat", title: t('about.pillar1_title', "Protection de la vie humaine"), text: t('about.pillar1_text', "Réduire les risques pour les usagers, les agents et les équipes de chantier.") },
@@ -21,14 +29,14 @@ export default function AboutUsPage() {
     { icon: "fa-users", title: t('about.activity1_title', "Congrès national, séminaires et journées techniques"), text: t('about.activity1_text', "Réunir les acteurs publics, privés et universitaires autour des enjeux techniques du réseau routier."), href: "/events" },
     { icon: "fa-project-diagram", title: t('about.activity2_title', "Comités techniques"), text: t('about.activity2_text', "Organiser le travail d'expertise sur la conception, la sécurité, les ouvrages et la résilience."), href: "/domaines" },
     { icon: "fa-book-open", title: t('about.activity3_title', "Guides et publications"), text: t('about.activity3_text', "Mettre à disposition des ressources techniques et des retours d'expérience pour les professionnels."), href: "/publications" },
-    { icon: "fa-globe-africa", title: t('about.activity4_title', "Coopération avec PIARC"), text: t('about.activity4_text', "Relier les experts tunisiens aux travaux de l'Association mondiale de la Route, fondée en 1909."), href: "https://www.piarc.org/fr/", external: true },
+    { icon: "fa-globe-africa", title: t('about.activity4_title', "Coopération avec PIARC"), text: t('about.activity4_text', "Relier les experts tunisiens aux travaux de l'Association mondiale de la Route, fondée en 1909."), href: language === 'en' ? "https://www.piarc.org/en/" : "https://www.piarc.org/fr/", external: true },
   ];
 
   const committees = [
-    ["CT.1", t('about.ct1_title', "Gouvernance et résilience"), t('about.ct1_text', "Gestion patrimoniale, adaptation climatique et continuité des services.")],
-    ["CT.2", t('about.ct2_title', "Mobilité durable et systèmes intelligents"), t('about.ct2_text', "Données, mobilité connectée, décarbonation des corridors et intermodalité.")],
-    ["CT.3", t('about.ct3_title', "Sécurité routière et usagers"), t('about.ct3_text', "Audits de sécurité, traitement des points noirs et prévention du risque routier.")],
-    ["CT.4", t('about.ct4_title', "Infrastructures et matériaux"), t('about.ct4_text', "Dimensionnement, auscultation, entretien des ouvrages et matériaux recyclés.")],
+    [t('about.ct1_code', "CT.1"), t('about.ct1_title', "Gouvernance et résilience"), t('about.ct1_text', "Gestion patrimoniale, adaptation climatique et continuité des services.")],
+    [t('about.ct2_code', "CT.2"), t('about.ct2_title', "Mobilité durable et systèmes intelligents"), t('about.ct2_text', "Données, mobilité connectée, décarbonation des corridors et intermodalité.")],
+    [t('about.ct3_code', "CT.3"), t('about.ct3_title', "Sécurité routière et usagers"), t('about.ct3_text', "Audits de sécurité, traitement des points noirs et prévention du risque routier.")],
+    [t('about.ct4_code', "CT.4"), t('about.ct4_title', "Infrastructures et matériaux"), t('about.ct4_text', "Dimensionnement, auscultation, entretien des ouvrages et matériaux recyclés.")],
   ];
 
   const colleges = [
@@ -60,7 +68,7 @@ export default function AboutUsPage() {
               </div>
               <div className="col-lg-6 mb_30">
                 <figure className="atr-about-figure">
-                  <img src="/home.jpg" alt="Association Tunisienne des Routes" />
+                  <img src="/home.jpg" alt={t('about.caption1', "Association Tunisienne des Routes")} width="600" height="400" />
                   <figcaption>{t('about.caption1', "Association Tunisienne des Routes — visuel institutionnel de l'ATR.")}</figcaption>
                 </figure>
               </div>
@@ -149,7 +157,7 @@ export default function AboutUsPage() {
                   <h3>{activity.title}</h3>
                   <p>{activity.text}</p>
                   <Link href={activity.href} target={activity.external ? "_blank" : undefined} rel={activity.external ? "noreferrer" : undefined}>
-                    {t('common.readAbout', "En savoir plus")}<ExternalArrow external={activity.external} />
+                    {t('common.readAbout', "En savoir plus")}<ExternalArrow external={activity.external} isRtl={isRtl} />
                   </Link>
                 </article>
               ))}
@@ -180,7 +188,7 @@ export default function AboutUsPage() {
             <div className="row align-items-center">
               <div className="col-lg-6 mb_30">
                 <figure className="atr-about-figure">
-                  <img src="/images/atr_seminar.png" alt="Participants réunis lors d'un séminaire technique de l'ATR" />
+                  <img src="/images/atr_seminar.png" alt={t('about.caption2', "Séminaire technique de l'ATR")} width="600" height="400" />
                   <figcaption>{t('about.caption2', "Séminaire technique de l'ATR — échange entre professionnels de la route.")}</figcaption>
                 </figure>
               </div>
@@ -207,7 +215,7 @@ export default function AboutUsPage() {
             <p className="section_heading_title_small">{t('about.join_kicker', "Participer au réseau")}</p>
             <h2>{t('about.join_title', "Nous rejoindre")}</h2>
             <p>{t('about.join_text', "Pour connaître les modalités d'adhésion et les activités ouvertes aux professionnels, contactez l'ATR.")}</p>
-            <Link href="/contact" className="btn-1">{t('about.join_btn', "Demander les informations d'adhésion")} <span aria-hidden="true">→</span></Link>
+            <Link href="/contact" className="btn-1">{t('about.join_btn', "Demander les informations d'adhésion")} <span aria-hidden="true">{isRtl ? '←' : '→'}</span></Link>
           </div>
         </section>
       </main>

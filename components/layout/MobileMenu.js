@@ -384,7 +384,7 @@ export default function MobileMenu({ isSidebar, handleMobileMenu, handleSidebar 
         <div className="atr-mob-contact">
           <p className="atr-mob-contact-title">{t('footer.contact_title', 'Contact ATR')}</p>
           <div className="atr-mob-contact-row">
-            <IconLocation /><span>Bureau 102, Imm. El Wifak, Centre Urbain Nord, Tunis</span>
+            <IconLocation /><span>{t('footer.address', "App n°2, 2ème étage, bloc « B » du complexe immobilier Espace Tunis Montplaisir, rue 8002, Tunis 1002")}</span>
           </div>
           <Link href="mailto:contact@atr-tunisie.org" className="atr-mob-contact-row">
             <IconMail /><span>contact@atr-tunisie.org</span>

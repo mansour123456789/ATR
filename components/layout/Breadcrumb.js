@@ -19,16 +19,51 @@ const STYLES = `
     position: relative;
     z-index: 2;
   }
+  body[dir="rtl"] .page-title .bread-crumb,
+  .page-title[dir="rtl"] .bread-crumb {
+    direction: rtl !important;
+  }
+  body[dir="rtl"] .page-title .bread-crumb li,
+  .page-title[dir="rtl"] .bread-crumb li {
+    float: none !important;
+    display: inline-block !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 20px !important;
+    margin-left: 8px !important;
+  }
+  body[dir="rtl"] .page-title .bread-crumb li:last-child,
+  .page-title[dir="rtl"] .bread-crumb li:last-child {
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+  }
+  body[dir="rtl"] .page-title .bread-crumb li:before,
+  .page-title[dir="rtl"] .bread-crumb li:before {
+    content: '\\e938' !important;
+    font-family: 'icomoon' !important;
+    font-size: 11px !important;
+    right: auto !important;
+    left: 0px !important;
+    top: 2px !important;
+    transform: none !important;
+  }
+  body[dir="rtl"] .page-title .bread-crumb li:last-child:before,
+  .page-title[dir="rtl"] .bread-crumb li:last-child:before {
+    display: none !important;
+  }
 `;
 
 export default function Breadcrumb({ breadcrumbTitle, titleKey }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
   const displayTitle = titleKey ? t(titleKey, breadcrumbTitle) : (breadcrumbTitle ? t(`breadcrumb.${breadcrumbTitle}`, breadcrumbTitle) : '');
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
-      <section className="page-title text-center">
+      <section className="page-title text-center" dir={isRtl ? "rtl" : "ltr"}>
         <div className="bg-layer" style={{ backgroundImage: 'url(/images/road-hero.png)' }}></div>
         <div className="auto-container">
           <div className="content-box">

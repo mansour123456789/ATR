@@ -19,22 +19,118 @@ const inputStyle = {
 function eventType(title = '', t) {
   const value = title.toLowerCase();
   if (value.includes('assemblée') || value.includes('general') || value.includes('ag') || value.includes('جلسة')) {
-    return { label: 'Assemblée Générale · ATR', color: '#1B5299' };
+    return { label: t ? t('events.ev5_badge', 'Assemblée Générale · ATR') : 'Assemblée Générale · ATR', color: '#1B5299' };
   }
   if (value.includes('séminaire') || value.includes('congrès') || value.includes('seminar') || value.includes('piarc') || value.includes('ندوة')) {
-    return { label: 'Séminaire International · PIARC', color: '#C07B1B' };
+    return { label: t ? t('events.ev1_badge', 'Séminaire International · ATR & PIARC') : 'Séminaire International · ATR & PIARC', color: '#C07B1B' };
   }
-  if (value.includes('glissement') || value.includes('stabilité') || value.includes('atms')) {
-    return { label: 'Journée Technique · ATR & ATMS', color: '#1B5299' };
+  if (value.includes('glissement') || value.includes('stabilité') || value.includes('atms') || value.includes('انزلاق') || value.includes('landslide')) {
+    return { label: t ? t('events.ev4_badge', 'Journée Technique · ATR & ATMS') : 'Journée Technique · ATR & ATMS', color: '#1B5299' };
   }
-  if (value.includes('hss') || value.includes('sécurité')) {
-    return { label: 'Après-Midi Technique · HSS', color: '#C07B1B' };
+  if (value.includes('hss') || value.includes('sécurité') || value.includes('ohs') || value.includes('سلامة')) {
+    return { label: t ? t('events.ev3_badge', 'Après-Midi Technique · HSS & Sécurité') : 'Après-Midi Technique · HSS & Sécurité', color: '#C07B1B' };
   }
   if (value.includes('atelier') || value.includes('journée') || value.includes('formation') || value.includes('workshop') || value.includes('ورشة')) {
     return { label: t ? t('calendrier.type_workshop', 'Atelier technique') : 'Atelier technique', color: '#2E8B57' };
   }
   return { label: t ? t('calendrier.type_committee', 'Événement ATR') : 'Événement ATR', color: '#1B5299' };
 }
+
+function getLocalizedEvent(evt, t, language) {
+  if (!evt) return evt;
+  const isRtl = language === 'ar';
+
+  if (evt.id === 5) {
+    return {
+      ...evt,
+      imageUrl: '/affiche.jpg',
+      title: t('events.ev5_title', evt.title),
+      badge: t('events.ev5_badge', evt.badge),
+      description: t('events.ev5_desc', evt.description),
+      hook: t('events.ev5_hook', evt.hook),
+      location: t('events.ev5_location', evt.location),
+      paymentInfo: t('events.ev5_payment', evt.paymentInfo),
+      slogan: t('events.ev5_slogan', evt.slogan),
+      formUrl: '/events/assemblee-generale-2026',
+      formLabel: t('events.register_btn', 'Inscription'),
+      topics: [
+        t('events.ev5_topic1', 'Présentation du rapport moral'),
+        t('events.ev5_topic2', 'Présentation du rapport financier'),
+        t('events.ev5_topic3', 'Présentation des activités réalisées par l’ATR'),
+        t('events.ev5_topic4', 'Échanges sur les activités et les perspectives de l’association'),
+        t('events.ev5_topic5', 'Présentation des projets et orientations à venir'),
+        t('events.ev5_topic6', 'Divers & Débats ouverts')
+      ]
+    };
+  }
+
+  if (evt.id === 1) {
+    return {
+      ...evt,
+      title: t('events.ev1_title', evt.title),
+      badge: t('events.ev1_badge', evt.badge),
+      description: t('events.ev1_desc', evt.description),
+      location: t('events.ev1_location', evt.location),
+      slogan: t('events.ev1_slogan', evt.slogan),
+      formLabel: t('events.ev1_form_label', evt.formLabel || 'S’inscrire sur event.atr-tunisie.org'),
+      publicationLabel: t('events.ev1_pub_label', evt.publicationLabel || 'Programme & Détails du séminaire'),
+      topics: [
+        t('events.ev1_topic1', 'Matériaux routiers durables et bas carbone'),
+        t('events.ev1_topic2', 'Adaptation des chaussées aux impacts climatiques'),
+        t('events.ev1_topic3', 'Gestion patrimoniale des actifs routiers'),
+        t('events.ev1_topic4', 'Économie circulaire et recyclage des chaussées')
+      ]
+    };
+  }
+
+  if (evt.id === 4) {
+    return {
+      ...evt,
+      title: t('events.ev4_title', evt.title),
+      badge: t('events.ev4_badge', evt.badge),
+      description: t('events.ev4_desc', evt.description),
+      location: t('events.ev4_location', evt.location),
+      slogan: t('events.ev4_slogan', evt.slogan),
+      publicationLabel: t('events.ev4_pub_label', evt.publicationLabel || 'Compte-rendu & Retour en images'),
+      fees: [
+        { label: t('events.ev4_fee1_label', 'Adhérents ATR & ATMS (Cotisation 2026)'), price: isRtl ? '200 د.ت' : '200 DT' },
+        { label: t('events.ev4_fee2_label', 'Professionnels'), price: isRtl ? '250 د.ت' : '250 DT' },
+        { label: t('events.ev4_fee3_label', 'Étudiants'), price: isRtl ? '150 د.ت' : '150 DT' }
+      ],
+      topics: [
+        t('events.ev4_topic1', 'Risques géotechniques et cinématique des versants'),
+        t('events.ev4_topic2', 'Techniques de stabilisation et de confortement'),
+        t('events.ev4_topic3', 'Monitoring et surveillance en temps réel'),
+        t('events.ev4_topic4', 'Solutions innovantes pour des infrastructures résilientes')
+      ]
+    };
+  }
+
+  if (evt.id === 3) {
+    return {
+      ...evt,
+      title: t('events.ev3_title', evt.title),
+      badge: t('events.ev3_badge', evt.badge),
+      hook: t('events.ev3_hook', evt.hook),
+      description: t('events.ev3_desc', evt.description),
+      location: t('events.ev3_location', evt.location),
+      slogan: t('events.ev3_slogan', evt.slogan),
+      publicationLabel: t('events.ev3_pub_label', evt.publicationLabel || 'Compte-rendu technique & Témoignages'),
+      fees: [
+        { label: t('events.ev3_fee1_label', 'Membres de l’ATR'), price: isRtl ? '10 د.ت' : '10 DT' },
+        { label: t('events.ev3_fee2_label', 'Non-adhérents'), price: isRtl ? '20 د.ت' : '20 DT' }
+      ],
+      topics: [
+        t('events.ev3_topic1', 'Des experts à votre écoute'),
+        t('events.ev3_topic2', 'Des cas pratiques tirés du terrain'),
+        t('events.ev3_topic3', 'Des engagements collectifs pour protéger nos équipes')
+      ]
+    };
+  }
+
+  return evt;
+}
+
 
 export default function EventsPage() {
   const { t, language } = useLanguage();
@@ -69,9 +165,10 @@ export default function EventsPage() {
       location: 'Startup Village, Tunis',
       date: '2026-10-24T09:00:00',
       capacity: 120,
-      imageUrl: '/1000007112.png',
+      imageUrl: '/affiche.jpg',
       mapsUrl: 'https://maps.app.goo.gl/3Vbb8kya3VsCa2NT8',
-      formLabel: 'Confirmer ma présence',
+      formUrl: '/events/assemblee-generale-2026',
+      formLabel: 'Inscription',
       badge: 'Assemblée Générale · ATR',
       hook: 'Chers membres, nous comptons vivement sur votre présence !',
       topics: [
@@ -82,13 +179,13 @@ export default function EventsPage() {
         'Présentation des projets et orientations à venir',
         'Divers & Débats ouverts'
       ],
-      paymentInfo: 'La cotisation 2026 pourra être réglée par virement bancaire N° 086030001520090580 ou par chèque.',
+      paymentInfo: 'La cotisation 2026 pourra être réglée par virement bancaire N° 08603000152009058019 ou par chèque.',
       slogan: 'Construire ensemble l’avenir de l’infrastructure routière tunisienne.',
     },
     {
       id: 1,
-      title: 'Séminaire International des Comités Techniques PIARC Tunis 2026',
-      description: 'L’Association Tunisienne des Routes (ATR), en collaboration avec l’Association mondiale de la Route (PIARC), organise un grand séminaire international sous le thème : « Les chaussées routières et la gestion des actifs face aux défis climatiques et à la transition écologique ».',
+      title: "Concevoir et gérer les routes selon l'approche du système sûr",
+      description: 'L’Association Tunisienne des Routes (ATR), en collaboration avec l’Association mondiale de la Route (PIARC), organise un grand séminaire international sous le thème : « La sécurité routière, la conception géométrique et l\'approche système sûr ».',
       location: 'Tunis, Tunisie',
       date: '2026-12-09T09:00:00',
       capacity: 350,
@@ -187,7 +284,8 @@ export default function EventsPage() {
   }, []);
 
   const openModal = (event) => {
-    setSelectedEvent(event);
+    const locEvt = getLocalizedEvent(event, t, language);
+    setSelectedEvent(locEvt);
     setIsModalOpen(true);
     setMessage('');
     setError('');
@@ -227,7 +325,8 @@ export default function EventsPage() {
       });
 
       await Promise.allSettled([emailPromise, resPromise]);
-      setMessage(`Votre confirmation de présence pour « ${selectedEvent?.title} » a bien été transmise à contact@atr-tunisie.org.`);
+      const succMsg = t('events.modal_success', 'Votre confirmation de présence pour « {title} » a bien été transmise à contact@atr-tunisie.org.').replace('{title}', selectedEvent?.title || '');
+      setMessage(succMsg);
       setFormData({ name: '', email: '', phone: '', message: '' });
     } catch (submitError) {
       setError(submitError.message || t('events.modal_error', 'Une erreur est survenue.'));
@@ -1124,6 +1223,12 @@ export default function EventsPage() {
   // Sort events strictly by date with filter support
   const now = new Date();
   const allTargetEvents = events.filter(e => [5, 1, 4, 3].includes(e.id));
+  const isRtl = language === 'ar';
+
+  useEffect(() => {
+    const pageTitle = t('breadcrumb.events', "Nos Événements");
+    document.title = `${pageTitle} | ATR - Association Tunisienne des Routes`;
+  }, [language, t]);
 
   const featuredEvents = allTargetEvents
     .filter(e => {
@@ -1161,37 +1266,38 @@ export default function EventsPage() {
                   className={`atr-filter-btn ${filter === 'all' ? 'active' : ''}`}
                   onClick={() => setFilter('all')}
                 >
-                  📅 Tous ({allTargetEvents.length})
+                  📅 {t('events.filter_all', 'Tous')} ({allTargetEvents.length})
                 </button>
                 <button 
                   className={`atr-filter-btn ${filter === 'upcoming' ? 'active' : ''}`}
                   onClick={() => setFilter('upcoming')}
                 >
-                  🟢 À venir ({allTargetEvents.filter(e => new Date(e.date) >= now).length})
+                  🟢 {t('events.filter_upcoming', 'À venir')} ({allTargetEvents.filter(e => new Date(e.date) >= now).length})
                 </button>
                 <button 
                   className={`atr-filter-btn ${filter === 'past' ? 'active' : ''}`}
                   onClick={() => setFilter('past')}
                 >
-                  📁 Clôturés ({allTargetEvents.filter(e => new Date(e.date) < now).length})
+                  📁 {t('events.filter_past', 'Clôturés')} ({allTargetEvents.filter(e => new Date(e.date) < now).length})
                 </button>
               </div>
 
               <div className="atr-sort-select-wrapper">
-                <span>Ordre :</span>
+                <span>{t('events.sort_label', 'Ordre :')}</span>
                 <select 
                   className="atr-sort-select" 
                   value={sortOrder} 
                   onChange={(e) => setSortOrder(e.target.value)}
                 >
-                  <option value="desc">🗓️ Du plus récent au plus ancien (Décembre → Avril)</option>
-                  <option value="asc">🗓️ Du plus ancien au plus récent (Avril → Décembre)</option>
+                  <option value="desc">{t('events.sort_desc', '🗓️ Du plus récent au plus ancien (Décembre → Avril)')}</option>
+                  <option value="asc">{t('events.sort_asc', '🗓️ Du plus ancien au plus récent (Avril → Décembre)')}</option>
                 </select>
               </div>
             </div>
 
             {/* ÉVÉNEMENTS PHARES / SPOTLIGHTS TRIÉS PAR DATE */}
-            {featuredEvents.map((evt) => {
+            {featuredEvents.map((rawEvt) => {
+              const evt = getLocalizedEvent(rawEvt, t, language);
               const isPast = new Date(evt.date) < now;
               const isLogo = evt.imageUrl === '/1000007112.png';
               return (
@@ -1203,7 +1309,7 @@ export default function EventsPage() {
                       alt: evt.title,
                       title: evt.title
                     })}
-                    title="Cliquer pour afficher l'affiche en grand"
+                    title={isRtl ? "انقر لعرض الملصق بالحجم الكامل" : "Cliquer pour afficher l'affiche en grand"}
                   >
                     <img 
                       src={evt.imageUrl || '/images/atr-bg-3.png'} 
@@ -1211,20 +1317,20 @@ export default function EventsPage() {
                       className={isLogo ? 'atr-media-is-logo' : ''}
                     />
                     <span className="atr-featured-badge-float">
-                      {evt.id === 5 ? '🏛️ Assemblée Générale' : (evt.id === 1 ? '🌟 Séminaire International' : (isPast ? '📁 Archive Technique' : '⭐ Événement Spécial'))}
+                      {evt.id === 5 ? t('events.badge_ga', '🏛️ Assemblée Générale') : (evt.id === 1 ? t('events.badge_seminar', '🌟 Séminaire International') : (isPast ? t('events.badge_archive', '📁 Archive Technique') : t('events.badge_special', '⭐ Événement Spécial')))}
                     </span>
                     <div className="atr-media-zoom-overlay">
                       <span className="atr-media-zoom-badge">
                         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                        Agrandir l'affiche
+                        {t('events.zoom_poster', "Agrandir l'affiche")}
                       </span>
                     </div>
                   </div>
                   <div className="atr-featured-content">
                     {isPast && (
-                      <div className="atr-stamp-passed" title="Événement passé et clôturé">
-                        <span className="atr-stamp-passed-star">★ ÉVÉNEMENT PASSÉ ★</span>
-                        <span className="atr-stamp-passed-sub">CLÔTURÉ</span>
+                      <div className="atr-stamp-passed" title={isRtl ? "حدث منقضٍ ومغلق" : "Événement passé et clôturé"}>
+                        <span className="atr-stamp-passed-star">{t('events.stamp_past', '★ ÉVÉNEMENT PASSÉ ★')}</span>
+                        <span className="atr-stamp-passed-sub">{t('events.stamp_closed', 'CLÔTURÉ')}</span>
                       </div>
                     )}
                     <div>
@@ -1234,15 +1340,15 @@ export default function EventsPage() {
                         </span>
                         <span className="atr-featured-tag-date">
                           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                          {evt.id === 1 ? '09 au 11 Décembre 2026' : (evt.id === 5 ? 'Samedi 24 Octobre 2026 · 09h00' : new Date(evt.date).toLocaleDateString(dateLocale, { day: '2-digit', month: 'long', year: 'numeric' }))}
+                          {evt.id === 1 ? t('events.date_december', '09 au 11 Décembre 2026') : (evt.id === 5 ? t('events.date_october', 'Samedi 24 Octobre 2026 · 09h00') : new Date(evt.date).toLocaleDateString(dateLocale, { day: '2-digit', month: 'long', year: 'numeric' }))}
                         </span>
                         {isPast ? (
                           <span className="atr-status-pill atr-status-pill-past">
-                            🔴 Clôturé
+                            {t('events.status_closed', '🔴 Clôturé')}
                           </span>
                         ) : (
                           <span className="atr-status-pill atr-status-pill-upcoming">
-                            🟢 Inscriptions ouvertes
+                            {t('events.status_open', '🟢 Inscriptions ouvertes')}
                           </span>
                         )}
                       </div>
@@ -1280,7 +1386,7 @@ export default function EventsPage() {
                       <div className="atr-featured-meta-row">
                         <div className="atr-featured-meta-item">
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C07B1B" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                          <span><strong>Lieu :</strong> {evt.location}</span>
+                          <span><strong>{t('events.location_label', 'Lieu :')}</strong> {evt.location}</span>
                         </div>
                         {evt.mapsUrl && (
                           <div className="atr-featured-meta-item">
@@ -1289,7 +1395,7 @@ export default function EventsPage() {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              📍 Localiser sur Google Maps ↗
+                              {t('events.maps_link', '📍 Localiser sur Google Maps ↗')}
                             </a>
                           </div>
                         )}
@@ -1298,13 +1404,13 @@ export default function EventsPage() {
                       {evt.paymentInfo && (
                         <div className="atr-featured-payment-info">
                           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B5299" strokeWidth="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-                          <span><strong>Cotisation & Virement :</strong> {evt.paymentInfo}</span>
+                          <span><strong>{t('events.payment_label', 'Cotisation & Virement :')}</strong> {evt.paymentInfo}</span>
                         </div>
                       )}
 
                       {evt.fees && (
                         <div className="atr-featured-pricing">
-                          <span className="atr-pricing-label">💳 Frais d’inscription :</span>
+                          <span className="atr-pricing-label">{t('events.fees_label', '💳 Frais d’inscription :')}</span>
                           <div className="atr-pricing-badges">
                             {evt.fees.map((fee, fIdx) => (
                               <span className="atr-price-badge" key={fIdx}>
@@ -1327,39 +1433,49 @@ export default function EventsPage() {
                         <>
                           <span className="atr-btn-closed">
                             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                            Inscriptions terminées
+                            {t('events.btn_closed', 'Inscriptions terminées')}
                           </span>
                           {evt.publicationUrl && (
                             <Link href={evt.publicationUrl} className="atr-btn-publication atr-btn-publication-primary">
-                              <span>{evt.publicationLabel || 'Compte-rendu & Photos →'}</span>
+                              <span>{evt.publicationLabel || (isRtl ? 'Compte-rendu & Photos ←' : 'Compte-rendu & Photos →')}</span>
                             </Link>
                           )}
                         </>
                       ) : (
                         <>
                           {evt.formUrl ? (
-                            <a
-                              href={evt.formUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="atr-btn-register-form"
-                            >
-                              <span>{evt.formLabel || 'S’inscrire dès maintenant'}</span>
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                            </a>
+                            evt.formUrl.startsWith('http') ? (
+                              <a
+                                href={evt.formUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="atr-btn-register-form"
+                              >
+                                <span>{evt.formLabel || t('events.reserve_now', 'S’inscrire dès maintenant')}</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                              </a>
+                            ) : (
+                              <Link
+                                href={evt.formUrl}
+                                className="atr-btn-register-form"
+                              >
+                                <span>{evt.formLabel || t('events.register_btn', 'Inscription')}</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                              </Link>
+                            )
                           ) : (
                             <button
                               className="atr-btn-register-form"
                               onClick={() => openModal(evt)}
                             >
-                              <span>{evt.formLabel || 'Confirmer ma présence'}</span>
+                              <span>{evt.formLabel || t('events.reserve_btn', 'Confirmer ma présence')}</span>
                               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                             </button>
                           )}
 
                           {evt.publicationUrl && (
                             <Link href={evt.publicationUrl} className="atr-btn-publication">
-                              <span>{evt.publicationLabel || 'Programme & Détails →'}</span>
+                              <span>{evt.publicationLabel || (isRtl ? 'Programme & Détails ←' : 'Programme & Détails →')}</span>
                             </Link>
                           )}
                         </>
@@ -1375,7 +1491,7 @@ export default function EventsPage() {
                 <h2>{t('events.cta_title', "Participer aux échanges de l'ATR")}</h2>
                 <p>{t('events.cta_text', "Les événements et comités techniques permettent aux professionnels de partager leurs pratiques.")}</p>
               </div>
-              <Link href="/contact">{t('events.cta_btn', "Devenir membre →")}</Link>
+              <Link href="/contact">{t('events.cta_btn', isRtl ? "Devenir membre ←" : "Devenir membre →")}</Link>
             </div>
           </div>
         </section>
@@ -1384,13 +1500,13 @@ export default function EventsPage() {
       {isModalOpen && selectedEvent && (
         <div className="atr-events-modal" onClick={(event) => event.target === event.currentTarget && closeModal()}>
           <div className="atr-events-modal-card">
-            <button className="atr-events-modal-close" onClick={closeModal} aria-label="Fermer">×</button>
+            <button className="atr-events-modal-close" onClick={closeModal} aria-label={isRtl ? "إغلاق" : "Fermer"}>×</button>
             <span className="atr-event-badge" style={{ background: eventType(selectedEvent.title, t).color }}>{eventType(selectedEvent.title, t).label}</span>
             <h2>{selectedEvent.title}</h2>
             <p>{selectedEvent.date ? new Date(selectedEvent.date).toLocaleDateString(dateLocale, { day: '2-digit', month: 'long', year: 'numeric' }) : ''} · {selectedEvent.location}</p>
             <div style={{ background: '#F0F6FF', border: '1px solid rgba(27, 82, 153, 0.2)', padding: '11px 15px', borderRadius: '8px', fontSize: '13px', color: '#1E293B', marginBottom: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span>✉️</span>
-              <span>En validant ce formulaire, votre confirmation de présence sera directement envoyée par email au secrétariat de l'ATR à <strong>contact@atr-tunisie.org</strong>.</span>
+              <span>{t('events.modal_disclaimer', "En validant ce formulaire, votre confirmation de présence sera directement envoyée par email au secrétariat de l'ATR à contact@atr-tunisie.org.")}</span>
             </div>
             {message && <div className="atr-events-message">{message}</div>}
             {error && <div className="atr-events-error">{error}</div>}
@@ -1398,22 +1514,22 @@ export default function EventsPage() {
               <form className="atr-events-form" onSubmit={handleSubmit}>
                 <label>
                   {t('events.modal_name', "Nom complet *")}
-                  <input required type="text" value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} style={inputStyle} placeholder="Ex: Mohamed Ben Ali" />
+                  <input required type="text" value={formData.name} onChange={(event) => setFormData({ ...formData, name: event.target.value })} style={inputStyle} placeholder={t('events.modal_name_ph', 'Ex: Mohamed Ben Ali')} />
                 </label>
                 <label>
                   {t('events.modal_email', "Email professionnel ou personnel *")}
-                  <input required type="email" value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} style={inputStyle} placeholder="nom@exemple.com" />
+                  <input required type="email" value={formData.email} onChange={(event) => setFormData({ ...formData, email: event.target.value })} style={inputStyle} placeholder={t('events.modal_email_ph', 'nom@exemple.com')} />
                 </label>
                 <label>
                   {t('events.modal_phone', "Téléphone")}
-                  <input type="tel" value={formData.phone} onChange={(event) => setFormData({ ...formData, phone: event.target.value })} style={inputStyle} placeholder="+216 -- --- ---" />
+                  <input type="tel" value={formData.phone} onChange={(event) => setFormData({ ...formData, phone: event.target.value })} style={inputStyle} placeholder={t('events.modal_phone_ph', '+216 -- --- ---')} />
                 </label>
                 <label>
                   {t('events.modal_message', "Message / Remarques")}
-                  <textarea rows={3} value={formData.message} onChange={(event) => setFormData({ ...formData, message: event.target.value })} style={{ ...inputStyle, resize: 'vertical' }} placeholder="Précisez votre organisme ou toute remarque éventuelle…" />
+                  <textarea rows={3} value={formData.message} onChange={(event) => setFormData({ ...formData, message: event.target.value })} style={{ ...inputStyle, resize: 'vertical' }} placeholder={t('events.modal_message_ph', 'Précisez votre organisme ou toute remarque éventuelle…')} />
                 </label>
                 <button type="submit" disabled={formLoading}>
-                  {formLoading ? t('events.modal_sending', 'Envoi en cours…') : '✉️ Confirmer ma présence (Envoyer à contact@atr-tunisie.org)'}
+                  {formLoading ? t('events.modal_sending', 'Envoi en cours…') : t('events.modal_confirm_btn', '✉️ Confirmer ma présence (Envoyer à contact@atr-tunisie.org)')}
                 </button>
               </form>
             )}

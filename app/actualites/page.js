@@ -1,12 +1,18 @@
 'use client'
-import { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Layout from '@/components/layout/Layout';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function ActualitesPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
   const [activeCategory, setActiveCategory] = useState('all');
+
+  useEffect(() => {
+    const title = t('actualites.title', "Actualités");
+    document.title = `${title} | ATR - Association Tunisienne des Routes`;
+  }, [language, t]);
 
   const categories = {
     all: { label: t('actualites.filter_all', 'Tout'), color: '#1B5299' },
@@ -18,61 +24,53 @@ export default function ActualitesPage() {
 
   const news = [
     {
+      id: 4,
+      category: 'event',
+      date: t('actualites.item4_date', 'Décembre 2026'),
+      title: t('actualites.item4_title', "Concevoir et gérer les routes selon l'approche du système sûr"),
+      summary: t('actualites.item4_summary', 'L’ATR et PIARC préparent un séminaire consacré aux pratiques et aux enjeux contemporains de la route.'),
+      href: '/events/seminaire-piarc-2026',
+      linkLabel: t('actualites.see_seminar', 'Voir le séminaire'),
+    },
+    {
+      id: 5,
+      category: 'event',
+      date: t('actualites.item5_date', '24 Octobre 2026'),
+      title: t('actualites.item5_title', 'ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)'),
+      summary: t('actualites.item5_summary', 'L’Association Tunisienne des Routes (ATR) a le plaisir de convier ses membres à son Assemblée Générale à Startup Village, Tunis. Votre présence est importante pour la vie de l’ATR et pour continuer à développer nos actions au service du secteur routier en Tunisie.'),
+      href: '/events/assemblee-generale-2026',
+      linkLabel: t('events.register_btn', 'Inscription'),
+    },
+    {
       id: 1,
       category: 'event',
-      date: '03 Juin 2026',
-      title: 'SAVE THE DATE ! Journée Technique : Glissements de Terrain – Gestion des Risques et Stabilité des Ouvrages',
-      lead: "À l’ère d’intensification de l’effet des changements climatiques, des épisodes pluvieux extrêmes, de l’urbanisation croissante et de la complexité géotechnique de certains sites, les glissements de terrain représentent aujourd’hui un défi majeur pour la sécurité des populations et la résilience des infrastructures. Ces phénomènes engendrent des risques humains, techniques et économiques importants, nécessitant des approches innovantes en matière de prévention, de surveillance et de stabilisation des ouvrages.",
-      summary: "Pour mieux comprendre et analyser ces enjeux, l’Association Tunisienne des Routes (ATR) et l’Association Tunisienne de Mécanique des Sols (ATMS), en partenariat avec le Ministère de l’Équipement et de l’Habitat, collaborent pour organiser une Journée Technique exceptionnelle.",
-      location: {
-        name: 'El Mouradi Gammarth, Tunis',
-        url: 'https://maps.app.goo.gl/x3vxkK9zHRUUipYD7'
-      },
-      highlights: [
-        'Risques géotechniques et analyse cinématique',
-        'Techniques de stabilisation et confortement des versants',
-        'Monitoring et auscultation en temps réel',
-        'Solutions innovantes pour des infrastructures plus résilientes'
-      ],
-      fees: [
-        { label: 'Tarif réservé Adhérents (ATR) et (ATMS) à jour de cotisation 2026', price: '200 DT' },
-        { label: 'Tarif réservé aux professionnels', price: '250 DT' },
-        { label: 'Tarif Étudiants', price: '150 DT' }
-      ],
-      note: "Experts nationaux et internationaux, conférences techniques, études de cas, retours d’expérience et table ronde seront au rendez-vous. Réservez dès maintenant cette date dans vos agendas !",
+      date: t('actualites.item1_date', '03 Juin 2026'),
+      title: t('actualites.item1_title', 'SAVE THE DATE ! Journée Technique : Glissements de Terrain – Gestion des Risques et Stabilité des Ouvrages'),
+      summary: t('actualites.item1_summary', "À l’ère d’intensification de l’effet des changements climatiques, des épisodes pluvieux extrêmes, de l’urbanisation croissante et de la complexité géotechnique de certains sites, les glissements de terrain représentent aujourd’hui un défi majeur pour la sécurité des populations et la résilience des infrastructures. Ces phénomènes engendrent des risques humains, techniques et économiques importants, nécessitant des approches innovantes en matière de prévention, de surveillance et de stabilisation des ouvrages."),
       href: '/publications/glissements-de-terrain-resilience-infrastructures',
-      linkLabel: 'Consulter le compte-rendu & retour en images',
+      linkLabel: t('actualites.link_report', 'Consulter le compte-rendu & retour en images'),
     },
     {
       id: 2,
       category: 'event',
-      date: '30 avril 2026',
-      title: 'Rencontre ATR sur les enjeux HSS et la sécurité routière',
-      summary: 'À la Cité des Sciences de Tunis, les échanges ont porté sur la responsabilité humaine, la sécurité des chantiers et le concept de route qui pardonne.',
+      date: t('actualites.item2_date', '30 avril 2026'),
+      title: t('actualites.item2_title', 'Rencontre ATR sur les enjeux HSS et la sécurité routière'),
+      summary: t('actualites.item2_summary', 'À la Cité des Sciences de Tunis, les échanges ont porté sur la responsabilité humaine, la sécurité des chantiers et le concept de route qui pardonne.'),
       href: '/publications/securite-routiere-hss-chantiers',
       linkLabel: t('actualites.read_publication', 'Lire la publication'),
     },
     {
       id: 3,
       category: 'announcement',
-      date: '6 août 2025',
-      title: 'Le nouveau bureau de l’ATR reçu par le ministre de l’Équipement',
-      summary: 'Une audience officielle a réuni le nouveau bureau exécutif de l’ATR, le ministère de l\'Équipement et des représentants de PIARC.',
+      date: t('actualites.item3_date', '6 août 2025'),
+      title: t('actualites.item3_title', 'Le nouveau bureau de l’ATR reçu par le ministre de l’Équipement'),
+      summary: t('actualites.item3_summary', 'Une audience officielle a réuni le nouveau bureau exécutif de l’ATR, le ministère de l\'Équipement et des représentants de PIARC.'),
       href: '/publications/ministre-equipement-accueille-bureau-atr',
       linkLabel: t('actualites.read_report', 'Lire le compte-rendu'),
     },
-    {
-      id: 4,
-      category: 'event',
-      date: 'Décembre 2026',
-      title: 'Le Séminaire international des Comités Techniques PIARC est annoncé à Tunis',
-      summary: 'L’ATR et PIARC préparent un séminaire consacré aux pratiques et aux enjeux contemporains de la route.',
-      href: '/events/seminaire-piarc-2026',
-      linkLabel: t('actualites.see_seminar', 'Voir le séminaire'),
-    },
   ];
 
-  const visibleNews = useMemo(() => activeCategory === 'all' ? news : news.filter((item) => item.category === activeCategory), [activeCategory]);
+  const visibleNews = useMemo(() => activeCategory === 'all' ? news : news.filter((item) => item.category === activeCategory), [activeCategory, news]);
 
   const styles = `
     .atr-news-page{background:#F8FAFC;color:#17233D;padding-bottom:85px}
@@ -120,7 +118,35 @@ export default function ActualitesPage() {
     .atr-news-crosslink p{color:#E2E8F0;line-height:1.68;margin:0 0 18px;font-size:15.5px}
     .atr-news-crosslink a{display:inline-block;padding:12px 22px;border-radius:10px;background:#C07B1B;color:#FFFFFF;font-weight:700;font-size:14.5px;text-decoration:none;transition:all .3s ease}
     .atr-news-crosslink a:hover{background:#D98E28;transform:translateY(-2px)}
-    @media(max-width:767px){.atr-news-intro{padding:52px 0 35px}.atr-news-intro h1{font-size:32px}.atr-news-section{padding:48px 0 25px}.atr-news-timeline{padding-left:28px}.atr-news-timeline:before{left:5px}.atr-news-item:before{left:-26px}.atr-news-date{position:static;width:auto;text-align:left;margin-bottom:9px}.atr-news-entry{padding:20px}.atr-news-entry h2{font-size:18px}}
+
+    /* RTL Layout Overrides */
+    body[dir="rtl"] .atr-news-intro { text-align: right; }
+    body[dir="rtl"] .atr-news-section { text-align: right; }
+    body[dir="rtl"] .atr-news-timeline { padding-left: 0; padding-right: 150px; }
+    body[dir="rtl"] .atr-news-timeline:before { left: auto; right: 118px; }
+    body[dir="rtl"] .atr-news-item:before { left: auto; right: -37px; }
+    body[dir="rtl"] .atr-news-date { left: auto; right: -150px; text-align: left; }
+    body[dir="rtl"] .atr-news-entry { text-align: right; }
+    body[dir="rtl"] .atr-news-lead-box { border-left: none; border-right: 4px solid #1B5299; text-align: right; font-size: 15px; }
+    body[dir="rtl"] .atr-news-note { text-align: right; }
+    body[dir="rtl"] .atr-news-crosslink { text-align: right; }
+
+    @media(max-width:767px){
+      .atr-news-intro{padding:52px 0 35px}
+      .atr-news-intro h1{font-size:32px}
+      .atr-news-section{padding:48px 0 25px}
+      .atr-news-timeline{padding-left:28px}
+      .atr-news-timeline:before{left:5px}
+      .atr-news-item:before{left:-26px}
+      .atr-news-date{position:static;width:auto;text-align:left;margin-bottom:9px}
+      .atr-news-entry{padding:20px}
+      .atr-news-entry h2{font-size:18px}
+
+      body[dir="rtl"] .atr-news-timeline{padding-right:28px;padding-left:0}
+      body[dir="rtl"] .atr-news-timeline:before{right:5px;left:auto}
+      body[dir="rtl"] .atr-news-item:before{right:-26px;left:auto}
+      body[dir="rtl"] .atr-news-date{right:auto;text-align:right}
+    }
   `;
 
   return (
@@ -174,16 +200,16 @@ export default function ActualitesPage() {
                       {item.location && (
                         <div className="atr-news-location">
                           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C07B1B" strokeWidth="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                          <span>Lieu : </span>
+                          <span>{t('actualites.location_label', 'Lieu :')} </span>
                           <a href={item.location.url} target="_blank" rel="noopener noreferrer">
-                            <strong>{item.location.name}</strong> 📍 (Voir sur Google Maps ↗)
+                            <strong>{item.location.name}</strong> {t('actualites.gmaps_label', '📍 (Voir sur Google Maps ↗)')}
                           </a>
                         </div>
                       )}
 
                       {item.highlights && item.highlights.length > 0 && (
                         <div>
-                          <div className="atr-news-topics-title">Une occasion unique d'échanger autour de :</div>
+                          <div className="atr-news-topics-title">{t('actualites.topics_title', "Une occasion unique d'échanger autour de :")}</div>
                           <ul className="atr-news-topics-list">
                             {item.highlights.map((topic, idx) => (
                               <li key={idx}>
@@ -198,7 +224,7 @@ export default function ActualitesPage() {
                       {item.fees && item.fees.length > 0 && (
                         <div className="atr-news-fees-box">
                           <div className="atr-news-fees-title">
-                            💳 Frais d’inscription :
+                            {t('actualites.fees_title', '💳 Frais d’inscription :')}
                           </div>
                           <ul className="atr-news-fees-list">
                             {item.fees.map((fee, idx) => (
@@ -219,11 +245,11 @@ export default function ActualitesPage() {
                         item.fees ? (
                           <Link href={item.href} className="atr-news-link">
                             <span>{item.linkLabel}</span>
-                            <span aria-hidden="true">→</span>
+                            <span aria-hidden="true">{isRtl ? '←' : '→'}</span>
                           </Link>
                         ) : (
                           <Link href={item.href} className="atr-news-link-simple">
-                            {item.linkLabel} <span aria-hidden="true">→</span>
+                            {item.linkLabel} <span aria-hidden="true">{isRtl ? '←' : '→'}</span>
                           </Link>
                         )
                       )}
@@ -239,7 +265,9 @@ export default function ActualitesPage() {
               <p className="section_heading_title_small">{t('actualites.cta_kicker', "Pour aller plus loin")}</p>
               <h2>{t('actualites.cta_title', "Vous cherchez nos contenus détaillés ?")}</h2>
               <p>{t('actualites.cta_text', "Consultez les comptes-rendus de rencontres et les revues de presse vérifiés de l’ATR.")}</p>
-              <Link href="/publications">{t('actualites.cta_btn', "Consulter les Publications →")}</Link>
+              <Link href="/publications">
+                {t('actualites.cta_btn', "Consulter les Publications →")}
+              </Link>
             </div>
           </div>
         </section>

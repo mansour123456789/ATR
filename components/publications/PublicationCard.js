@@ -15,15 +15,16 @@ export default function PublicationCard({
   className = "",
   readMoreLabel,
 }) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
   const ctaLabel = readMoreLabel || t('publications.read_article', "Lire l'article complet");
 
   return (
     <article className={`publication-card ${className}`.trim()}>
-      <Link href={href} className="publication-card-media" aria-label={`Lire ${title}`} style={image && (image.includes('1000007112') || image.includes('logo')) ? { background: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center' } : {}}>
+      <Link href={href} className="publication-card-media" aria-label={`${ctaLabel} : ${title}`} style={image && (image.includes('1000007112') || image.includes('logo')) ? { background: '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center' } : {}}>
         <img
           src={image}
-          alt={alt}
+          alt={alt || title}
           style={image && (image.includes('1000007112') || image.includes('logo')) ? { objectFit: 'contain', padding: '36px', maxHeight: '360px', width: 'auto' } : {}}
         />
       </Link>
@@ -37,7 +38,7 @@ export default function PublicationCard({
         </div>
         <h2 className="publication-card-title">{title}</h2>
         <p className="publication-card-summary">{summary}</p>
-        <Link href={href} className="publication-card-cta">{ctaLabel} <span aria-hidden="true">→</span></Link>
+        <Link href={href} className="publication-card-cta">{ctaLabel} <span aria-hidden="true">{isRtl ? '←' : '→'}</span></Link>
       </div>
     </article>
   );

@@ -1,15 +1,25 @@
 'use client'
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import Layout from '@/components/layout/Layout';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function CommuniqueDetailPage() {
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
   const params = useParams();
   const refParam = params?.reference || '';
   const [copied, setCopied] = useState(false);
 
   const is01_2025 = refParam === '01-2025';
+
+  useEffect(() => {
+    const title = is01_2025
+      ? t('communiques.c01_title', "Audience officielle consacrée au nouveau bureau exécutif de l'Association Tunisienne des Routes")
+      : t('communiques.ag_title', "ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)");
+    document.title = `${title} | ATR - Association Tunisienne des Routes`;
+  }, [language, is01_2025, t]);
 
   const share = async () => {
     try {
@@ -22,7 +32,7 @@ export default function CommuniqueDetailPage() {
   };
 
   return (
-    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle="Communiqué de presse">
+    <Layout headerStyle={1} footerStyle={1} breadcrumbTitle={t('breadcrumb.press', "Communiqué de presse")}>
       <main className="atr-press-detail">
         <style dangerouslySetInnerHTML={{ __html: `
           .atr-press-detail {
@@ -205,6 +215,15 @@ export default function CommuniqueDetailPage() {
           .atr-press-back:hover {
             color: #C07B1B;
           }
+
+          /* RTL Layout Overrides */
+          body[dir="rtl"] .atr-press-sheet { text-align: right; }
+          body[dir="rtl"] .atr-press-agenda-block { border-left: none; border-right: 4px solid #1B5299; border-radius: 12px 0 0 12px; }
+          body[dir="rtl"] .atr-press-agenda-list li { padding-left: 0; padding-right: 20px; }
+          body[dir="rtl"] .atr-press-agenda-list li::before { left: auto; right: 2px; }
+          body[dir="rtl"] .atr-press-event-box-row { justify-content: flex-start; }
+          body[dir="rtl"] .atr-press-tools { justify-content: flex-start; }
+
           @media print {
             .atr-press-detail { padding: 0; background: #FFFFFF; }
             .atr-press-sheet { border: 0; box-shadow: none; padding: 25px; max-width: none; }
@@ -221,69 +240,74 @@ export default function CommuniqueDetailPage() {
             {is01_2025 ? (
               <>
                 <header>
-                  <span className="mark">Communiqué n°01-2025</span>
-                  <time>6 août 2025</time>
-                  <h1>Audience officielle consacrée au nouveau bureau exécutif de l'Association Tunisienne des Routes</h1>
+                  <span className="mark">{t('communiques.c01_mark', "Communiqué n°01-2025")}</span>
+                  <time>{t('communiques.c01_date', "6 août 2025")}</time>
+                  <h1>{t('communiques.c01_title', "Audience officielle consacrée au nouveau bureau exécutif de l'Association Tunisienne des Routes")}</h1>
                 </header>
-                <p>L'Association Tunisienne des Routes informe qu'une audience officielle consacrée à son nouveau bureau exécutif s'est tenue auprès de M. Salah Zouari, ministre de l'Équipement et de l'Habitat.</p>
-                <p>La rencontre s'est déroulée en présence du premier délégué de l'Association mondiale de la Route (PIARC) et de sa conseillère technique. Elle a porté sur le rôle de l'ATR dans l'organisation de forums nationaux et internationaux consacrés aux infrastructures et aux transports.</p>
-                <p>Cette audience a également permis de présenter les orientations de travail du nouveau bureau exécutif et de rappeler l'importance de la coopération entre l'ATR, le ministère et les réseaux professionnels et scientifiques de la route.</p>
-                <p className="atr-press-signature">Mme Lilia Sifaoui<br /><span>Présidente de l'Association Tunisienne des Routes</span></p>
+                <p>{t('communiques.c01_p1', "L'Association Tunisienne des Routes informe qu'une audience officielle consacrée à son nouveau bureau exécutif s'est tenue auprès de M. Salah Zouari, ministre de l'Équipement et de l'Habitat.")}</p>
+                <p>{t('communiques.c01_p2', "La rencontre s'est déroulée en présence du premier délégué de l'Association mondiale de la Route (PIARC) et de sa conseillère technique. Elle a porté sur le rôle de l'ATR dans l'organisation de forums nationaux et internationaux consacrés aux infrastructures et aux transports.")}</p>
+                <p>{t('communiques.c01_p3', "Cette audience a également permis de présenter les orientations de travail du nouveau bureau exécutif et de rappeler l'importance de la coopération entre l'ATR, le ministère et les réseaux professionnels et scientifiques de la route.")}</p>
+                <p className="atr-press-signature">
+                  {t('communiques.c01_sign_name', "Mme Lilia Sifaoui")}<br />
+                  <span>{t('communiques.c01_sign_role', "Présidente de l'Association Tunisienne des Routes")}</span>
+                </p>
               </>
             ) : (
               <>
                 <header>
-                  <span className="mark">Communiqué n°02-2026 · Convocation officielle</span>
-                  <time>Samedi 24 octobre 2026</time>
-                  <h1>ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)</h1>
+                  <span className="mark">{t('communiques.ag_subtitle', "Communiqué n°02-2026 · Destiné aux membres de l'ATR")}</span>
+                  <time>{t('communiques.ag_date_val', "Samedi 24 octobre 2026")}</time>
+                  <h1>{t('communiques.ag_title', "ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)")}</h1>
                 </header>
 
-                <p><strong>Chers membres,</strong></p>
-                <p>L’Association Tunisienne des Routes (ATR) a le plaisir de vous convier à son Assemblée Générale, qui se tiendra :</p>
+                <p><strong>{t('communiques.ag_dear_members', "Chers membres,")}</strong></p>
+                <p>{t('communiques.ag_invite', "L’Association Tunisienne des Routes (ATR) a le plaisir de vous convier à son Assemblée Générale, qui se tiendra :")}</p>
 
                 <div className="atr-press-event-box">
                   <div className="atr-press-event-box-row">
-                    <span>📅 <strong>Date :</strong> Samedi 24 octobre 2026</span>
+                    <span>📅 <strong>{t('communiques.label_date', "Date")} :</strong> {t('communiques.ag_date_val', "Samedi 24 octobre 2026")}</span>
                   </div>
                   <div className="atr-press-event-box-row">
-                    <span>⏰ <strong>Horaire :</strong> 9h00</span>
+                    <span>⏰ <strong>{t('communiques.label_time', "Horaire")} :</strong> {t('communiques.ag_time_val', "9h00")}</span>
                   </div>
                   <div className="atr-press-event-box-row">
-                    <span>📍 <strong>Lieu :</strong> Startup Village — <a href="https://maps.app.goo.gl/3Vbb8kya3VsCa2NT8?g_st=ac" target="_blank" rel="noopener noreferrer">Localisation Google Maps ↗</a></span>
+                    <span>📍 <strong>{t('communiques.label_location', "Lieu")} :</strong> {t('communiques.ag_loc_val', "Startup Village")} — <a href="https://maps.app.goo.gl/3Vbb8kya3VsCa2NT8?g_st=ac" target="_blank" rel="noopener noreferrer">{t('communiques.maps_link', "📍 Voir sur Google Maps ↗")}</a></span>
                   </div>
                 </div>
 
                 <div className="atr-press-agenda-block">
-                  <h3>À l’ordre du jour :</h3>
+                  <h3>{t('communiques.ag_agenda_title', "À l’ordre du jour :")}</h3>
                   <ul className="atr-press-agenda-list">
-                    <li>Présentation du rapport moral ;</li>
-                    <li>Présentation du rapport financier ;</li>
-                    <li>Présentation des activités réalisées par l’ATR ;</li>
-                    <li>Échanges sur les activités et les perspectives de l’association ;</li>
-                    <li>Présentation des projets et orientations à venir ;</li>
-                    <li>Divers.</li>
+                    <li>{t('communiques.ag_agenda_1', "Présentation du rapport moral ;")}</li>
+                    <li>{t('communiques.ag_agenda_2', "Présentation du rapport financier ;")}</li>
+                    <li>{t('communiques.ag_agenda_3', "Présentation des activités réalisées par l’ATR ;")}</li>
+                    <li>{t('communiques.ag_agenda_4', "Échanges sur les activités et les perspectives de l’association ;")}</li>
+                    <li>{t('communiques.ag_agenda_5', "Présentation des projets et orientations à venir ;")}</li>
+                    <li>{t('communiques.ag_agenda_6', "Divers.")}</li>
                   </ul>
                 </div>
 
                 <div className="atr-press-payment-card">
-                  💳 <strong>Cotisation :</strong> La cotisation 2026 pourra être réglée par virement bancaire <strong>N° 086030001520090580</strong> ou par chèque.
+                  <strong>{t('communiques.ag_payment_prefix', "💳 Cotisation 2026 :")}</strong> {t('communiques.ag_payment_text', "La cotisation 2026 pourra être réglée par virement bancaire N° 08603000152009058019 ou par chèque.")}
                 </div>
 
-                <p>Votre présence est importante pour la vie de l’ATR et pour continuer à développer ensemble nos actions au service du secteur routier en Tunisie.</p>
-                <p style={{ fontWeight: '700', color: '#102B54', fontSize: '16px' }}><em>Nous comptons sur votre présence !</em></p>
+                <p>{t('communiques.ag_closing_1', "Votre présence est importante pour la vie de l’ATR et pour continuer à développer ensemble nos actions au service du secteur routier en Tunisie.")}</p>
+                <p style={{ fontWeight: '700', color: '#102B54', fontSize: '16px' }}><em>{t('communiques.ag_closing_2', "Nous comptons sur votre présence !")}</em></p>
 
                 <p className="atr-press-signature">
-                  Le Bureau Exécutif<br />
-                  <span>Association Tunisienne des Routes (ATR)</span>
+                  {t('communiques.c02_sign_name', "Le Bureau Exécutif")}<br />
+                  <span>{t('communiques.c02_sign_org', "Association Tunisienne des Routes (ATR)")}</span>
                 </p>
               </>
             )}
 
             <div className="atr-press-tools">
-              <button className="secondary" onClick={share}>{copied ? 'Lien copié !' : 'Partager le communiqué'}</button>
+              <button className="secondary" onClick={share}>{copied ? t('communiques.btn_copied', 'Lien copié !') : t('communiques.btn_share', 'Partager le communiqué')}</button>
             </div>
-            <p><Link href="mailto:contact@atr-tunisie.org">Contact secrétariat : contact@atr-tunisie.org</Link></p>
-            <Link href="/communiques" className="atr-press-back">← Retour à la liste des communiqués</Link>
+            <p><Link href="mailto:contact@atr-tunisie.org">contact@atr-tunisie.org</Link></p>
+            <Link href="/communiques" className="atr-press-back">
+              <span aria-hidden="true">{isRtl ? '→' : '←'}</span> {t('communiques.btn_back', "← Retour à la liste des communiqués").replace(/[←→]/g, '').trim()}
+            </Link>
           </article>
         </div>
       </main>

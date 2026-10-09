@@ -24,30 +24,30 @@ async function main() {
   const event1 = await prisma.event.upsert({
     where: { id: 1 },
     update: {
-      title: 'Séminaire International des Comités Techniques PIARC Tunis 2026',
-      description: 'Séminaire international organisé par l’ATR et PIARC sous le thème : « Les chaussées routières et la gestion des actifs face aux défis climatiques et à la transition écologique ». Rassemblant plus de 300 experts mondiaux.',
+      title: "Concevoir et gérer les routes selon l'approche du système sûr",
+      description: 'Séminaire international organisé par l’ATR et PIARC sous le thème : « La sécurité routière, la conception géométrique et l\'approche système sûr ». Rassemblant plus de 300 experts mondiaux.',
       location: 'Tunis, Tunisie',
       date: new Date('2026-12-09T09:00:00'),
       capacity: 350,
       imageUrl: '/event9desember.jpg',
       isActive: true,
-      quote: 'Les chaussées routières et la gestion des actifs face aux défis climatiques et à la transition écologique.',
-      topics: 'Matériaux bas carbone, Résilience climatique, Économie circulaire, Gestion patrimoniale',
+      quote: 'La sécurité routière, la conception géométrique et l\'approche système sûr.',
+      topics: 'Sécurité routière, Conception géométrique, Approche système sûr, Audit de sécurité',
       partners: 'ATR & PIARC (Association Mondiale de la Route)',
-      tags: '#PIARC #ATR2026 #Chaussées #Climat #TransitionÉcologique',
+      tags: '#PIARC #ATR2026 #SécuritéRoutière #SystèmeSûr #ConceptionGéométrique',
     },
     create: {
-      title: 'Séminaire International des Comités Techniques PIARC Tunis 2026',
-      description: 'Séminaire international organisé par l’ATR et PIARC sous le thème : « Les chaussées routières et la gestion des actifs face aux défis climatiques et à la transition écologique ». Rassemblant plus de 300 experts mondiaux.',
+      title: "Concevoir et gérer les routes selon l'approche du système sûr",
+      description: 'Séminaire international organisé par l’ATR et PIARC sous le thème : « La sécurité routière, la conception géométrique et l\'approche système sûr ». Rassemblant plus de 300 experts mondiaux.',
       location: 'Tunis, Tunisie',
       date: new Date('2026-12-09T09:00:00'),
       capacity: 350,
       imageUrl: '/event9desember.jpg',
       isActive: true,
-      quote: 'Les chaussées routières et la gestion des actifs face aux défis climatiques et à la transition écologique.',
-      topics: 'Matériaux bas carbone, Résilience climatique, Économie circulaire, Gestion patrimoniale',
+      quote: 'La sécurité routière, la conception géométrique et l\'approche système sûr.',
+      topics: 'Sécurité routière, Conception géométrique, Approche système sûr, Audit de sécurité',
       partners: 'ATR & PIARC (Association Mondiale de la Route)',
-      tags: '#PIARC #ATR2026 #Chaussées #Climat #TransitionÉcologique',
+      tags: '#PIARC #ATR2026 #SécuritéRoutière #SystèmeSûr #ConceptionGéométrique',
     },
   });
 
@@ -127,7 +127,38 @@ async function main() {
     },
   });
 
-  console.log('✅ Events created:', event1.title, ',', event2.title, ',', event3.title, ',', event4.title);
+  const event5 = await prisma.event.upsert({
+    where: { id: 5 },
+    update: {
+      title: 'ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)',
+      description: 'L’Association Tunisienne des Routes (ATR) a le plaisir de vous convier à son Assemblée Générale. Votre présence est importante pour la vie de l’ATR et pour continuer à développer ensemble nos actions au service du secteur routier en Tunisie.',
+      location: 'Startup Village, Tunis',
+      date: new Date('2026-10-24T09:00:00'),
+      capacity: 120,
+      imageUrl: '/1000007112.png',
+      isActive: true,
+      quote: 'Construire ensemble l’avenir de l’infrastructure routière tunisienne.',
+      topics: 'Rapport moral, Rapport financier, Activités ATR, Perspectives, Projets à venir',
+      partners: 'ATR (Association Tunisienne des Routes)',
+      tags: '#ATR #AssembléeGénérale #Tunis #Routes',
+    },
+    create: {
+      id: 5,
+      title: 'ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)',
+      description: 'L’Association Tunisienne des Routes (ATR) a le plaisir de vous convier à son Assemblée Générale. Votre présence est importante pour la vie de l’ATR et pour continuer à développer ensemble nos actions au service du secteur routier en Tunisie.',
+      location: 'Startup Village, Tunis',
+      date: new Date('2026-10-24T09:00:00'),
+      capacity: 120,
+      imageUrl: '/1000007112.png',
+      isActive: true,
+      quote: 'Construire ensemble l’avenir de l’infrastructure routière tunisienne.',
+      topics: 'Rapport moral, Rapport financier, Activités ATR, Perspectives, Projets à venir',
+      partners: 'ATR (Association Tunisienne des Routes)',
+      tags: '#ATR #AssembléeGénérale #Tunis #Routes',
+    },
+  });
+
+  console.log('✅ Events created:', event1.title, ',', event2.title, ',', event3.title, ',', event4.title, ',', event5.title);
   console.log('\n📋 Admin credentials:');
   console.log('   Email: admin@atr.org.tn');
   console.log('   Password: admin123');

@@ -4,13 +4,12 @@ import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 
 const getInitials = (name) => {
-    return name
-        .split(' ')
-        .map(n => n[0])
-        .filter(Boolean)
-        .slice(0, 2)
-        .join('')
-        .toUpperCase();
+    if (!name) return '';
+    const clean = name.replace(/^(M\.|Mme|Mr\.|Mrs\.|السيد|السيدة)\s+/i, '').trim();
+    const parts = clean.split(/\s+/).filter(Boolean);
+    if (parts.length === 0) return '';
+    if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+    return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 };
 
 export default function Team() {
@@ -18,71 +17,125 @@ export default function Team() {
 
     const technicalCommittees = [
         {
-            code: "Comité technique 1.1",
-            topic: "Performance des administrations de transport",
-            members: ["Slah Zouari"]
+            codeKey: "team.tc_1_1",
+            codeDefault: "Comité technique 1.1",
+            topicKey: "team.tc_topic_transport_perf",
+            topicDefault: "Performance des administrations de transport",
+            members: [
+                { nameKey: "team.m_slah_zouari", defaultName: "Slah Zouari" }
+            ]
         },
         {
-            code: "Comité technique 1.2",
-            topic: "Contribution des routes au développement économique et social",
-            members: ["Imen Ben Hassine"]
+            codeKey: "team.tc_1_2",
+            codeDefault: "Comité technique 1.2",
+            topicKey: "team.tc_topic_economic_social",
+            topicDefault: "Contribution des routes au développement économique et social",
+            members: [
+                { nameKey: "team.m_imen_ben_hassine", defaultName: "Imen Ben Hassine" }
+            ]
         },
         {
-            code: "Comité technique 1.4",
-            topic: "Planification de la résilience des réseaux routiers - Changement climatique et autres aléas",
-            members: ["Walid Hmama"]
+            codeKey: "team.tc_1_4",
+            codeDefault: "Comité technique 1.4",
+            topicKey: "team.tc_topic_resilience",
+            topicDefault: "Planification de la résilience des réseaux routiers - Changement climatique et autres aléas",
+            members: [
+                { nameKey: "team.m_walid_hmama", defaultName: "Walid Hmama" }
+            ]
         },
         {
-            code: "Comité technique 1.1",
-            topic: "Performance des administrations de transport",
-            members: ["Saloua Trik", "Slim Dridi"]
+            codeKey: "team.tc_1_1",
+            codeDefault: "Comité technique 1.1",
+            topicKey: "team.tc_topic_transport_perf",
+            topicDefault: "Performance des administrations de transport",
+            members: [
+                { nameKey: "team.m_saloua_trik", defaultName: "Saloua Trik" },
+                { nameKey: "team.m_slim_dridi", defaultName: "Slim Dridi" }
+            ]
         },
         {
-            code: "Comité technique 1.2",
-            topic: "Contribution des routes au développement économique et social",
-            members: ["Imen Makhlouf", "Nejla HARIGA TLATLI"]
+            codeKey: "team.tc_1_2",
+            codeDefault: "Comité technique 1.2",
+            topicKey: "team.tc_topic_economic_social",
+            topicDefault: "Contribution des routes au développement économique et social",
+            members: [
+                { nameKey: "team.m_imen_makhlouf", defaultName: "Imen Makhlouf" },
+                { nameKey: "team.m_nejla_hariga", defaultName: "Nejla HARIGA TLATLI" }
+            ]
         },
         {
-            code: "Comité technique 1.4",
-            topic: "Planification de la résilience des réseaux routiers - Changement climatique et autres aléas",
-            members: ["Kaouther Machta", "Mohamed Zmerli"]
+            codeKey: "team.tc_1_4",
+            codeDefault: "Comité technique 1.4",
+            topicKey: "team.tc_topic_resilience",
+            topicDefault: "Planification de la résilience des réseaux routiers - Changement climatique et autres aléas",
+            members: [
+                { nameKey: "team.m_kaouther_machta", defaultName: "Kaouther Machta" },
+                { nameKey: "team.m_mohamed_zmerli", defaultName: "Mohamed Zmerli" }
+            ]
         },
         {
-            code: "Comité technique 3.1",
-            topic: "Sécurité routière",
-            members: ["Ahmed Kantini", "Ben Hfaiedh Saiefeddine"]
+            codeKey: "team.tc_3_1",
+            codeDefault: "Comité technique 3.1",
+            topicKey: "team.tc_topic_safety",
+            topicDefault: "Sécurité routière",
+            members: [
+                { nameKey: "team.m_ahmed_kantini", defaultName: "Ahmed Kantini" },
+                { nameKey: "team.m_saifeddine_ben_hfaiedh", defaultName: "Saifeddine Ben Hfaiedh" }
+            ]
         },
         {
-            code: "Comité technique 3.4",
-            topic: "Infrastructures et transport routiers plus durables pour l'environnement",
-            members: ["Eya Souab"]
+            codeKey: "team.tc_3_4",
+            codeDefault: "Comité technique 3.4",
+            topicKey: "team.tc_topic_sustainable",
+            topicDefault: "Infrastructures et transport routiers plus durables pour l'environnement",
+            members: [
+                { nameKey: "team.m_eya_souab", defaultName: "Eya Souab" }
+            ]
         },
         {
-            code: "Comité technique 4.1",
-            topic: "Chaussée",
-            members: ["Aida Bergaoui"]
+            codeKey: "team.tc_4_1",
+            codeDefault: "Comité technique 4.1",
+            topicKey: "team.tc_topic_pavement",
+            topicDefault: "Chaussée",
+            members: [
+                { nameKey: "team.m_aida_bergaoui", defaultName: "Aida Bergaoui" }
+            ]
         },
         {
-            code: "Comité technique 4.2",
-            topic: "Ponts",
-            members: ["Lilia Sifaoui"]
+            codeKey: "team.tc_4_2",
+            codeDefault: "Comité technique 4.2",
+            topicKey: "team.tc_topic_bridges",
+            topicDefault: "Ponts",
+            members: [
+                { nameKey: "team.m_lilia_sifaoui", defaultName: "Lilia Sifaoui" }
+            ]
         },
         {
-            code: "Comité technique 4.3",
-            topic: "Terrassements",
-            members: ["Kamel Zaghouani", "Khaoula Bahri", "Sabrine BOUBAKER"]
+            codeKey: "team.tc_4_3",
+            codeDefault: "Comité technique 4.3",
+            topicKey: "team.tc_topic_earthworks",
+            topicDefault: "Terrassements",
+            members: [
+                { nameKey: "team.m_kamel_zaghouani", defaultName: "Kamel Zaghouani" },
+                { nameKey: "team.m_khaoula_bahri", defaultName: "Khaoula Bahri" },
+                { nameKey: "team.m_sabrine_boubaker", defaultName: "Sabrine BOUBAKER" }
+            ]
         },
         {
-            code: "Groupe d'étude 4.1",
-            topic: "Normes de conception des routes",
-            members: ["Tasnim Kessentin"]
+            codeKey: "team.ge_4_1",
+            codeDefault: "Groupe d'étude 4.1",
+            topicKey: "team.tc_topic_design_standards",
+            topicDefault: "Normes de conception des routes",
+            members: [
+                { nameKey: "team.m_tasnim_kessentini", defaultName: "Tasnim Kessentin" }
+            ]
         }
     ];
 
     return (
         <>
         <section className="section-padding">
-            <div className="team-1-pattern d-none d-lg-block"><img src="/assets/images/shape/shape-4.png" alt="" /></div>
+            <div className="team-1-pattern d-none d-lg-block"><img src="/assets/images/shape/shape-4.png" alt="" width="300" height="300" /></div>
             <div className="auto-container">
                 <div className="section_heading text-center mb_50">
                     <span className="section_heading_title_small">{t('team.kicker', "Gouvernance & Experts")}</span>
@@ -94,7 +147,7 @@ export default function Team() {
                         <div className="team-1-block">
                             <div className="team-1-image">
                                 <div className="team-1-image-wrap" style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                                    <img src="/membre/lilia-sifaoui.jpg" alt="Mme Lilia Sifaoui" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                    <img src="/membre/lilia-sifaoui.jpg" alt={t('team.member1_name', "Mme Lilia Sifaoui")} width="300" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                                 </div>
                                 <div className="team-1-share-icon-area">
                                     <ul className="team-1-social-icon">
@@ -116,7 +169,7 @@ export default function Team() {
                         <div className="team-1-block">
                             <div className="team-1-image">
                                 <div className="team-1-image-wrap" style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                                    <img src="/membre/sami-montassar.jpg" alt="M. Sami Montassar" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                    <img src="/membre/sami-montassar.jpg" alt={t('team.member2_name', "M. Sami Montassar")} width="300" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                                 </div>
                                 <div className="team-1-share-icon-area">
                                     <ul className="team-1-social-icon">
@@ -138,29 +191,29 @@ export default function Team() {
                         <div className="team-1-block">
                             <div className="team-1-image">
                                 <div className="team-1-image-wrap" style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                                    <img src="/membre/walid-torcheni.jpg" alt="M. Walid Torcheni" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                    <img src="/membre/walid.jpeg" alt={t('team.member3_name', "M. Walid Torchani")} width="300" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                                 </div>
                                 <div className="team-1-share-icon-area">
                                     <ul className="team-1-social-icon">
-                                        <li><Link href="" className="hvr-zoom-1-primary hvr-zoom-1"><i className="fab fa-linkedin-in"></i></Link></li>
+                                        <li><a href="https://www.linkedin.com/in/walid-torchani-11327b6b" target="_blank" rel="noopener noreferrer" className="hvr-zoom-1-primary hvr-zoom-1" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a></li>
                                     </ul>
                                     <div className="team-1-share-icon"><i className="icon-23"></i></div>
                                 </div>
                             </div>
                             <div className="team-1-content">
-                                <h4 className="team-1-title">{t('team.member3_name', "M. Walid Torcheni")}</h4>
+                                <h4 className="team-1-title">{t('team.member3_name', "M. Walid Torchani")}</h4>
                                 <p className="team-1-designaiton c_primary mb_10">{t('team.member3_role', "Secrétaire Général")}</p>
                                 <p>{t('team.member3_detail', "Cadre supérieur au Ministère de l'Équipement .")}</p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Membre 3 : Membre de l'ATR */}
+                    {/* Membre 4 : Membre de l'ATR */}
                     <div className="col-lg-3 col-md-6 col-sm-12 mb_30">
                         <div className="team-1-block">
                             <div className="team-1-image">                              
                                 <div className="team-1-image-wrap" style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                                    <img src="/membre/imen-ben-hassine.jpg" alt="Mme Imen Ben Hassine" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                    <img src="/membre/imen-ben-hassine.jpg" alt={t('team.member4_name', "Mme Imen Ben Hassine")} width="300" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                                 </div>
                                 <div className="team-1-share-icon-area">
                                     <ul className="team-1-social-icon">
@@ -177,12 +230,12 @@ export default function Team() {
                         </div>
                     </div>
 
-                    {/* Membre 4 : Trésorière Adjointe */}
+                    {/* Membre 5 : Trésorière Adjointe */}
                     <div className="col-lg-3 col-md-6 col-sm-12 mb_30">
                         <div className="team-1-block">
                             <div className="team-1-image">
                                 <div className="team-1-image-wrap" style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                                    <img src="/membre/zina-dekhil.jpg" alt="Mme Zina Dekhil" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                    <img src="/membre/zina-dekhil.jpg" alt={t('team.member5_name', "Mme Zina Dekhil")} width="300" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                                 </div>
                                 <div className="team-1-share-icon-area">
                                     <ul className="team-1-social-icon">
@@ -199,34 +252,34 @@ export default function Team() {
                         </div>
                     </div>
 
-                    {/* Membre 5 : Expert Sécurité Routière */}
+                    {/* Membre 6 : Trésorier */}
                     <div className="col-lg-3 col-md-6 col-sm-12 mb_30">
                         <div className="team-1-block">
                             <div className="team-1-image">                              
                                 <div className="team-1-image-wrap" style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                                    <img src="/membre/saifeddine-ben-hfaiedh.jpg" alt="M. Saifeddine Ben Hfaiedh" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                    <img src="/membre/saifeddine-ben-hfaiedh.jpg" alt={t('team.member6_name', "M. Saifeddine Ben Hfaiedh")} width="300" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                                 </div>
                                 <div className="team-1-share-icon-area">
                                     <ul className="team-1-social-icon">
-                                        <li><Link href="" className="hvr-zoom-1-primary hvr-zoom-1"><i className="fab fa-linkedin-in"></i></Link></li>
+                                        <li><a href="https://www.linkedin.com/in/saiefeddine-ben-hfaiedh-973ba213/" target="_blank" rel="noopener noreferrer" className="hvr-zoom-1-primary hvr-zoom-1" aria-label="LinkedIn"><i className="fab fa-linkedin-in"></i></a></li>
                                     </ul>
                                     <div className="team-1-share-icon"><i className="icon-23"></i></div>
                                 </div>
                             </div>
                             <div className="team-1-content">
                                 <h4 className="team-1-title">{t('team.member6_name', "M. Saifeddine Ben Hfaiedh")}</h4>
-                                <p className="team-1-designaiton c_primary mb_10">{t('team.member6_role', "Expert Sécurité Routière")}</p>
+                                <p className="team-1-designaiton c_primary mb_10">{t('team.member6_role', "Trésorier")}</p>
                                 <p>{t('team.member6_detail', "DGA Best Conseils")}</p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Membre 6 : Membre de l'ATR */}
+                    {/* Membre 7 : Membre de l'ATR */}
                     <div className="col-lg-3 col-md-6 col-sm-12 mb_30">
                         <div className="team-1-block">
                             <div className="team-1-image">
                                 <div className="team-1-image-wrap" style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                                    <img src="/membre/eya-swab.jpg" alt="Mme Eya Souab" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                    <img src="/membre/eya-swab.jpg" alt={t('team.member7_name', "Mme Eya Souab")} width="300" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                                 </div>
                                 <div className="team-1-share-icon-area">
                                     <ul className="team-1-social-icon">
@@ -243,12 +296,12 @@ export default function Team() {
                         </div>
                     </div>
 
-                    {/* Membre 7 : Secrétaire Général Adjoint */}
+                    {/* Membre 8 : Secrétaire Général Adjoint */}
                     <div className="col-lg-3 col-md-6 col-sm-12 mb_30">
                         <div className="team-1-block">
                             <div className="team-1-image">
                                 <div className="team-1-image-wrap" style={{ aspectRatio: '1/1', overflow: 'hidden' }}>
-                                    <img src="/membre/izmzerli.jpg" alt="M. Mohamed Zmerli" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
+                                    <img src="/membre/izmzerli.jpg" alt={t('team.member8_name', "M. Mohamed Zmerli")} width="300" height="300" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center' }} />
                                 </div>
                                 <div className="team-1-share-icon-area">
                                     <ul className="team-1-social-icon">
@@ -289,26 +342,33 @@ export default function Team() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {technicalCommittees.map((item, index) => (
-                                    <tr key={index}>
-                                        <td>
-                                            <span className="atr-team-table-badge">{item.code}</span>
-                                            <h5 className="atr-team-table-topic">{item.topic}</h5>
-                                        </td>
-                                        <td>
-                                            <div className="atr-team-table-members">
-                                                {item.members.map((member, mIdx) => (
-                                                    <span className="atr-team-member-pill" key={mIdx}>
-                                                        <span className="atr-team-member-avatar" aria-hidden="true">
-                                                            {getInitials(member)}
-                                                        </span>
-                                                        <span>{member}</span>
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                ))}
+                                {technicalCommittees.map((item, index) => {
+                                    const code = t(item.codeKey, item.codeDefault);
+                                    const topic = t(item.topicKey, item.topicDefault);
+                                    return (
+                                        <tr key={index}>
+                                            <td>
+                                                <span className="atr-team-table-badge">{code}</span>
+                                                <h5 className="atr-team-table-topic">{topic}</h5>
+                                            </td>
+                                            <td>
+                                                <div className="atr-team-table-members">
+                                                    {item.members.map((member, mIdx) => {
+                                                        const memberName = t(member.nameKey, member.defaultName);
+                                                        return (
+                                                            <span className="atr-team-member-pill" key={mIdx}>
+                                                                <span className="atr-team-member-avatar" aria-hidden="true">
+                                                                    {getInitials(memberName)}
+                                                                </span>
+                                                                <span>{memberName}</span>
+                                                            </span>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     </div>

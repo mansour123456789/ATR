@@ -128,7 +128,7 @@ export default function ContactPage() {
             <article className="atr-contact-info-card">
               <div className="atr-contact-icon"><ContactIcon type="phone" /></div>
               <h2>{t('contact.phone_title', "Téléphone")}</h2>
-              <p>{t('contact.phone_sub', "Secrétariat")}<br /><a href="tel:+21671234567">+216 71 234 567</a></p>
+              <p>{t('contact.phone_sub', "Secrétariat")}<br /><a href="tel:+21670630624">+216 70 630 624</a></p>
               <small>{t('contact.phone_note', "Du lundi au vendredi")}</small>
             </article>
 
@@ -141,7 +141,7 @@ export default function ContactPage() {
             <article className="atr-contact-info-card">
               <div className="atr-contact-icon"><ContactIcon type="location" /></div>
               <h2>{t('contact.address_title', "Adresse")}</h2>
-              <p style={{ whiteSpace: 'pre-line' }}>{t('contact.address_text', "Bureau 102, Imm. El Wifak,\nCentre Urbain Nord, 1082 Tunis")}</p>
+              <p style={{ whiteSpace: 'pre-line' }}>{t('contact.address_text', "App n°2, 2ème étage, bloc « B » du complexe immobilier Espace Tunis Montplaisir,\nrue 8002, Tunis 1002")}</p>
               <small>{t('contact.address_note', "Accueil sur rendez-vous")}</small>
             </article>
           </section>
@@ -219,10 +219,10 @@ export default function ContactPage() {
           </section>
 
           <section className="atr-contact-map">
-            <iframe src="https://www.google.com/maps?q=Bureau%20102%2C%20Imm.%20El%20Wifak%2C%20Centre%20Urbain%20Nord%2C%20Tunis&output=embed" title={t('contact.map_title', "Localisation du Bureau 102 de l'ATR à Tunis")} width="100%" height="450" style={{ border: 0, width: '100%', height: '450px' }} loading="lazy" />
+            <iframe src="https://www.google.com/maps?q=Complexe%20Immobilier%20Espace%20Tunis%20Montplaisir%2C%20rue%208002%2C%20Tunis%201002&output=embed" title={t('contact.map_title', "Localisation du siège de l'ATR à Tunis Montplaisir")} width="100%" height="450" style={{ border: 0, width: '100%', height: '450px' }} loading="lazy" />
             <div className="atr-contact-map-footer">
-              <p>Bureau 102, Imm. El Wifak, Centre Urbain Nord, 1082 Tunis</p>
-              <a href="https://www.google.com/maps/search/?api=1&query=Bureau%20102%2C%20Imm.%20El%20Wifak%2C%20Centre%20Urbain%20Nord%2C%20Tunis" target="_blank" rel="noreferrer">
+              <p>{t('footer.address', "App n°2, 2ème étage, bloc « B » du complexe immobilier Espace Tunis Montplaisir, rue 8002, Tunis 1002")}</p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Complexe%20Immobilier%20Espace%20Tunis%20Montplaisir%2C%20rue%208002%2C%20Tunis%201002" target="_blank" rel="noreferrer">
                 {t('contact.map_open', "Ouvrir dans Google Maps ↗")}
               </a>
             </div>

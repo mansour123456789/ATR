@@ -7,6 +7,7 @@ export default async function sitemap() {
     { url: `${baseUrl}/about-us`, lastModified, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${baseUrl}/events`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/events/seminaire-piarc-2026`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${baseUrl}/events/assemblee-generale-2026`, lastModified, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/domaines`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/publications`, lastModified, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${baseUrl}/publications/glissements-de-terrain-resilience-infrastructures`, lastModified, changeFrequency: 'monthly', priority: 0.8 },

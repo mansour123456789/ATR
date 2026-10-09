@@ -1,10 +1,17 @@
 'use client'
+import React, { useEffect } from 'react';
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function CommuniquesPage() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isRtl = language === 'ar';
+
+  useEffect(() => {
+    const title = t('communiques.title', "Communiqués de presse & Annonces officielles");
+    document.title = `${title} | ATR - Association Tunisienne des Routes`;
+  }, [language, t]);
 
   const styles = `
     .atr-press-page{background:#F8FAFC;color:#17233D;padding-bottom:85px}
@@ -44,30 +51,32 @@ export default function CommuniquesPage() {
     .atr-press-payment-info{padding:14px 18px;background:#FEF9ED;border-radius:10px;border:1px solid #FDE4BA;color:#92540A;font-size:14px;line-height:1.6;margin:18px 0}
     .atr-press-closing-note{color:#102B54;font-size:14.5px;font-weight:600;line-height:1.65;margin:16px 0}
     
-    .atr-press-entry{display:grid;grid-template-columns:160px 1fr auto;gap:28px;align-items:start;padding:26px 0;border-top:1px solid #DFE6EE}
-    .atr-press-ref{color:#64748B;font-family:monospace;font-size:13.5px;font-weight:600}
-    .atr-press-date{display:block;margin-top:8px;color:#C07B1B;font-family:inherit;font-weight:700;font-size:13.5px}
-    .atr-press-entry h3{color:#102B54;font-size:20px;line-height:1.35;margin:0 0 8px;font-weight:700}
-    .atr-press-entry p{color:#334155;line-height:1.68;margin:0;max-width:680px;font-size:14.5px}
-    
     .atr-press-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
     .atr-press-actions a{padding:10px 18px;border-radius:8px;text-align:center;text-decoration:none;font-size:13.5px;font-weight:700;transition:all .25s ease}
     .atr-press-read{border:1px solid #1B5299;color:#1B5299;background:#FFFFFF}
     .atr-press-read:hover{background:#EEF5FB;border-color:#1B5299}
-    .atr-press-print{background:#1B5299;color:#FFFFFF}
-    .atr-press-print:hover{background:#C07B1B}
     
     .atr-press-crosslink{padding:40px 45px;background:#102B54;border-radius:16px;box-shadow:0 12px 32px rgba(16,43,84,.15);margin-top:40px}
     .atr-press-crosslink h2{color:#FFFFFF;font-size:clamp(20px,2.6vw,26px);margin:0 0 10px;font-weight:700}
     .atr-press-crosslink p{color:#E2E8F0;line-height:1.68;margin:0 0 18px;font-size:15px}
     .atr-press-crosslink a{color:#FFFFFF;background:#C07B1B;padding:11px 20px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;margin-right:18px;display:inline-block;transition:all .3s ease}
     .atr-press-crosslink a:hover{background:#D98E28;transform:translateY(-2px)}
+
+    /* RTL Layout Overrides */
+    body[dir="rtl"] .atr-press-intro { text-align: right; }
+    body[dir="rtl"] .atr-press-contact { text-align: right; border-left: none; border-right: 4px solid #C07B1B; }
+    body[dir="rtl"] .atr-press-list { text-align: right; }
+    body[dir="rtl"] .atr-press-featured-card { text-align: right; }
+    body[dir="rtl"] .atr-press-agenda-block { border-left: none; border-right: 3px solid #1B5299; border-radius: 10px 0 0 10px; text-align: right; }
+    body[dir="rtl"] .atr-press-agenda-list li { padding-left: 0; padding-right: 22px; }
+    body[dir="rtl"] .atr-press-agenda-list li::before { left: auto; right: 4px; }
+    body[dir="rtl"] .atr-press-crosslink { text-align: right; }
+    body[dir="rtl"] .atr-press-crosslink a { margin-right: 0; margin-left: 18px; }
     
     @media(max-width:767px){
       .atr-press-intro{padding:45px 0 30px}
       .atr-press-featured-card{padding:24px 20px}
       .atr-press-contact{display:block;margin:25px 15px 0}
-      .atr-press-entry{grid-template-columns:1fr;gap:12px}
       .atr-press-actions{flex-direction:column}
       .atr-press-actions a{width:100%}
       .atr-press-list{padding:35px 0}
@@ -104,64 +113,64 @@ export default function CommuniquesPage() {
 
             {/* Featured Release: Assemblée Générale */}
             <div className="atr-press-featured-card">
-              <span className="atr-press-badge">Convocation Officielle</span>
+              <span className="atr-press-badge">{t('communiques.badge_convocation', "Convocation Officielle")}</span>
               <div className="atr-press-featured-header">
                 <div>
-                  <h3 className="atr-press-featured-title">ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)</h3>
-                  <p style={{ color: '#64748B', fontSize: '14px', margin: '6px 0 0', fontWeight: '500' }}>Communiqué n°02-2026 · Destiné aux membres de l'ATR</p>
+                  <h3 className="atr-press-featured-title">{t('communiques.ag_title', "ASSEMBLÉE GÉNÉRALE – ASSOCIATION TUNISIENNE DES ROUTES (ATR)")}</h3>
+                  <p style={{ color: '#64748B', fontSize: '14px', margin: '6px 0 0', fontWeight: '500' }}>{t('communiques.ag_subtitle', "Communiqué n°02-2026 · Destiné aux membres de l'ATR")}</p>
                 </div>
                 <div className="atr-press-meta-pill">
-                  📅 Samedi 24 octobre 2026
+                  {t('communiques.ag_date_pill', "📅 Samedi 24 octobre 2026")}
                 </div>
               </div>
 
               <p style={{ color: '#334155', fontSize: '15.5px', lineHeight: '1.7', margin: '14px 0 10px' }}>
-                <strong>Chers membres,</strong><br />
-                L’Association Tunisienne des Routes (ATR) a le plaisir de vous convier à son Assemblée Générale, qui se tiendra :
+                <strong>{t('communiques.ag_dear_members', "Chers membres,")}</strong><br />
+                {t('communiques.ag_invite', "L’Association Tunisienne des Routes (ATR) a le plaisir de vous convier à son Assemblée Générale, qui se tiendra :")}
               </p>
 
               <div className="atr-press-event-boxes">
                 <div className="atr-press-event-box">
-                  <strong>Date</strong>
-                  <p>Samedi 24 octobre 2026</p>
+                  <strong>{t('communiques.label_date', "Date")}</strong>
+                  <p>{t('communiques.ag_date_val', "Samedi 24 octobre 2026")}</p>
                 </div>
                 <div className="atr-press-event-box">
-                  <strong>Horaire</strong>
-                  <p>9h00</p>
+                  <strong>{t('communiques.label_time', "Horaire")}</strong>
+                  <p>{t('communiques.ag_time_val', "9h00")}</p>
                 </div>
                 <div className="atr-press-event-box">
-                  <strong>Lieu</strong>
-                  <p>Startup Village</p>
+                  <strong>{t('communiques.label_location', "Lieu")}</strong>
+                  <p>{t('communiques.ag_loc_val', "Startup Village")}</p>
                   <a href="https://maps.app.goo.gl/3Vbb8kya3VsCa2NT8?g_st=ac" target="_blank" rel="noopener noreferrer" className="atr-press-maps-link">
-                    📍 Voir sur Google Maps ↗
+                    {t('communiques.maps_link', "📍 Voir sur Google Maps ↗")}
                   </a>
                 </div>
               </div>
 
               <div className="atr-press-agenda-block">
-                <h4>À l’ordre du jour :</h4>
+                <h4>{t('communiques.ag_agenda_title', "À l’ordre du jour :")}</h4>
                 <ul className="atr-press-agenda-list">
-                  <li>Présentation du rapport moral ;</li>
-                  <li>Présentation du rapport financier ;</li>
-                  <li>Présentation des activités réalisées par l’ATR ;</li>
-                  <li>Échanges sur les activités et les perspectives de l’association ;</li>
-                  <li>Présentation des projets et orientations à venir ;</li>
-                  <li>Divers.</li>
+                  <li>{t('communiques.ag_agenda_1', "Présentation du rapport moral ;")}</li>
+                  <li>{t('communiques.ag_agenda_2', "Présentation du rapport financier ;")}</li>
+                  <li>{t('communiques.ag_agenda_3', "Présentation des activités réalisées par l’ATR ;")}</li>
+                  <li>{t('communiques.ag_agenda_4', "Échanges sur les activités et les perspectives de l’association ;")}</li>
+                  <li>{t('communiques.ag_agenda_5', "Présentation des projets et orientations à venir ;")}</li>
+                  <li>{t('communiques.ag_agenda_6', "Divers.")}</li>
                 </ul>
               </div>
 
               <div className="atr-press-payment-info">
-                💳 <strong>Cotisation 2026 :</strong> La cotisation 2026 pourra être réglée par virement bancaire <strong>N° 086030001520090580</strong> ou par chèque.
+                <strong>{t('communiques.ag_payment_prefix', "💳 Cotisation 2026 :")}</strong> {t('communiques.ag_payment_text', "La cotisation 2026 pourra être réglée par virement bancaire N° 08603000152009058019 ou par chèque.")}
               </div>
 
               <p className="atr-press-closing-note">
-                Votre présence est importante pour la vie de l’ATR et pour continuer à développer ensemble nos actions au service du secteur routier en Tunisie.<br />
-                <em>Nous comptons sur votre présence !</em>
+                <span>{t('communiques.ag_closing_1', "Votre présence est importante pour la vie de l’ATR et pour continuer à développer ensemble nos actions au service du secteur routier en Tunisie.")}</span><br />
+                <em>{t('communiques.ag_closing_2', "Nous comptons sur votre présence !")}</em>
               </p>
 
               <div className="atr-press-actions">
                 <Link href="/communiques/assemblee-generale-2026" className="atr-press-read">
-                  {t('communiques.read_online', "Consulter la fiche complète")} →
+                  {t('communiques.read_online', "Consulter la fiche complète")} <span aria-hidden="true">{isRtl ? '←' : '→'}</span>
                 </Link>
               </div>
             </div>
